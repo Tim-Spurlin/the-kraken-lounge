@@ -71,7 +71,9 @@ export function Contact() {
                 <h3 className="font-heading text-xl mb-4 text-foreground">Follow Us</h3>
                 <div className="flex gap-4">
                   <a
-                    href="#"
+                    href="https://www.facebook.com/TheKrakenBrownsville"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-primary hover:bg-accent rounded-sm flex items-center justify-center transition-all hover:scale-110"
                     aria-label="Facebook"
                   >
