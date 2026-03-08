@@ -43,7 +43,7 @@ The Kraken Lounge is a React + TypeScript single-page experience built with Vite
 ## Local development
 ```bash
 # 1) Install dependencies
-cd the-kraken-lounge
+cd <project-root>
 npm install
 
 # 2) Run dev server (http://localhost:5173)
@@ -56,7 +56,7 @@ npm run preview
 
 **Scripts (package.json)**
 - `dev` — Vite dev server with HMR.
-- `build` — `tsc -b --noCheck && vite build` (TypeScript build + optimized bundle).
+- `build` — `tsc -b --noCheck && vite build` (uses the repo’s current script; consider swapping `--noCheck` for `--noEmit` if you want a type-only build).
 - `preview` — Serve the production bundle locally.
 - `optimize` — Pre-bundle deps for faster cold starts.
 - `lint` — ESLint (see Troubleshooting for enabling configuration).
@@ -240,7 +240,7 @@ flowchart LR
 
 ## Content management
 - **Events**: Manage via Spark KV key `events` (`Event[]`). Tabs auto-filter on `type`.
-- **Artworks**: Manage via Spark KV key `artworks` (`Artwork[]`). Lightbox uses Dialog component.
+- **Artworks**: Manage via Spark KV key `artworks` (`Artwork[]`). Lightbox uses the Dialog component.
 - **Venue info**: Static content in sections (address, hours, phone, socials).
 - **Empty states**: Components show friendly fallbacks when KV data is empty—safe to deploy without seeded data.
 
