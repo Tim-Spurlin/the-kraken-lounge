@@ -262,7 +262,7 @@ flowchart LR
 | Issue | Fix |
 | --- | --- |
 | `npm run lint` complains about missing `eslint.config.*` | Add an ESLint flat config (ESLint ≥9) or use an `.eslintrc` with the migration guide. |
-| `npm run build` uses \`tsc -b --noCheck\` | `--noCheck` is not a valid TypeScript flag; remove it for normal checking or replace with `--noEmit` to run a type-only build. |
+| `npm run build` uses \`tsc -b --noCheck\` | `--noCheck` is not a valid TypeScript flag; remove it for normal checking or use `--noEmitOnError` if you need the build to continue emitting even when type errors occur. |
 | Port already in use | Run `npm run kill` or stop the conflicting process on port 5000/5173. |
 | Cloudinary video blocked | Replace the hero `videoUrl` in `Hero.tsx` with a reachable CDN asset. |
 | Empty events/gallery | Seed data via Spark dashboard (`events` / `artworks` keys) or supply local defaults in components for preview. |
