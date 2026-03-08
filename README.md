@@ -75,12 +75,12 @@ npm run preview
 - **About** (`sections/About.tsx`): Venue story, pandemic resilience, values (Rebellious · Authentic · Welcoming).
 - **Events** (`sections/Events.tsx`): Tab filters (All/Live/Themed/Weekly/Special), genre badges, pricing, lineup, fallback empty states.
 - **Music** (`sections/Music.tsx`): Genre pillars and recurring nights (Techno Sundays, Karaoke Wednesdays).
-- **Art Gallery** (`sections/ArtGallery.tsx`): Lightbox dialog for full artwork view; pulls from Spark KV `artworks`.
+- **Art Gallery** (`sections/ArtGallery.tsx`): Lightbox Dialog for full artwork view; pulls from Spark KV `artworks`.
 - **Food & Drinks** (`sections/FoodDrinks.tsx`): Kraken pizza highlight + beverage program.
 - **Community** (`sections/Community.tsx`): University partnerships, festivals, charitable initiatives.
 - **Contact** (`sections/Contact.tsx`): Address, hours, phone, map link, socials, booking CTA.
 - **Error boundary** (`src/ErrorFallback.tsx`): Friendly crash screen with retry.
-- **UI kit** (`src/components/ui/*`): shadcn-derived components (Card, Button, dialog, Tabs, Badge, Sheet, etc.) themed for gothic red styling.
+- **UI kit** (`src/components/ui/*`): shadcn-derived components (Card, Button, Dialog, Tabs, Badge, Sheet, etc.) themed for gothic red styling.
 
 ---
 
@@ -100,7 +100,7 @@ flowchart TD
     I -->|recurring| G
     I -->|special| G
     H --> J{Artwork click?}
-    J -->|Yes| K[dialog lightbox]
+    J -->|Yes| K[Dialog lightbox]
     J -->|No| L[Remain in grid]
 ```
 
@@ -116,7 +116,7 @@ sequenceDiagram
     Nav-->>Sections: Smooth scroll / open drawer
     Sections->>KV: useKV('events' | 'artworks')
     KV-->>Sections: Event[] / Artwork[]
-    Sections->>UI: Render cards, tabs, dialog modals
+    Sections->>UI: Render cards, tabs, Dialog modals
     User->>UI: Filter events / open artwork
     UI-->>User: Animated cards, glow effects
 ```
@@ -232,7 +232,7 @@ flowchart LR
   - Nav bar shadow appears after scrolling >50px.
   - Mobile drawer slides from the right; closes on selection.
   - Tabs animate active state in Events.
-  - dialog lightbox fades/zooms artworks in.
+  - Dialog lightbox fades/zooms artworks in.
 
 - **Add more motion safely**: Prefer Framer Motion for controlled spring transitions; keep durations under 200–250ms and expose `reducedMotion` variants.
 
@@ -240,7 +240,7 @@ flowchart LR
 
 ## Content management
 - **Events**: Manage via Spark KV key `events` (`Event[]`). Tabs auto-filter on `type`.
-- **Artworks**: Manage via Spark KV key `artworks` (`Artwork[]`). Lightbox uses the dialog component.
+- **Artworks**: Manage via Spark KV key `artworks` (`Artwork[]`). Lightbox uses the Dialog component.
 - **Venue info**: Static content in sections (address, hours, phone, socials).
 - **Empty states**: Components show friendly fallbacks when KV data is empty—safe to deploy without seeded data.
 
@@ -253,7 +253,7 @@ flowchart LR
 - External assets served from Cloudinary CDN for performance; Vite/SWC for optimized bundles.
 
 - **Testing**
-- No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, dialogs, and navigation (desktop + mobile widths).
+- No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, Dialogs, and navigation (desktop + mobile widths).
 - Linting guidance: see Troubleshooting for the ESLint configuration requirement.
 
 ---
@@ -298,7 +298,7 @@ spark.meta.json             # Spark metadata
 - **UTRGV Subculture Initiative** — Workshops, VR tours, and academic partnership.
 - **Hernandez-Brownsville Music Festival** — 11-band showcase featuring regional heavy acts.
 - **Charity drives** — Past events like Woofstock 2018 and fundraising nights.
-- **Local art rotation** — Monthly spotlight on Brownsville artists; dialog lightbox for full views.
+- **Local art rotation** — Monthly spotlight on Brownsville artists; Dialog lightbox for full views.
 - **Open, inclusive space** — LGBTQ+ and alt subcultures welcomed; affordable cover/pricing where applicable.
 
 ---
@@ -307,5 +307,5 @@ spark.meta.json             # Spark metadata
 - Run: `npm install && npm run dev`
 - Data: Manage `events` and `artworks` via Spark KV
 - Sections: Hero → About → Events → Music → Art Gallery → Food & Drinks → Community → Contact
-- Visuals: Dark OKLch palette, red glow highlights, video hero, animated cards/dialogs
+- Visuals: Dark OKLch palette, red glow highlights, video hero, animated cards/Dialogs
 - Deploy: GitHub Spark (build: `tsc -b --noCheck && vite build`)
