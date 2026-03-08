@@ -20,7 +20,7 @@
 ## Overview
 The Kraken Lounge is a React + TypeScript single-page experience built with Vite, Tailwind v4, and shadcn/ui. It showcases events, rotating art galleries, community stories, and venue details for the alternative music community in Brownsville, TX. Data for events and artworks lives in the GitHub Spark KV store and is rendered client-side with responsive, motion-rich UI.
 
-**Repository root:** `/home/runner/work/the-kraken-lounge/the-kraken-lounge`  
+**Repository root:** `<project-root>` (the cloned repository directory)  
 **Primary entry:** `src/App.tsx` (sections: Hero, About, Events, Music, Art Gallery, Food & Drinks, Community, Contact)  
 **Data access:** GitHub Spark `useKV` hook for `events` and `artworks` keys  
 **Address:** 1123 E Adams St, Suite C, Brownsville, TX 78520 — (956) 372-1550 — Open daily 5 PM–2 AM
@@ -43,7 +43,7 @@ The Kraken Lounge is a React + TypeScript single-page experience built with Vite
 ## Local development
 ```bash
 # 1) Install dependencies
-cd /home/runner/work/the-kraken-lounge/the-kraken-lounge
+cd the-kraken-lounge
 npm install
 
 # 2) Run dev server (http://localhost:5173)
@@ -209,10 +209,18 @@ flowchart LR
 ---
 
 ## Animations
-- **Live preview**: The hero uses a Cloudinary-hosted looping video with a pulse-glow flame icon and gradient overlay. You can also embed it here for quick reference:
+- **Live preview**: The hero uses a Cloudinary-hosted looping video with a pulse-glow flame icon and gradient overlay. (Description: dark stage ambience with red lighting and subtle motion.)
 
   ```html
-  <video src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1738279880/kraken-hero_qdsyfk.mp4" autoplay loop muted playsinline style="max-width:100%; border-radius:12px; box-shadow:0 0 30px rgba(255,0,0,0.25);" />
+  <video
+    src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1738279880/kraken-hero_qdsyfk.mp4"
+    autoplay
+    loop
+    muted
+    playsinline
+    title="Hero background preview video showing red-lit stage ambience"
+    style="max-width:100%; border-radius:12px; box-shadow:0 0 30px rgba(255,0,0,0.25);"
+  />
   ```
 
 - **Keyframe set pieces** (defined in CSS):
