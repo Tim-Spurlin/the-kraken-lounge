@@ -59,7 +59,7 @@ npm run preview
 - `build` — `tsc -b --noCheck && vite build` (TypeScript build + optimized bundle).
 - `preview` — Serve the production bundle locally.
 - `optimize` — Pre-bundle deps for faster cold starts.
-- `lint` — ESLint (note: repository currently lacks `eslint.config.*`; add one before using).
+- `lint` — ESLint (see Troubleshooting for enabling configuration).
 - `kill` — Free port 5000 (used by some environments).
 
 **Environment**
@@ -246,7 +246,7 @@ flowchart LR
 
 **Testing**
 - No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, dialogs, and navigation (desktop + mobile widths).
-- ESLint script is present but requires an `eslint.config.js|mjs|cjs` file to run without error.
+- Linting guidance: see Troubleshooting for the ESLint configuration requirement.
 
 ---
 
@@ -279,7 +279,7 @@ spark.meta.json             # Spark metadata
 ---
 
 ## Contributing
-1. Branch from `copilot/enhance-readme-documentation` or the active development branch.
+1. Branch from `main` (or the active development branch).
 2. Keep changes scoped and atomic; prefer updating existing sections over adding new files when possible.
 3. Run `npm run build` (and lint once ESLint config is added) before opening a PR.
 4. Document UI or content changes in this README if they affect behavior, data, or visual systems.
