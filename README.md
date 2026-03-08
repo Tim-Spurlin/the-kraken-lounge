@@ -87,21 +87,34 @@ npm run preview
 ## Architecture & data flow
 ```mermaid
 flowchart TD
-    A[User loads site] --> B[Navigation & Hero]
-    B --> C[Section stack in App.tsx]
-    C --> D[Events.tsx]
-    C --> E[ArtGallery.tsx]
-    C --> F[Music / Food / Community / Contact]
-    D -->|useKV('events')| G[Render event cards]
-    E -->|useKV('artworks')| H[Render gallery grid]
-    D --> I{Filter tab}
+    A[User loads site]
+    B[Navigation & Hero]
+    C[Section stack in App.tsx]
+    D[Events.tsx]
+    E[ArtGallery.tsx]
+    F[Music / Food / Community / Contact]
+    G[Render event cards]
+    H[Render gallery grid]
+    I{Filter tab}
+    J{Artwork click?}
+    K[Dialog lightbox]
+    L[Remain in grid]
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    D -->|useKV: events| G
+    E -->|useKV: artworks| H
+    D --> I
     I -->|live| G
     I -->|themed| G
     I -->|recurring| G
     I -->|special| G
-    H --> J{Artwork click?}
-    J -->|Yes| K[Dialog lightbox]
-    J -->|No| L[Remain in grid]
+    H --> J
+    J -->|Yes| K
+    J -->|No| L
 ```
 
 ```mermaid
