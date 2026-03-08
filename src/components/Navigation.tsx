@@ -36,7 +36,7 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-sm border-b border-border shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-primary/30 shadow-[0_4px_20px_oklch(0.08_0.02_280_/_0.8)]' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -47,12 +47,12 @@ export function Navigation() {
               e.preventDefault()
               handleNavClick('#home')
             }}
-            className="font-display text-2xl md:text-3xl text-accent gothic-glow"
+            className="font-display text-2xl md:text-3xl text-gradient-purple gothic-glow hover:scale-105 transition-transform"
           >
             The Kraken Lounge
           </a>
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.slice(1).map((link) => (
               <a
                 key={link.href}
@@ -61,9 +61,10 @@ export function Navigation() {
                   e.preventDefault()
                   handleNavClick(link.href)
                 }}
-                className="font-heading text-sm text-foreground hover:text-accent transition-colors"
+                className="font-heading text-sm text-foreground hover:text-accent transition-all duration-300 relative group"
               >
                 {link.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -71,13 +72,13 @@ export function Navigation() {
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <button
-                className="lg:hidden w-10 h-10 flex items-center justify-center bg-primary hover:bg-accent rounded-sm transition-colors"
+                className="lg:hidden w-10 h-10 flex items-center justify-center bg-primary hover:bg-accent rounded-md transition-all hover:scale-110 hover:shadow-[0_0_20px_oklch(0.65_0.24_310_/_0.6)]"
                 aria-label="Menu"
               >
                 <List className="w-6 h-6 text-primary-foreground" weight="bold" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-card border-border w-80">
+            <SheetContent side="right" className="bg-card border-primary/30 w-80 aurora-gradient">
               <div className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
                   <a
@@ -87,7 +88,7 @@ export function Navigation() {
                       e.preventDefault()
                       handleNavClick(link.href)
                     }}
-                    className="font-heading text-2xl text-foreground hover:text-accent transition-colors"
+                    className="font-heading text-2xl text-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
                   >
                     {link.label}
                   </a>

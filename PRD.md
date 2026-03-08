@@ -3,7 +3,7 @@
 The Kraken Lounge website serves as the digital embodiment of Brownsville's premier alternative music venue—a gothic sanctuary where heavy metal, punk, industrial, and underground techno converge in the heart of the Rio Grande Valley.
 
 **Experience Qualities**:
-1. **Visceral** - The website must immediately immerse visitors in the venue's dark, atmospheric aesthetic through bold gothic design that mirrors the low-lit, red-hued physical space
+1. **Visceral** - The website must immediately immerse visitors in the venue's dark, atmospheric aesthetic through bold gothic design with deep purples, blacks, and sophisticated gradients that mirror the mystical, underground physical space
 2. **Rebellious** - Content and design should celebrate the venue's counter-cultural mission as a refuge from mainstream music, embracing raw authenticity over commercial polish
 3. **Welcoming** - Despite the dark aesthetic, the interface must convey the warmth and inclusivity that makes The Kraken Lounge a safe community hub for alternative subcultures
 
@@ -64,22 +64,22 @@ This is a content showcase with interactive elements like event calendars, artis
 
 ## Design Direction
 
-The design must evoke the visceral sensation of descending into an underground sanctum—a space where darkness becomes comfort, where aggressive music meets artistic sophistication, and where the rawness of a dive bar coexists with intentional aesthetic curation. Visitors should feel the intensity of red-lit shadows, the weight of heavy metal, and the warmth of radical inclusivity.
+The design must evoke the visceral sensation of descending into a mystical underground sanctum—a space where darkness becomes comfort, where deep purples and blacks create an ethereal, sophisticated atmosphere, where aggressive music meets artistic refinement, and where the rawness of a dive bar coexists with intentional gothic elegance. Visitors should feel the intensity of purple-lit shadows, the mystical energy of the underground scene, and the warmth of radical inclusivity. The aesthetic moves beyond Halloween tropes into a truly immersive, sophisticated gothic experience with gradient overlays, aurora-like effects, and luminous accents.
 
 ## Color Selection
 
-The palette draws from gothic architecture, underground clubs, and the venue's signature red lighting.
+The palette draws from gothic cathedrals, underground clubs, deep twilight skies, and mystical purple nebulae—creating a sophisticated, immersive atmosphere that moves beyond the Halloween aesthetic into a truly gothic, ethereal experience.
 
-- **Primary Color**: Deep Blood Red `oklch(0.35 0.20 25)` - Represents the venue's iconic red lighting, aggressive music energy, and gothic identity. Used for primary CTAs and key accents.
+- **Primary Color**: Deep Mystic Purple `oklch(0.45 0.20 295)` - The foundation of the gothic identity, representing mystery, royalty, and the underground alternative scene. Used for primary surfaces and key interactive elements.
 - **Secondary Colors**: 
-  - Rich Black `oklch(0.12 0.01 265)` - The foundation, representing the low-lit atmosphere and underground aesthetic
-  - Dark Charcoal `oklch(0.22 0.01 265)` - For elevated surfaces like cards and sections
-  - Deep Purple Accent `oklch(0.28 0.15 305)` - Adds gothic mystique for hover states and secondary highlights
-- **Accent Color**: Crimson Flame `oklch(0.55 0.25 25)` - Vibrant highlight for CTAs, active states, and attention-grabbing elements like "LIVE TONIGHT"
+  - Rich Obsidian Black `oklch(0.08 0.02 280)` - The deepest background representing the void, the underground, and infinite depth
+  - Midnight Slate `oklch(0.14 0.03 285)` - Elevated surfaces like cards and sections, maintaining depth while providing subtle distinction
+  - Dark Plum Accent `oklch(0.25 0.10 310)` - Secondary interactive elements and hover states, adding gothic warmth
+- **Accent Color**: Luminous Violet `oklch(0.65 0.24 310)` - Brilliant highlight for CTAs, glowing effects, and attention-grabbing elements like "LIVE TONIGHT" - evokes mystical energy and electric intensity
 - **Foreground/Background Pairings**: 
-  - Rich Black background `oklch(0.12 0.01 265)`: Off-White text `oklch(0.95 0.01 90)` - Ratio 15.2:1 ✓
-  - Deep Blood Red `oklch(0.35 0.20 25)`: White text `oklch(0.98 0 0)` - Ratio 6.8:1 ✓
-  - Crimson Flame `oklch(0.55 0.25 25)`: Rich Black text `oklch(0.12 0.01 265)` - Ratio 7.1:1 ✓
+  - Rich Obsidian background `oklch(0.08 0.02 280)`: Pale Mist text `oklch(0.96 0.01 280)` - Ratio 17.8:1 ✓
+  - Deep Mystic Purple `oklch(0.45 0.20 295)`: White text `oklch(0.98 0 0)` - Ratio 8.2:1 ✓
+  - Luminous Violet `oklch(0.65 0.24 310)`: White text `oklch(0.98 0 0)` - Ratio 5.1:1 ✓
 
 ## Font Selection
 
@@ -95,7 +95,7 @@ Typography must balance aggressive gothic edge with exceptional readability, evo
 
 ## Animations
 
-Animations should feel like descending into an underground space—smooth, deliberate, occasionally unsettling. Subtle parallax on scroll creates depth. Event cards pulse gently like a heartbeat when hovering. Section reveals fade up from darkness. Navigation transitions slide with momentum. Red accent glow pulses subtly on hero elements. All animations respect prefers-reduced-motion.
+Animations should feel like descending into a gothic cathedral or underground club—smooth, mystical, occasionally ethereal. Subtle parallax on scroll creates dimensional depth. Event cards pulse gently with purple energy when hovering, like a heartbeat of the underground scene. Section reveals fade up from darkness with subtle shimmer effects. Navigation transitions slide with graceful momentum. Purple and violet accent glows pulse subtly on hero elements creating an atmospheric, almost supernatural ambiance. Aurora-like gradient shifts create living, breathing backgrounds. All animations respect prefers-reduced-motion for accessibility.
 
 ## Component Selection
 

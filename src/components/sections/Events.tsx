@@ -39,10 +39,11 @@ export function Events() {
   }
 
   return (
-    <section id="events" className="py-20 gradient-mesh bg-noise">
-      <div className="container mx-auto px-4">
+    <section id="events" className="py-20 gradient-mesh bg-noise relative">
+      <div className="absolute inset-0 aurora-gradient opacity-20 pointer-events-none" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="font-heading text-5xl md:text-6xl mb-4 text-accent">
+          <h2 className="font-heading text-5xl md:text-6xl mb-4 text-gradient-purple gothic-glow">
             Upcoming Shows
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

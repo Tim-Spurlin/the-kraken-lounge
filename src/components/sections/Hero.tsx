@@ -1,4 +1,5 @@
-import { Flame } from '@phosphor-icons/react'
+import { Flame, Lightning } from '@phosphor-icons/react'
+import { motion } from 'framer-motion'
 
 export function Hero() {
   return (
@@ -8,54 +9,90 @@ export function Hero() {
         loop 
         muted 
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
       >
         <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772991851/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb_bsqwse.mp4" type="video/mp4" />
       </video>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,oklch(0.12_0.01_265_/_0.8)_100%)]" />
+      <div className="absolute inset-0 gradient-mesh" />
+      <div className="absolute inset-0 aurora-gradient opacity-30" />
       
       <div className="container mx-auto px-4 text-center relative z-10 py-32">
-        <div className="max-w-5xl mx-auto space-y-8">
-          <Flame className="w-16 h-16 md:w-24 md:h-24 mx-auto text-accent animate-pulse-glow" weight="fill" />
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="max-w-5xl mx-auto space-y-8"
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Lightning className="w-16 h-16 md:w-24 md:h-24 mx-auto text-accent animate-pulse-glow" weight="fill" />
+          </motion.div>
           
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-accent gothic-glow leading-tight">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="font-display text-6xl md:text-8xl lg:text-9xl text-gradient-purple gothic-glow leading-tight"
+          >
             The Kraken Lounge
-          </h1>
+          </motion.h1>
           
-          <p className="font-heading text-2xl md:text-4xl text-foreground tracking-wider">
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="font-heading text-2xl md:text-4xl text-foreground tracking-wider"
+          >
             Brownsville's Underground Music Sanctuary
-          </p>
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+          >
             <div className="text-center">
               <p className="text-muted-foreground text-sm uppercase tracking-widest mb-1">Open Daily</p>
-              <p className="font-heading text-xl text-foreground">5:00 PM - 2:00 AM</p>
+              <p className="font-heading text-xl text-accent">5:00 PM - 2:00 AM</p>
             </div>
             <div className="hidden sm:block w-px h-12 bg-border" />
             <div className="text-center">
               <p className="text-muted-foreground text-sm uppercase tracking-widest mb-1">Location</p>
-              <p className="font-heading text-xl text-foreground">1123 E Adams St, Suite C</p>
+              <p className="font-heading text-xl text-accent">1123 E Adams St, Suite C</p>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="pt-8">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="pt-8"
+          >
             <a 
               href="#events" 
-              className="inline-block bg-primary hover:bg-accent text-primary-foreground font-heading text-lg px-8 py-4 rounded-sm transition-all hover:shadow-[0_0_30px_oklch(0.55_0.25_25_/_0.5)] hover:scale-105"
+              className="inline-block bg-primary hover:bg-accent text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.65_0.24_310_/_0.6)] hover:scale-105 border-gradient purple-shimmer"
             >
               See Upcoming Shows
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-muted-foreground rounded-full" />
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+      >
+        <div className="w-6 h-10 border-2 border-accent rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-3 bg-accent rounded-full" />
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -1,28 +1,42 @@
 import { MapPin, Phone, Clock, InstagramLogo, FacebookLogo, XLogo } from '@phosphor-icons/react'
+import { motion } from 'framer-motion'
 
 export function Contact() {
   return (
     <section id="contact" className="py-20 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-noise" />
+      <div className="absolute inset-0 gradient-mesh opacity-40" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-5xl md:text-6xl mb-4 text-accent">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="font-heading text-5xl md:text-6xl mb-4 text-gradient-purple gothic-glow">
               Visit Us
             </h2>
             <p className="text-xl text-muted-foreground">
               Step into Brownsville's underground music sanctuary
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <div className="bg-card border border-border p-6 rounded-sm">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-card border-gradient deep-shadow p-6 rounded-md hover:scale-105 transition-all duration-300"
+              >
                 <div className="flex items-start gap-4">
                   <MapPin className="w-8 h-8 text-accent flex-shrink-0" weight="fill" />
                   <div>
-                    <h3 className="font-heading text-xl mb-2 text-foreground">Address</h3>
+                    <h3 className="font-heading text-xl mb-2 text-accent">Address</h3>
                     <p className="text-foreground/80">
                       1123 E Adams St, Suite C<br />
                       Brownsville, TX 78520
@@ -37,26 +51,38 @@ export function Contact() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-card border border-border p-6 rounded-sm">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-card border-gradient deep-shadow p-6 rounded-md hover:scale-105 transition-all duration-300"
+              >
                 <div className="flex items-start gap-4">
                   <Clock className="w-8 h-8 text-accent flex-shrink-0" weight="fill" />
                   <div>
-                    <h3 className="font-heading text-xl mb-2 text-foreground">Hours</h3>
+                    <h3 className="font-heading text-xl mb-2 text-accent">Hours</h3>
                     <p className="text-foreground/80">
                       <span className="font-bold">Open Every Day</span><br />
                       5:00 PM - 2:00 AM
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-card border border-border p-6 rounded-sm">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-card border-gradient deep-shadow p-6 rounded-md hover:scale-105 transition-all duration-300"
+              >
                 <div className="flex items-start gap-4">
                   <Phone className="w-8 h-8 text-accent flex-shrink-0" weight="fill" />
                   <div>
-                    <h3 className="font-heading text-xl mb-2 text-foreground">Phone</h3>
+                    <h3 className="font-heading text-xl mb-2 text-accent">Phone</h3>
                     <a
                       href="tel:+19563721550"
                       className="text-foreground/80 hover:text-accent transition-colors text-lg"
@@ -65,47 +91,69 @@ export function Contact() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-card border border-border p-6 rounded-sm">
-                <h3 className="font-heading text-xl mb-4 text-foreground">Follow Us</h3>
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-card border-gradient deep-shadow p-6 rounded-md"
+              >
+                <h3 className="font-heading text-xl mb-4 text-accent">Follow for Updates</h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Stay updated with the latest shows, events, and announcements
+                </p>
                 <div className="flex gap-4">
                   <a
                     href="https://www.facebook.com/TheKrakenBrownsville"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-primary hover:bg-accent rounded-sm flex items-center justify-center transition-all hover:scale-110"
+                    className="w-12 h-12 bg-primary hover:bg-accent rounded-md flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.6)]"
                     aria-label="Facebook"
                   >
                     <FacebookLogo className="w-6 h-6 text-primary-foreground" weight="fill" />
                   </a>
                   <a
                     href="#"
-                    className="w-12 h-12 bg-primary hover:bg-accent rounded-sm flex items-center justify-center transition-all hover:scale-110"
+                    className="w-12 h-12 bg-primary hover:bg-accent rounded-md flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.6)]"
                     aria-label="Instagram"
                   >
                     <InstagramLogo className="w-6 h-6 text-primary-foreground" weight="fill" />
                   </a>
                   <a
                     href="#"
-                    className="w-12 h-12 bg-primary hover:bg-accent rounded-sm flex items-center justify-center transition-all hover:scale-110"
+                    className="w-12 h-12 bg-primary hover:bg-accent rounded-md flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.6)]"
                     aria-label="X (formerly Twitter)"
                   >
                     <XLogo className="w-6 h-6 text-primary-foreground" weight="fill" />
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="bg-card border border-border p-6 rounded-sm">
-              <div className="aspect-square md:aspect-auto md:h-full bg-muted rounded-sm flex items-center justify-center">
-                <MapPin className="w-24 h-24 text-muted-foreground" weight="fill" />
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-card border-gradient deep-shadow p-6 rounded-md purple-shimmer"
+            >
+              <div className="aspect-square md:aspect-auto md:h-full bg-gradient-to-br from-primary/20 to-secondary/20 rounded-md flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 aurora-gradient opacity-30" />
+                <MapPin className="w-24 h-24 text-accent relative z-10 animate-pulse-glow" weight="fill" />
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="mt-12 bg-primary/10 border-2 border-primary p-8 rounded-sm text-center">
-            <h3 className="font-heading text-2xl mb-3 text-foreground">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-12 border-gradient deep-shadow p-8 rounded-md text-center"
+          >
+            <h3 className="font-heading text-2xl mb-3 text-accent gothic-glow">
               Questions? Want to Book a Show?
             </h3>
             <p className="text-foreground/80 mb-4">
@@ -114,7 +162,7 @@ export function Contact() {
             <p className="text-muted-foreground">
               Call us at <a href="tel:+19563721550" className="text-accent font-bold hover:underline">(956) 372-1550</a>
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
