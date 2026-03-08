@@ -2,8 +2,19 @@ import { Flame } from '@phosphor-icons/react'
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center gradient-mesh bg-noise overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,oklch(0.12_0.01_265)_100%)]" />
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772991851/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb_bsqwse.mp4" type="video/mp4" />
+      </video>
+      
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,oklch(0.12_0.01_265_/_0.8)_100%)]" />
       
       <div className="container mx-auto px-4 text-center relative z-10 py-32">
         <div className="max-w-5xl mx-auto space-y-8">
