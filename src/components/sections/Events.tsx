@@ -1,0 +1,140 @@
+import { useState } from 'react'
+import { useKV } from '@github/spark/hooks'
+import { Card } from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Badge } from '@/components/ui/badge'
+import { CalendarBlank, Clock, MapPin } from '@phosphor-icons/react'
+import { format } from 'date-fns'
+
+interface Event {
+  id: string
+  title: string
+  date: string
+  time: string
+  type: 'live' | 'themed' | 'recurring' | 'special'
+  genres: string[]
+  bands?: string[]
+  description: string
+  price?: string
+}
+
+export function Events() {
+  const [events] = useKV<Event[]>('events', [])
+  const [activeTab, setActiveTab] = useState('all')
+
+  const filteredEvents = activeTab === 'all' 
+    ? events || [] 
+    : (events || []).filter(event => event.type === activeTab)
+
+  const getGenreColor = (genre: string) => {
+    const colors: Record<string, string> = {
+      'Metal': 'bg-primary text-primary-foreground',
+      'Punk': 'bg-accent text-accent-foreground',
+      'Goth': 'bg-secondary text-secondary-foreground',
+      'Industrial': 'bg-muted text-muted-foreground',
+      'Techno': 'bg-primary/60 text-foreground',
+      'Indie': 'bg-accent/60 text-foreground'
+    }
+    return colors[genre] || 'bg-muted text-muted-foreground'
+  }
+
+  return (
+    <section id="events" className="py-20 gradient-mesh bg-noise">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="font-heading text-5xl md:text-6xl mb-4 text-accent">
+            Upcoming Shows
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            From live bands to themed nights, there's always something happening at The Kraken Lounge
+          </p>
+        </div>
+
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8 bg-card">
+            <TabsTrigger value="all">All Events</TabsTrigger>
+            <TabsTrigger value="live">Live Bands</TabsTrigger>
+            <TabsTrigger value="themed">Themed Nights</TabsTrigger>
+            <TabsTrigger value="recurring">Weekly</TabsTrigger>
+            <TabsTrigger value="special">Special Events</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value={activeTab} className="space-y-6">
+            {filteredEvents.length === 0 ? (
+              <Card className="p-12 text-center bg-card border-border">
+                <p className="text-xl text-muted-foreground mb-4">
+                  No upcoming events in this category yet.
+                </p>
+                <p className="text-muted-foreground">
+                  Check back soon or follow us on social media for the latest updates!
+                </p>
+              </Card>
+            ) : (
+              filteredEvents.map((event) => (
+                <Card 
+                  key={event.id} 
+                  className="p-6 bg-card border-border hover:border-primary card-glow transition-all"
+                >
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="md:w-32 flex-shrink-0">
+                      <div className="bg-primary text-primary-foreground p-4 rounded-sm text-center">
+                        <div className="text-3xl font-heading">
+                          {format(new Date(event.date), 'dd')}
+                        </div>
+                        <div className="text-sm uppercase tracking-wider">
+                          {format(new Date(event.date), 'MMM')}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 space-y-3">
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <h3 className="font-heading text-2xl md:text-3xl text-foreground">
+                          {event.title}
+                        </h3>
+                        {event.price && (
+                          <span className="text-accent font-bold text-lg">
+                            {event.price}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {event.genres.map((genre) => (
+                          <Badge key={genre} className={getGenreColor(genre)}>
+                            {genre}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      {event.bands && event.bands.length > 0 && (
+                        <div className="text-foreground/80">
+                          <span className="font-bold">Lineup:</span> {event.bands.join(' • ')}
+                        </div>
+                      )}
+
+                      <p className="text-foreground/70">
+                        {event.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pt-2">
+                        <div className="flex items-center gap-2">
+                          <Clock weight="bold" className="w-4 h-4" />
+                          {event.time}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin weight="bold" className="w-4 h-4" />
+                          The Kraken Lounge
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))
+            )}
+          </TabsContent>
+        </Tabs>
+      </div>
+    </section>
+  )
+}
