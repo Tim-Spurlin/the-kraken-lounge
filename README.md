@@ -56,7 +56,7 @@ npm run preview
 
 **Scripts (package.json)**
 - `dev` — Vite dev server with HMR.
-- `build` — `tsc -b --noCheck && vite build` (uses the repo’s current script; consider swapping `--noCheck` for `--noEmit` if you want a type-only build).
+- `build` — `tsc -b --noCheck && vite build` (current script uses the non-standard `--noCheck`; remove it for normal type-checking or replace with `--noEmit` if you want a type-only build).
 - `preview` — Serve the production bundle locally.
 - `optimize` — Pre-bundle deps for faster cold starts.
 - `lint` — ESLint (see Troubleshooting for enabling configuration).
@@ -75,7 +75,7 @@ npm run preview
 - **About** (`sections/About.tsx`): Venue story, pandemic resilience, values (Rebellious · Authentic · Welcoming).
 - **Events** (`sections/Events.tsx`): Tab filters (All/Live/Themed/Weekly/Special), genre badges, pricing, lineup, fallback empty states.
 - **Music** (`sections/Music.tsx`): Genre pillars and recurring nights (Techno Sundays, Karaoke Wednesdays).
-- **Art Gallery** (`sections/ArtGallery.tsx`): Lightbox dialog for full artwork view; pulls from Spark KV `artworks`.
+- **Art Gallery** (`sections/ArtGallery.tsx`): Lightbox Dialog for full artwork view; pulls from Spark KV `artworks`.
 - **Food & Drinks** (`sections/FoodDrinks.tsx`): Kraken pizza highlight + beverage program.
 - **Community** (`sections/Community.tsx`): University partnerships, festivals, charitable initiatives.
 - **Contact** (`sections/Contact.tsx`): Address, hours, phone, map link, socials, booking CTA.
@@ -116,7 +116,7 @@ sequenceDiagram
     Nav-->>Sections: Smooth scroll / open drawer
     Sections->>KV: useKV('events' | 'artworks')
     KV-->>Sections: Event[] / Artwork[]
-    Sections->>UI: Render cards, tabs, dialogs
+    Sections->>UI: Render cards, tabs, Dialog modals
     User->>UI: Filter events / open artwork
     UI-->>User: Animated cards, glow effects
 ```
@@ -252,8 +252,8 @@ flowchart LR
 - Motion respects `prefers-reduced-motion`.
 - External assets served from Cloudinary CDN for performance; Vite/SWC for optimized bundles.
 
-**Testing**
-- No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, dialogs, and navigation (desktop + mobile widths).
+- **Testing**
+- No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, Dialogs, and navigation (desktop + mobile widths).
 - Linting guidance: see Troubleshooting for the ESLint configuration requirement.
 
 ---
@@ -298,7 +298,7 @@ spark.meta.json             # Spark metadata
 - **UTRGV Subculture Initiative** — Workshops, VR tours, and academic partnership.
 - **Hernandez-Brownsville Music Festival** — 11-band showcase featuring regional heavy acts.
 - **Charity drives** — Past events like Woofstock 2018 and fundraising nights.
-- **Local art rotation** — Monthly spotlight on Brownsville artists; dialog lightbox for full views.
+- **Local art rotation** — Monthly spotlight on Brownsville artists; Dialog lightbox for full views.
 - **Open, inclusive space** — LGBTQ+ and alt subcultures welcomed; affordable cover/pricing where applicable.
 
 ---
@@ -307,5 +307,5 @@ spark.meta.json             # Spark metadata
 - Run: `npm install && npm run dev`
 - Data: Manage `events` and `artworks` via Spark KV
 - Sections: Hero → About → Events → Music → Art Gallery → Food & Drinks → Community → Contact
-- Visuals: Dark OKLch palette, red glow highlights, video hero, animated cards/dialogs
+- Visuals: Dark OKLch palette, red glow highlights, video hero, animated cards/Dialogs
 - Deploy: GitHub Spark (build: `tsc -b --noCheck && vite build`)
