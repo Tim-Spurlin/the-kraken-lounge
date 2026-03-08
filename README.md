@@ -56,7 +56,7 @@ npm run preview
 
 **Scripts (package.json)**
 - `dev` — Vite dev server with HMR.
-- `build` — `tsc -b --noCheck && vite build` (current script uses the non-standard `--noCheck`; remove it for normal type-checking or replace with `--noEmit` if you want a type-only build).
+- `build` — `tsc -b --noCheck && vite build` (note: `--noCheck` is not a valid TypeScript flag; replace with `--noEmit` for a type-only build or remove the flag to restore standard type-checking).
 - `preview` — Serve the production bundle locally.
 - `optimize` — Pre-bundle deps for faster cold starts.
 - `lint` — ESLint (see Troubleshooting for enabling configuration).
@@ -253,8 +253,8 @@ flowchart LR
 - External assets served from Cloudinary CDN for performance; Vite/SWC for optimized bundles.
 
 - **Testing**
-- No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, Dialogs, and navigation (desktop + mobile widths).
-- Linting guidance: see Troubleshooting for the ESLint configuration requirement.
+  - No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, Dialogs, and navigation (desktop + mobile widths).
+  - Linting guidance: see Troubleshooting for the ESLint configuration requirement.
 
 ---
 
