@@ -56,7 +56,7 @@ npm run preview
 
 **Scripts (package.json)**
 - `dev` — Vite dev server with HMR.
-- `build` — `tsc -b --noCheck && vite build` (note: `--noCheck` is not a valid TypeScript flag; replace with `--noEmit` for a type-only build or remove the flag to restore standard type-checking).
+- `build` — `tsc -b --noCheck && vite build` (see Troubleshooting for the `--noCheck` flag note).
 - `preview` — Serve the production bundle locally.
 - `optimize` — Pre-bundle deps for faster cold starts.
 - `lint` — ESLint (see Troubleshooting for enabling configuration).
@@ -253,7 +253,7 @@ flowchart LR
 - External assets served from Cloudinary CDN for performance; Vite/SWC for optimized bundles.
 
 - **Testing**
-  - No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, Dialogs, and navigation (desktop + mobile widths).
+  - No automated tests are currently configured. For manual verification: launch `npm run dev`, exercise tabs, dialogs, and navigation (desktop + mobile widths).
   - Linting guidance: see Troubleshooting for the ESLint configuration requirement.
 
 ---
@@ -262,6 +262,7 @@ flowchart LR
 | Issue | Fix |
 | --- | --- |
 | `npm run lint` complains about missing `eslint.config.*` | Add an ESLint flat config (ESLint ≥9) or use an `.eslintrc` with the migration guide. |
+| `npm run build` uses \`tsc -b --noCheck\` | `--noCheck` is not a valid TypeScript flag; remove it for normal checking or replace with `--noEmit` to run a type-only build. |
 | Port already in use | Run `npm run kill` or stop the conflicting process on port 5000/5173. |
 | Cloudinary video blocked | Replace the hero `videoUrl` in `Hero.tsx` with a reachable CDN asset. |
 | Empty events/gallery | Seed data via Spark dashboard (`events` / `artworks` keys) or supply local defaults in components for preview. |
@@ -308,4 +309,4 @@ spark.meta.json             # Spark metadata
 - Data: Manage `events` and `artworks` via Spark KV
 - Sections: Hero → About → Events → Music → Art Gallery → Food & Drinks → Community → Contact
 - Visuals: Dark OKLch palette, red glow highlights, video hero, animated cards/Dialogs
-- Deploy: GitHub Spark (build: `tsc -b --noCheck && vite build`)
+- Deploy: GitHub Spark (build: `tsc -b --noCheck && vite build`; see Troubleshooting for the flag note)
