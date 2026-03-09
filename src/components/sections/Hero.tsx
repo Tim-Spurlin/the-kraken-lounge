@@ -75,7 +75,7 @@ export function Hero() {
           >
             <a 
               href="#events" 
-              className="inline-block bg-primary hover:bg-accent text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.65_0.24_310_/_0.6)] hover:scale-105 border-gradient purple-shimmer"
+              className="inline-block bg-primary hover:bg-accent text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.35_0.04_0_/_0.6)] hover:scale-105 border-gradient purple-shimmer"
             >
               See Upcoming Shows
             </a>
