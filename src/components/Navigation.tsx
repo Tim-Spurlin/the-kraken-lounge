@@ -72,16 +72,14 @@ export function Navigation() {
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <button
-                className="lg:hidden w-10 h-10 flex items-center justify-center bg-primary hover:bg-accent rounded-md transition-all hover:scale-110 hover:shadow-[0_0_20px_oklch(0.65_0.24_310_/_0.6)]"
                 aria-label="Menu"
-              >
+                aria-label="Menu"
                 <List className="w-6 h-6 text-primary-foreground" weight="bold" />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-card border-primary/30 w-80 aurora-gradient">
-              <div className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
-                  <a
+              <div className="flex flex-col gap-6 mt-8">
                     key={link.href}
                     href={link.href}
                     onClick={(e) => {
@@ -90,9 +88,8 @@ export function Navigation() {
                     }}
                     className="font-heading text-2xl text-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
                   >
-                    {link.label}
                   </a>
-                ))}
+                  >
               </div>
             </SheetContent>
           </Sheet>
