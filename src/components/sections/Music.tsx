@@ -1,6 +1,24 @@
 import { Guitar, Microphone, Disc, Lightning } from '@phosphor-icons/react'
+import { useRef, useEffect } from 'react'
 
 export function Music() {
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    const handleTimeUpdate = () => {
+      if (audio.currentTime >= 226) {
+        audio.pause()
+        audio.currentTime = 226
+      }
+    }
+
+    audio.addEventListener('timeupdate', handleTimeUpdate)
+    return () => audio.removeEventListener('timeupdate', handleTimeUpdate)
+  }, [])
+
   const genres = [
     {
       icon: Guitar,
@@ -133,6 +151,7 @@ export function Music() {
                   </p>
                 </div>
                 <audio 
+                  ref={audioRef}
                   controls 
                   className="w-full"
                   style={{
