@@ -155,8 +155,11 @@ export function Music() {
                   <h4 className="font-heading text-2xl text-foreground mb-2">
                     The Kraken
                   </h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground mb-1">
                     An original track created as a gift by one of our beloved regulars. This is what The Kraken Lounge inspires—raw creativity and musical passion from our community.
+                  </p>
+                  <p className="text-accent text-sm font-bold">
+                    Duration: 3:46
                   </p>
                 </div>
                 <audio 
