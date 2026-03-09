@@ -171,7 +171,7 @@ export function Music() {
                     filter: 'brightness(0.9) contrast(1.1)'
                   }}
                 >
-                  <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772991348/The_Kraken_1.10x_tfkaja.wav" type="audio/wav" />
+                  <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773027817/41qnq-5adv5_apk5ll.wav" type="audio/wav" />
                   Your browser does not support the audio element.
                 </audio>
               </div>
