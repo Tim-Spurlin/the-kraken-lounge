@@ -168,6 +168,7 @@ export function Music() {
                 <audio 
                   ref={audioRef}
                   controls 
+                  controlsList="nodownload"
                   className="w-full"
                   style={{
                     accentColor: 'oklch(0.65 0.24 310)',
