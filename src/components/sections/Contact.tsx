@@ -137,12 +137,20 @@ export function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-card border-gradient deep-shadow p-6 rounded-md purple-shimmer"
+              className="bg-card border-gradient deep-shadow rounded-md overflow-hidden purple-shimmer"
             >
-              <div className="aspect-square md:aspect-auto md:h-full bg-gradient-to-br from-primary/20 to-secondary/20 rounded-md flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 aurora-gradient opacity-30" />
-                <MapPin className="w-24 h-24 text-accent relative z-10 animate-pulse-glow" weight="fill" />
-              </div>
+              <a
+                href="https://maps.google.com/?q=1123+E+Adams+St+Suite+C+Brownsville+TX+78520"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block aspect-square md:aspect-auto md:h-full hover:opacity-90 transition-opacity"
+              >
+                <img
+                  src="https://res.cloudinary.com/dw3lf8roj/image/upload/v1773023661/Screenshot_20260308_212933_zmyegb.png"
+                  alt="Map showing The Kraken Lounge location at 1123 E Adams St, Suite C, Brownsville, TX"
+                  className="w-full h-full object-cover"
+                />
+              </a>
             </motion.div>
           </div>
 
