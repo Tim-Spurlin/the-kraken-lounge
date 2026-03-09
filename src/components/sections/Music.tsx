@@ -8,15 +8,24 @@ export function Music() {
     const audio = audioRef.current
     if (!audio) return
 
+    const handleLoadedMetadata = () => {
+      audio.currentTime = 0
+    }
+
     const handleTimeUpdate = () => {
       if (audio.currentTime >= 226) {
         audio.pause()
-        audio.currentTime = 226
+        audio.currentTime = 0
       }
     }
 
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata)
     audio.addEventListener('timeupdate', handleTimeUpdate)
-    return () => audio.removeEventListener('timeupdate', handleTimeUpdate)
+    
+    return () => {
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      audio.removeEventListener('timeupdate', handleTimeUpdate)
+    }
   }, [])
 
   const genres = [
