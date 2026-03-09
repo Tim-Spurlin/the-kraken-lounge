@@ -111,6 +111,42 @@ export function Music() {
             </div>
           </div>
 
+          <div className="bg-card border border-primary p-8 rounded-sm card-glow">
+            <h3 className="font-heading text-3xl mb-6 text-center text-accent">
+              Featured Track
+            </h3>
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="w-full md:w-1/3 flex-shrink-0">
+                <img 
+                  src="https://res.cloudinary.com/dw3lf8roj/image/upload/v1772991787/ChatGPT_Image_Mar_8_2026_10_12_36_AM_owghcv.png"
+                  alt="The Kraken single artwork"
+                  className="w-full aspect-square object-cover rounded-sm border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]"
+                />
+              </div>
+              <div className="flex-1 space-y-4">
+                <div>
+                  <h4 className="font-heading text-2xl text-foreground mb-2">
+                    The Kraken
+                  </h4>
+                  <p className="text-muted-foreground">
+                    An original track created as a gift by one of our beloved regulars. This is what The Kraken Lounge inspires—raw creativity and musical passion from our community.
+                  </p>
+                </div>
+                <audio 
+                  controls 
+                  className="w-full"
+                  style={{
+                    accentColor: 'oklch(0.65 0.24 310)',
+                    filter: 'brightness(0.9) contrast(1.1)'
+                  }}
+                >
+                  <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772991348/The_Kraken_1.10x_tfkaja.wav" type="audio/wav" />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-primary/10 border-2 border-primary p-8 rounded-sm text-center">
             <p className="text-xl font-heading text-foreground mb-2">
               Want to play at The Kraken Lounge?
