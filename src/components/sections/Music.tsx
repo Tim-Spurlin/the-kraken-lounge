@@ -79,8 +79,9 @@ export function Music() {
   ]
 
   return (
-    <section id="music" className="py-20 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-noise" />
+    <section id="music" className="py-20 bg-card relative overflow-hidden">
+      <div className="absolute inset-0 circuit-lines" />
+      <div className="absolute inset-0 plasma-glow opacity-20" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
@@ -97,13 +98,14 @@ export function Music() {
             {genres.map((genre) => (
               <div 
                 key={genre.name}
-                className="bg-card border border-border p-6 rounded-sm card-glow"
+                className="bg-card border-2 border-primary/40 p-6 rounded-sm card-glow relative overflow-hidden"
               >
-                <genre.icon className="w-12 h-12 text-accent mb-4" weight="fill" />
-                <h3 className="font-heading text-2xl mb-3 text-foreground">
+                <div className="absolute inset-0 hexagon-pattern opacity-20 pointer-events-none" />
+                <genre.icon className="w-12 h-12 text-accent mb-4 relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl mb-3 text-foreground relative z-10">
                   {genre.name}
                 </h3>
-                <p className="text-foreground/70">
+                <p className="text-foreground/70 relative z-10">
                   {genre.description}
                 </p>
               </div>
@@ -118,8 +120,9 @@ export function Music() {
               {recurringEvents.map((event) => (
                 <div 
                   key={event.day}
-                  className="bg-card border border-border p-6 rounded-sm hover:border-primary transition-colors"
+                  className="bg-card border-2 border-primary/40 p-6 rounded-sm hover:border-primary transition-colors card-glow relative overflow-hidden"
                 >
+                  <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <h4 className="font-heading text-2xl text-foreground">

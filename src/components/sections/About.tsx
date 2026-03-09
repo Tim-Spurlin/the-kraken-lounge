@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 
 export function About() {
   return (
-    <section id="about" className="py-20 bg-card relative overflow-hidden">
-      <div className="absolute inset-0 bg-noise" />
-      <div className="absolute inset-0 aurora-gradient opacity-10" />
+    <section id="about" className="py-20 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 cyber-grid" />
+      <div className="absolute inset-0 plasma-glow opacity-30" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -36,33 +36,36 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-center space-y-3 deep-shadow p-6 rounded-md bg-background/30 border border-primary/20 hover:border-accent/50 transition-all duration-300"
+                className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 hexagon-pattern relative overflow-hidden"
               >
-                <Lightning className="w-12 h-12 mx-auto text-accent animate-pulse-glow" weight="fill" />
-                <h3 className="font-heading text-2xl text-accent">Rebellious</h3>
-                <p className="text-muted-foreground">A getaway from mainstream music, championing heavy metal, punk, goth, industrial, and underground techno.</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+                <Lightning className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl text-accent relative z-10">Rebellious</h3>
+                <p className="text-muted-foreground relative z-10">A getaway from mainstream music, championing heavy metal, punk, goth, industrial, and underground techno.</p>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-center space-y-3 deep-shadow p-6 rounded-md bg-background/30 border border-primary/20 hover:border-accent/50 transition-all duration-300"
+                className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 circuit-lines relative overflow-hidden"
               >
-                <MusicNotes className="w-12 h-12 mx-auto text-accent animate-pulse-glow" weight="fill" />
-                <h3 className="font-heading text-2xl text-accent">Authentic</h3>
-                <p className="text-muted-foreground">Low-lit, gothic atmosphere meets genuine dive bar warmth. Raw, unpretentious, and real.</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
+                <MusicNotes className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl text-accent relative z-10">Authentic</h3>
+                <p className="text-muted-foreground relative z-10">Low-lit, gothic atmosphere meets genuine dive bar warmth. Raw, unpretentious, and real.</p>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-center space-y-3 deep-shadow p-6 rounded-md bg-background/30 border border-primary/20 hover:border-accent/50 transition-all duration-300"
+                className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 cyber-grid relative overflow-hidden"
               >
-                <Heart className="w-12 h-12 mx-auto text-accent animate-pulse-glow" weight="fill" />
-                <h3 className="font-heading text-2xl text-accent">Welcoming</h3>
-                <p className="text-muted-foreground">A safe, inclusive space where alternative subcultures thrive and everyone belongs.</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+                <Heart className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl text-accent relative z-10">Welcoming</h3>
+                <p className="text-muted-foreground relative z-10">A safe, inclusive space where alternative subcultures thrive and everyone belongs.</p>
               </motion.div>
             </div>
             

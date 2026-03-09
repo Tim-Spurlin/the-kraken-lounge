@@ -39,8 +39,9 @@ export function Events() {
   }
 
   return (
-    <section id="events" className="py-20 gradient-mesh bg-noise relative">
-      <div className="absolute inset-0 aurora-gradient opacity-20 pointer-events-none" />
+    <section id="events" className="py-20 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 hexagon-pattern" />
+      <div className="absolute inset-0 aurora-gradient opacity-30 pointer-events-none" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <h2 className="font-heading text-5xl md:text-6xl mb-4 text-gradient-purple gothic-glow">
@@ -74,9 +75,10 @@ export function Events() {
               filteredEvents.map((event) => (
                 <Card 
                   key={event.id} 
-                  className="p-6 bg-card border-border hover:border-primary card-glow transition-all"
+                  className="p-6 bg-card border-2 border-primary/40 hover:border-primary card-glow transition-all relative overflow-hidden"
                 >
-                  <div className="flex flex-col md:flex-row gap-6">
+                  <div className="absolute inset-0 circuit-lines opacity-30 pointer-events-none" />
+                  <div className="relative z-10 flex flex-col md:flex-row gap-6">
                     <div className="md:w-32 flex-shrink-0">
                       <div className="bg-primary text-primary-foreground p-4 rounded-sm text-center">
                         <div className="text-3xl font-heading">

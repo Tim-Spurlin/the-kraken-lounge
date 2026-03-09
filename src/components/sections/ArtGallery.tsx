@@ -18,7 +18,9 @@ export function ArtGallery() {
   const artworksList = artworks || []
 
   return (
-    <section id="art" className="py-20 gradient-mesh bg-noise">
+    <section id="art" className="py-20 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 cyber-grid" />
+      <div className="absolute inset-0 aurora-gradient opacity-20" />
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <Palette className="w-16 h-16 mx-auto text-accent mb-4" weight="fill" />
@@ -45,8 +47,9 @@ export function ArtGallery() {
               <div
                 key={artwork.id}
                 onClick={() => setSelectedArtwork(artwork)}
-                className="group cursor-pointer bg-card border border-border rounded-sm overflow-hidden card-glow"
+                className="group cursor-pointer bg-card border-2 border-primary/40 rounded-sm overflow-hidden card-glow relative"
               >
+                <div className="absolute inset-0 hexagon-pattern opacity-20 pointer-events-none" />
                 <div className="aspect-square bg-muted relative overflow-hidden">
                   <img
                     src={artwork.imageUrl}
