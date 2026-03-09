@@ -69,30 +69,35 @@ export function Navigation() {
             ))}
           </div>
 
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <button
-                aria-label="Menu"
-                aria-label="Menu"
-                <List className="w-6 h-6 text-primary-foreground" weight="bold" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-card border-primary/30 w-80 aurora-gradient">
-                {navLinks.map((link) => (
-              <div className="flex flex-col gap-6 mt-8">
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleNavClick(link.href)
-                    }}
-                    className="font-heading text-2xl text-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
-                  >
-                  </a>
-                  >
-              </div>
-            </SheetContent>
-          </Sheet>
+          <div className="lg:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <button
+                  aria-label="Menu"
+                  className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+                >
+                  <List className="w-6 h-6 text-primary-foreground" weight="bold" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-card border-primary/30 w-80 aurora-gradient">
+                <div className="flex flex-col gap-6 mt-8">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handleNavClick(link.href)
+                      }}
+                      className="font-heading text-2xl text-foreground hover:text-accent transition-all duration-300 hover:translate-x-2"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </nav>
