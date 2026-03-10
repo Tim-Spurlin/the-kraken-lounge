@@ -11,11 +11,23 @@ interface Artwork {
   description: string
 }
 
+interface VideoContent {
+  id: string
+  videoUrl: string
+  type: 'video'
+}
+
 export function ArtGallery() {
   const [artworks] = useKV<Artwork[]>('artworks', [])
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null)
 
   const artworksList = artworks || []
+  
+  const featuredVideo: VideoContent = {
+    id: 'featured-video-1',
+    videoUrl: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773184699/Flow_delpmaspu__hkzt6j.mp4',
+    type: 'video'
+  }
 
   return (
     <section id="art" className="py-20 bg-background relative overflow-hidden">
@@ -32,10 +44,26 @@ export function ArtGallery() {
           </p>
         </div>
 
+        <div className="max-w-6xl mx-auto mb-12">
+          <div className="bg-card border-2 border-primary/40 rounded-sm overflow-hidden card-glow relative">
+            <div className="absolute inset-0 hexagon-pattern opacity-20 pointer-events-none" />
+            <div className="relative aspect-video bg-muted">
+              <video
+                src={featuredVideo.videoUrl}
+                controls
+                className="w-full h-full object-cover"
+                preload="metadata"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+
         {artworksList.length === 0 ? (
           <div className="max-w-2xl mx-auto bg-card border border-border p-12 rounded-sm text-center">
             <p className="text-xl text-muted-foreground mb-4">
-              Gallery content coming soon
+              More gallery content coming soon
             </p>
             <p className="text-foreground/70">
               The Kraken Lounge proudly displays rotating exhibitions of local visual art. Our physical walls are covered with paintings, illustrations, mixed-media pieces, and photography from diverse artists throughout the borderlands.
