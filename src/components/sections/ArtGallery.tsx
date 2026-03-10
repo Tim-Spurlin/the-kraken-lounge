@@ -44,15 +44,17 @@ export function ArtGallery() {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto mb-12">
           <div className="bg-card border-2 border-primary/40 rounded-sm overflow-hidden card-glow relative">
             <div className="absolute inset-0 hexagon-pattern opacity-20 pointer-events-none" />
-            <div className="relative aspect-video bg-muted">
+            <div className="relative" style={{ aspectRatio: '9 / 16' }}>
               <video
                 src={featuredVideo.videoUrl}
                 controls
+                controlsList="nodownload"
                 className="w-full h-full object-cover"
                 preload="metadata"
+                onContextMenu={(e) => e.preventDefault()}
               >
                 Your browser does not support the video tag.
               </video>
