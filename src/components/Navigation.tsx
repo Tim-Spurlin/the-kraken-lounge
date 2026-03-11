@@ -44,18 +44,18 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background backdrop-blur-md border-b border-primary/30 shadow-[0_4px_20px_oklch(0.08_0.02_280_/_0.8)]' : 'bg-background backdrop-blur-md border-b border-primary/20'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-xl border-b border-primary/30 shadow-[0_4px_20px_oklch(0.08_0.02_280_/_0.8)]' : 'bg-background/95 backdrop-blur-xl border-b border-primary/20'
         }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center lg:justify-between h-16">
+        <div className="flex items-center justify-between h-16">
           <a
             href="/#home"
             onClick={(e) => {
               e.preventDefault()
               handleNavClick('#home')
             }}
-            className="font-display text-2xl md:text-3xl text-gradient-purple gothic-glow hover:scale-105 transition-transform absolute left-4 lg:relative lg:left-0"
+            className="font-display text-2xl md:text-3xl text-gradient-purple gothic-glow hover:scale-105 transition-transform"
           >
             The Kraken Lounge
           </a>
@@ -77,7 +77,7 @@ export function Navigation() {
             ))}
           </div>
 
-          <div className="lg:hidden absolute right-4">
+          <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <button
@@ -87,7 +87,7 @@ export function Navigation() {
                   <List className="w-6 h-6 text-primary-foreground" weight="bold" />
                 </button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-card border-primary/30 w-80 aurora-gradient">
+              <SheetContent side="right" className="bg-card/95 backdrop-blur-xl border-primary/30 w-80">
                 <div className="flex flex-col gap-6 mt-8">
                   {navLinks.map((link) => (
                     <a
