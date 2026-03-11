@@ -17,7 +17,6 @@ function App() {
         <About />
         <Events />
         <Music />
-        <FoodDrinks />
         <Community />
         <Contact />
       </main>
