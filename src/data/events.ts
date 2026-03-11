@@ -15,6 +15,22 @@ export interface Event {
 // Ensure columns in the Google Sheet exactly match these headers:
 // id, title, date, time, type, genres, bands, description, price
 
+function parseFlexibleDate(dateStr: string): string {
+    if (!dateStr) return '';
+    // Remove ordinal indicators (st, nd, rd, th) from days
+    let cleanStr = dateStr.replace(/\b(\d+)(st|nd|rd|th)\b/gi, '$1');
+    let d = new Date(cleanStr);
+
+    // Check for DD-MM-YYYY format
+    if (isNaN(d.getTime())) {
+        const parts = cleanStr.split(/[-/]/);
+        if (parts.length === 3 && parts[2].length === 4) {
+            d = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+        }
+    }
+    return isNaN(d.getTime()) ? dateStr : d.toISOString();
+}
+
 export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
     try {
         const res = await fetch(sheetCsvUrl)
@@ -33,7 +49,7 @@ export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
                         const events: Event[] = results.data.map((row: any) => ({
                             id: row.id || String(Math.random()),
                             title: row.title || 'Untitled Event',
-                            date: row.date || new Date().toISOString().split('T')[0],
+                            date: row.date ? parseFlexibleDate(row.date) : new Date().toISOString(),
                             time: row.time || 'TBA',
                             type: (['live', 'themed', 'recurring', 'special'].includes(row.type) ? row.type : 'special') as Event['type'],
                             // Convert comma-separated string columns into arrays
