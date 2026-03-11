@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { Hero } from '@/components/sections/Hero'
+import { AudioOverview } from '@/components/sections/AudioOverview'
 import { About } from '@/components/sections/About'
 import { Events } from '@/components/sections/Events'
 import { Music } from '@/components/sections/Music'
@@ -121,6 +122,7 @@ function App() {
       <Navigation />
       <main>
         <Hero />
+        <AudioOverview />
         <About />
         <Events />
         <Music />
