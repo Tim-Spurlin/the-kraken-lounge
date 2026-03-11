@@ -387,7 +387,7 @@ Determine if this new event is a duplicate of any existing scheduled events. Pro
 
   try {
     // We make a custom POST call here using the new instruction
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
     
     const payload = {
       "system_instruction": { "parts": [{"text": DUPE_CHECK_INSTRUCTION}] },
@@ -570,7 +570,7 @@ function processDescriptions(mode) {
       SpreadsheetApp.getUi().alert(`No events matched the criteria for ${mode.toLowerCase()} mode. Try adding some basic notes or new blank events!`);
     }
   } else {
-    SpreadsheetApp.getUi().alert(`Success! Processed and injected ${updatedCount} event descriptions using Gemini 1.5 Flash.`);
+    SpreadsheetApp.getUi().alert(`Success! Processed and injected ${updatedCount} event descriptions using Gemini 2.0 Flash Lite.`);
   }
 }
 
@@ -583,7 +583,7 @@ function enhanceDescriptions() {
 }
 
 function callGeminiFlash(promptText, apiKey) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
   
   const payload = {
     "system_instruction": {
@@ -612,14 +612,30 @@ function callGeminiFlash(promptText, apiKey) {
     "muteHttpExceptions": true
   };
 
-  const response = UrlFetchApp.fetch(url, options);
-  const json = JSON.parse(response.getContentText());
+  let maxRetries = 3;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    const response = UrlFetchApp.fetch(url, options);
+    const json = JSON.parse(response.getContentText());
 
-  if (json.error) {
-    throw new Error(json.error.message);
-  }
+    if (json.error) {
+      if (json.error.code === 429) {
+        // Rate limit hit. Extract wait time if possible, default to 6s
+        let waitMs = 6000;
+        const match = json.error.message.match(/retry in (\d+\.?\d*)s/);
+        if (match && match[1]) {
+          waitMs = Math.ceil(parseFloat(match[1]) * 1000) + 1000; // adding 1s buffer
+        }
+        
+        Logger.log(`Rate limit hit (Attempt ${attempt}/${maxRetries}). Waiting ${waitMs}ms...`);
+        if (attempt < maxRetries) {
+          Utilities.sleep(waitMs);
+          continue; // Try again
+        }
+      }
+      throw new Error(json.error.message);
+    }
 
-  let responseText = json.candidates[0].content.parts[0].text.trim();
+    let responseText = json.candidates[0].content.parts[0].text.trim();
   
   // Strip markdown code block wrapping if Gemini outputs it
   if (responseText.startsWith('```')) {
