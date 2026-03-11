@@ -52,7 +52,14 @@ export function Events() {
 
     if (isNaN(eventDate.getTime())) return true; // keep if date is malformed so it doesn't crash
     return eventDate >= today
-  })
+  }).sort((a, b) => {
+    const dateA = new Date(a.date || 0).getTime();
+    const dateB = new Date(b.date || 0).getTime();
+    // Fallback if parsing fails to 0
+    const timeA = isNaN(dateA) ? 0 : dateA;
+    const timeB = isNaN(dateB) ? 0 : dateB;
+    return timeA - timeB;
+  });
 
   const filteredEvents = activeTab === 'all'
     ? upcomingEvents

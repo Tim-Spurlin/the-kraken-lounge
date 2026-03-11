@@ -250,6 +250,8 @@ FIELD RULES
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('Kraken AI')
+      .addItem('🤖 Add Event (AI Dupe Check)', 'checkAndAddEvent')
+      .addSeparator()
       .addItem('📝 Generate Missing Descriptions', 'generateDescriptions')
       .addItem('✨ Enhance Existing Descriptions', 'enhanceDescriptions')
       .addToUi();
@@ -264,6 +266,149 @@ function getOrAddTeaserColumn(sheet, headers) {
     headers.push("teaser");
   }
   return teaserIdx;
+}
+
+const DUPE_CHECK_INSTRUCTION = `You are a strict data entry gatekeeper for The Kraken Lounge.
+Your job is to receive a raw text input of a new event and compare it against a list of already scheduled events.
+You must absolutely determine if the new event is a duplicate of an existing one. Use semantic reasoning (e.g., if bands, dates, and genres match, it is the same event even if the title differs slightly).
+
+OUTPUT FORMAT
+Return strict JSON:
+{
+  "is_duplicate": boolean,
+  "reason": "String explaining why it is or isn't a duplicate. If duplicate, name the existing event.",
+  "parsed_event": {
+    "title": "String",
+    "date": "YYYY-MM-DD",
+    "time": "String (e.g., 8:00 PM)",
+    "type": "live | themed | recurring | special",
+    "genres": "Comma separated string",
+    "bands": "Comma separated string",
+    "description": "Any remaining description/notes",
+    "price": "String"
+  }
+}
+
+If 'is_duplicate' is true, the 'parsed_event' fields can be empty.
+If 'is_duplicate' is false, you MUST extract the details from the raw input into the 'parsed_event' object as accurately as possible.`;
+
+function checkAndAddEvent() {
+  const ui = SpreadsheetApp.getUi();
+  const apiKey = PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY');
+  
+  if (!apiKey) {
+    ui.alert("Error: GEMINI_API_KEY is missing from Script Properties.");
+    return;
+  }
+
+  const response = ui.prompt(
+    'Kraken AI: Add New Event',
+    'Paste the raw text details of the new event (bands, date, time, description, etc):',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response.getSelectedButton() !== ui.Button.OK) {
+    return; // User canceled
+  }
+
+  const rawInput = response.getResponseText().trim();
+  if (!rawInput) return;
+
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
+  if (!sheet) {
+    ui.alert("Error: 'Sheet1' not found.");
+    return;
+  }
+
+  // Gather existing events for comparison
+  const dataRange = sheet.getDataRange();
+  const values = dataRange.getValues();
+  const headers = values[0];
+  
+  const titleIdx = headers.indexOf("title");
+  const dateIdx = headers.indexOf("date");
+  const bandsIdx = headers.indexOf("bands");
+
+  if (titleIdx === -1 || dateIdx === -1) {
+    ui.alert("Error: Sheet must have 'title' and 'date' columns.");
+    return;
+  }
+
+  let existingEventsList = "";
+  for (let i = 1; i < values.length; i++) {
+    const title = values[i][titleIdx];
+    const date = values[i][dateIdx];
+    const bands = bandsIdx !== -1 ? values[i][bandsIdx] : "";
+    if (title || date) {
+      existingEventsList += `- ${title} | Date: ${date} | Bands: ${bands}\n`;
+    }
+  }
+
+  if (existingEventsList === "") existingEventsList = "No existing events currently scheduled.";
+
+  const promptText = `EXISTING SCHEDULED EVENTS:
+${existingEventsList}
+
+RAW INPUT FOR NEW EVENT:
+"${rawInput}"
+
+Determine if this new event is a duplicate of any existing scheduled events. Provide the parsed data if it is safe to add.`;
+
+  try {
+    // We make a custom POST call here using the new instruction
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
+    
+    const payload = {
+      "system_instruction": { "parts": [{"text": DUPE_CHECK_INSTRUCTION}] },
+      "contents": [{ "role": "user", "parts": [{"text": promptText}] }],
+      "generationConfig": { "temperature": 0.2, "responseMimeType": "application/json" } // Low temp for strict parsing
+    };
+
+    const options = {
+      "method": "post",
+      "contentType": "application/json",
+      "payload": JSON.stringify(payload),
+      "muteHttpExceptions": true
+    };
+
+    const apiResponse = UrlFetchApp.fetch(url, options);
+    const json = JSON.parse(apiResponse.getContentText());
+
+    if (json.error) throw new Error(json.error.message);
+
+    const responseText = json.candidates[0].content.parts[0].text.trim();
+    const result = JSON.parse(responseText);
+
+    if (result.is_duplicate) {
+      ui.alert('⚠️ Duplicate Detected', result.reason, ui.ButtonSet.OK);
+    } else {
+      // It's a new event, append it!
+      const p = result.parsed_event;
+      
+      // Determine columns to map parsed data
+      const newRow = new Array(headers.length).fill("");
+      
+      const mapField = (fieldName, parsedValue) => {
+        const idx = headers.indexOf(fieldName);
+        if (idx !== -1 && parsedValue) newRow[idx] = parsedValue;
+      };
+
+      mapField("title", p.title);
+      mapField("date", p.date);
+      mapField("time", p.time);
+      mapField("type", p.type);
+      mapField("genres", p.genres);
+      mapField("bands", p.bands);
+      mapField("description", p.description);
+      mapField("price", p.price);
+
+      sheet.appendRow(newRow);
+      ui.alert('✅ Event Added', `Successfully parsed and added: ${p.title}\n\nDate: ${p.date}`, ui.ButtonSet.OK);
+    }
+
+  } catch (e) {
+    ui.alert('Error checking duplicate: ' + e.message);
+  }
 }
 
 function processDescriptions(mode) {
