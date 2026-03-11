@@ -7,26 +7,34 @@ import { format } from 'date-fns'
 
 import { Event, defaultEvents, fetchEvents } from '@/data/events'
 
-// TODO: Replace this with the actual published CSV URL from Google Sheets
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQf5qoMtNgc7kQTbmw_pJxKaWioKThrFdyp-3ZZt79gOiNz_pfYQf4f1lB81aGQzuQ3CqB_6xyFIyNL/pub?output=csv'
+const GOOGLE_SHEET_CSV_URL = 'YOUR_PUBLISHED_GOOGLE_SHEET_CSV_URL_HERE'
 
 export function Events() {
   const [events, setEvents] = useState<Event[]>(defaultEvents)
   const [activeTab, setActiveTab] = useState('all')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function loadEvents() {
-      // If the URL hasn't been replaced yet, default to the local fallback events
-      if (GOOGLE_SHEET_CSV_URL.includes('...')) {
-        return;
+      if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes('YOUR_PUBLISHED')) {
+        console.warn('Google Sheets URL not configured. Using default events.')
+        setIsLoading(false)
+        return
       }
+      
       try {
+        console.log('Fetching events from Google Sheets...')
         const data = await fetchEvents(GOOGLE_SHEET_CSV_URL)
+        console.log('Fetched events:', data)
         if (data && data.length > 0) {
           setEvents(data)
+        } else {
+          console.warn('No events found in Google Sheet, using defaults')
         }
       } catch (e) {
-        console.error('Failed to load events from Google Sheet, using fallback.', e)
+        console.error('Failed to load events from Google Sheet, using fallback:', e)
+      } finally {
+        setIsLoading(false)
       }
     }
     loadEvents()

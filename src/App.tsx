@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useKV } from '@github/spark/hooks'
 import { Hero } from '@/components/sections/Hero'
 import { AudioOverview } from '@/components/sections/AudioOverview'
 import { About } from '@/components/sections/About'
@@ -11,16 +9,7 @@ import { Contact } from '@/components/sections/Contact'
 import { Navigation } from '@/components/Navigation'
 import { Toaster } from '@/components/ui/sonner'
 
-import { Event, defaultEvents } from '@/data/events'
-
 function App() {
-  const [events, setEvents] = useKV<Event[]>('events', defaultEvents)
-
-  useEffect(() => {
-    if (!events || events.length === 0) {
-      setEvents(defaultEvents)
-    }
-  }, [events, setEvents])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
