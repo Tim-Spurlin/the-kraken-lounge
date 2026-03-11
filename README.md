@@ -156,17 +156,12 @@ flowchart TD
     A[Tailwind v4]
     B[Global tokens in index.css]
     C[Theme colors (OKLch)]
-    D[Utilities + custom layers in main.css]
-    E[Components in src/components/ui/*]
-    F[Sections in src/components/sections/*]
+    D[Utilities & custom layers in main.css]
+    E[UI components (src/components/ui)]
+    F[Sections (src/components/sections)]
     G[Rendered in App.tsx]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
+    A --> B --> C --> D --> E --> F --> G
 ```
 
 ---
