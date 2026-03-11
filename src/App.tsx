@@ -10,6 +10,7 @@ import { Navigation } from '@/components/Navigation'
 import { Toaster } from '@/components/ui/sonner'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { EventDetail } from '@/components/pages/EventDetail'
+import { ScrollToHash } from '@/components/ScrollToHash'
 
 function Home() {
   return (
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToHash />
       <div className="min-h-screen bg-background text-foreground">
         <Navigation />
         <main>

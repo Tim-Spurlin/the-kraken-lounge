@@ -59,6 +59,9 @@ export function EventDetail() {
             const pageTitle = `${event.title} | The Kraken Lounge`;
             document.title = pageTitle;
 
+            // Force browser to scroll to top of page when navigating to a new event
+            window.scrollTo(0, 0);
+
             // Trigger Google Analytics explicitly since this is a Single Page Application route change
             if (typeof window !== 'undefined' && (window as any).gtag) {
                 (window as any).gtag('event', 'page_view', {
@@ -83,8 +86,8 @@ export function EventDetail() {
             <div className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center text-center px-4">
                 <h1 className="text-4xl font-display text-destructive mb-4">Error</h1>
                 <p className="text-muted-foreground mb-8">{error || 'Event not found'}</p>
-                <Link to="/" className="text-accent hover:text-accent/80 flex items-center gap-2 transition-colors">
-                    <ArrowLeft size={16} /> Back to Home
+                <Link to="/#events" className="text-accent hover:text-accent/80 flex items-center gap-2 transition-colors">
+                    <ArrowLeft size={16} /> Back to Events
                 </Link>
             </div>
         )
@@ -94,7 +97,7 @@ export function EventDetail() {
 
     return (
         <div className="min-h-screen pt-32 pb-20 px-4 md:px-8 max-w-4xl mx-auto">
-            <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
+            <Link to="/#events" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
                 <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                 Back to all events
             </Link>
