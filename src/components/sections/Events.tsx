@@ -32,9 +32,18 @@ export function Events() {
     loadEvents()
   }, [])
 
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  // Filter out events that occurred before today
+  const upcomingEvents = events.filter((event) => {
+    const eventDate = new Date(event.date)
+    return eventDate >= today
+  })
+
   const filteredEvents = activeTab === 'all'
-    ? events || []
-    : (events || []).filter(event => event.type === activeTab)
+    ? upcomingEvents
+    : upcomingEvents.filter(event => event.type === activeTab)
 
   const getGenreColor = (genre: string) => {
     const colors: Record<string, string> = {
