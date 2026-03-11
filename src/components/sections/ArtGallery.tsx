@@ -61,11 +61,10 @@ export function ArtGallery() {
               <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                 <p className="text-white text-lg font-semibold">Click to view</p>
               </div>
-            </div>
           </div>
         </div>
+        </div>
 
-        {artworksList.length === 0 ? (
           <div className="max-w-2xl mx-auto bg-card border border-border p-12 rounded-sm text-center">
             <p className="text-xl text-muted-foreground mb-4">
               More gallery content coming soon
