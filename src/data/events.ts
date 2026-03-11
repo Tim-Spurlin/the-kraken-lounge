@@ -79,19 +79,38 @@ export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
                 complete: (results) => {
                     try {
                         // Transform the CSV data into our Event interface
-                        const events: Event[] = results.data.map((row: any) => ({
-                            id: row.id || String(Math.random()),
-                            title: row.title || 'Untitled Event',
-                            date: row.date ? parseFlexibleDate(row.date) : new Date().toISOString(),
-                            time: row.time || 'TBA',
-                            type: parseFlexibleType(row.type),
-                            // Convert comma-separated string columns into arrays
-                            genres: (row.genres || row.genre) ? (row.genres || row.genre).split(',').map((g: string) => g.trim()).filter(Boolean) : [],
-                            bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
-                            description: row.description || '',
-                            teaser: row.teaser || '',
-                            price: row.price || 'TBA'
-                        }))
+                        const events: Event[] = results.data.map((row: any) => {
+                            const eventTitle = row.title || 'Untitled Event';
+
+                            // 1. Deterministic ID fallback so URLs don't break on re-render
+                            const safeId = row.id ? String(row.id).trim() : eventTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
+                            // 2. Safely find the description. Google's gviz exporter sometimes mangles long-text column headers
+                            // so if row.description is empty, we search the raw object for our massive paragraphs (usually dumped in `_`)
+                            let safeDescription = row.description || '';
+                            if (!safeDescription) {
+                                for (const key in row) {
+                                    if (typeof row[key] === 'string' && row[key].length > 200) {
+                                        safeDescription = row[key];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            return {
+                                id: safeId || String(Math.random()),
+                                title: eventTitle,
+                                date: row.date ? parseFlexibleDate(row.date) : new Date().toISOString(),
+                                time: row.time || 'TBA',
+                                type: parseFlexibleType(row.type),
+                                // Convert comma-separated string columns into arrays
+                                genres: (row.genres || row.genre) ? String(row.genres || row.genre).split(',').map((g: string) => g.trim()).filter(Boolean) : [],
+                                bands: row.bands ? String(row.bands).split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
+                                description: safeDescription,
+                                teaser: row.teaser || '',
+                                price: row.price || 'TBA'
+                            };
+                        })
                         resolve(events)
                     } catch (err) {
                         console.error("Error transforming CSV data", err)
