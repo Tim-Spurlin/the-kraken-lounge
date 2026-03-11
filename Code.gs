@@ -387,7 +387,7 @@ Determine if this new event is a duplicate of any existing scheduled events. Pro
 
   try {
     // We make a custom POST call here using the new instruction
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
     const payload = {
       "system_instruction": { "parts": [{"text": DUPE_CHECK_INSTRUCTION}] },
@@ -570,7 +570,7 @@ function processDescriptions(mode) {
       SpreadsheetApp.getUi().alert(`No events matched the criteria for ${mode.toLowerCase()} mode. Try adding some basic notes or new blank events!`);
     }
   } else {
-    SpreadsheetApp.getUi().alert(`Success! Processed and injected ${updatedCount} event descriptions using Gemini 2.0 Flash Lite.`);
+    SpreadsheetApp.getUi().alert(`Success! Processed and injected ${updatedCount} event descriptions using Gemini 1.5 Flash.`);
   }
 }
 
@@ -583,7 +583,7 @@ function enhanceDescriptions() {
 }
 
 function callGeminiFlash(promptText, apiKey) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
   
   const payload = {
     "system_instruction": {
