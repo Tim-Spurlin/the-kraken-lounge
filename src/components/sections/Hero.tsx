@@ -7,9 +7,19 @@ export function Hero() {
       <video 
         autoPlay 
         loop 
-        muted 
+        muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-60"
+        onVolumeChange={(e) => {
+          const video = e.target as HTMLVideoElement
+          video.muted = true
+          video.volume = 0
+        }}
+        onLoadedMetadata={(e) => {
+          const video = e.target as HTMLVideoElement
+          video.muted = true
+          video.volume = 0
+        }}
       >
         <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772992664/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb_xr7ho7.mp4" type="video/mp4" />
       </video>
