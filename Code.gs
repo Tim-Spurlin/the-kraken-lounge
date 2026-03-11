@@ -656,3 +656,4 @@ function testGooglePermissions() {
   SpreadsheetApp.getUi().alert('Permissions granted successfully! You can now use the Kraken AI from the spreadsheet menu.');
 }
 
+}
