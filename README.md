@@ -143,26 +143,6 @@ sequenceDiagram
 
 ---
 
-## Design system
-- **Colors (OKLch)**:  
-  - Background `oklch(0.12 0.01 265)` • Primary red `oklch(0.35 0.20 25)` (15.2:1 contrast) • Accent `oklch(0.55 0.25 25)` • Secondary purple `oklch(0.28 0.15 305)`
-- **Typography**: Creepster (display), Bebas Neue (headings), Space Grotesk (body).
-- **Effects**: Glow shadows, gradient mesh background, subtle noise overlay, hover lift with red border.
-- **Layout**: Responsive grids; mobile-first stack; containerized content with generous padding.
-- **Motion**: Prefers-reduced-motion respected; CSS keyframes for glow/pulse; framer-motion available if richer motion is needed.
-
-```mermaid
-flowchart TD
-    A[Tailwind v4] --> B[Radix color scales & spacing\nsrc/styles/theme.css]
-    B --> C[Brand OKLch tokens & fonts\nsrc/index.css]
-    C --> D[Global layers & Tailwind config\nsrc/main.css]
-    D --> E[UI components (src/components/ui)]
-    E --> F[Sections (src/components/sections)]
-    F --> G[App shell (src/App.tsx)]
-```
-
----
-
 ## Diagrams, charts & flows
 **User journey (navigation-first)**
 ```mermaid
