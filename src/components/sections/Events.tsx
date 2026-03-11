@@ -1,16 +1,36 @@
-import { useState } from 'react'
-import { useKV } from '@github/spark/hooks'
+import { useState, useEffect } from 'react'
 import { Card } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { CalendarBlank, Clock, MapPin } from '@phosphor-icons/react'
 import { format } from 'date-fns'
 
-import { Event, defaultEvents } from '@/data/events'
+import { Event, defaultEvents, fetchEvents } from '@/data/events'
+
+// TODO: Replace this with the actual published CSV URL from Google Sheets
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQf5qoMtNgc7kQTbmw_pJxKaWioKThrFdyp-3ZZt79gOiNz_pfYQf4f1lB81aGQzuQ3CqB_6xyFIyNL/pub?output=csv'
 
 export function Events() {
-  const [events] = useKV<Event[]>('events', defaultEvents)
+  const [events, setEvents] = useState<Event[]>(defaultEvents)
   const [activeTab, setActiveTab] = useState('all')
+
+  useEffect(() => {
+    async function loadEvents() {
+      // If the URL hasn't been replaced yet, default to the local fallback events
+      if (GOOGLE_SHEET_CSV_URL.includes('...')) {
+        return;
+      }
+      try {
+        const data = await fetchEvents(GOOGLE_SHEET_CSV_URL)
+        if (data && data.length > 0) {
+          setEvents(data)
+        }
+      } catch (e) {
+        console.error('Failed to load events from Google Sheet, using fallback.', e)
+      }
+    }
+    loadEvents()
+  }, [])
 
   const filteredEvents = activeTab === 'all'
     ? events || []

@@ -1,3 +1,5 @@
+import Papa from 'papaparse'
+
 export interface Event {
     id: string
     title: string
@@ -8,6 +10,44 @@ export interface Event {
     bands?: string[]
     description: string
     price?: string
+}
+
+// Ensure columns in the Google Sheet exactly match these headers:
+// id, title, date, time, type, genres, bands, description, price
+
+export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
+    return new Promise((resolve, reject) => {
+        Papa.parse(sheetCsvUrl, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: (results) => {
+                try {
+                    // Transform the CSV data into our Event interface
+                    const events: Event[] = results.data.map((row: any) => ({
+                        id: row.id || String(Math.random()),
+                        title: row.title || 'Untitled Event',
+                        date: row.date || new Date().toISOString().split('T')[0],
+                        time: row.time || 'TBA',
+                        type: (['live', 'themed', 'recurring', 'special'].includes(row.type) ? row.type : 'special') as Event['type'],
+                        // Convert comma-separated string columns into arrays
+                        genres: row.genres ? row.genres.split(',').map((g: string) => g.trim()).filter(Boolean) : [],
+                        bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
+                        description: row.description || '',
+                        price: row.price || 'TBA'
+                    }))
+                    resolve(events)
+                } catch (err) {
+                    console.error("Error transforming CSV data", err)
+                    reject(err)
+                }
+            },
+            error: (error) => {
+                console.error("Error fetching CSV data", error)
+                reject(error)
+            }
+        })
+    })
 }
 
 export const defaultEvents: Event[] = [
