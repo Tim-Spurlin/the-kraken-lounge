@@ -29,15 +29,14 @@ export function FoodDrinks() {
                 preload="auto"
               >
                 <source src={pizzaVideo} type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/98 via-background/85 to-transparent p-4 sm:p-5 md:p-6">
+              </video>
                 <h3 className="font-heading text-lg sm:text-xl md:text-2xl text-accent mb-1 sm:mb-2">
                   The Kraken's Famous Pizza
-                </h3>
+                  The Kraken's Famous Pizza
                 <p className="text-foreground/90 text-xs sm:text-sm md:text-base leading-relaxed">
+                <p className="text-foreground/90 text-xs sm:text-sm md:text-base leading-relaxed">s to perfection, and our secret sauce blend that keeps people coming back. Each pizza is made fresh to order with locally-sourced ingredients whenever possible. Whether you're here for the music or the food, you won't leave disappointed — this is honestly some of the best pizza in Brownsville, and our customers agree!
                   Watch our kitchen crew craft the perfect pie! Our signature pizza features a hand-tossed crust with that ideal crispy texture, topped with premium mozzarella that melts to perfection, and our secret sauce blend that keeps people coming back. Each pizza is made fresh to order with locally-sourced ingredients whenever possible. Whether you're here for the music or the food, you won't leave disappointed — this is honestly some of the best pizza in Brownsville, and our customers agree!
-                </p>
               </div>
             </div>
           </div>
