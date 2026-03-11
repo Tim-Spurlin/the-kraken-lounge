@@ -7,7 +7,7 @@ import { format } from 'date-fns'
 
 import { Event, defaultEvents, fetchEvents } from '@/data/events'
 
-const GOOGLE_SHEET_CSV_URL = 'YOUR_PUBLISHED_GOOGLE_SHEET_CSV_URL_HERE'
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/export?format=csv'
 
 export function Events() {
   const [events, setEvents] = useState<Event[]>(defaultEvents)
