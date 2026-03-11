@@ -47,7 +47,8 @@ export function FoodDrinks() {
             <div className="relative overflow-hidden rounded-lg border-2 border-primary card-glow w-full max-w-[360px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] shadow-2xl">
               <video 
                 ref={videoRef}
-                className="w-full h-auto aspect-[9/16] object-cover bg-black"
+                className="w-full h-[640px] sm:h-[711px] md:h-[800px] lg:h-[889px] object-cover bg-black"
+                style={{ objectPosition: 'center' }}
                 loop
                 muted
                 playsInline
