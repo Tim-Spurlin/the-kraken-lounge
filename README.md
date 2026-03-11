@@ -153,15 +153,12 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[Tailwind v4]
-    B[Global tokens in index.css]
-    C[Theme colors (OKLch)]
-    D[Utilities & custom layers in main.css]
-    E[UI components (src/components/ui)]
-    F[Sections (src/components/sections)]
-    G[Rendered in App.tsx]
-
-    A --> B --> C --> D --> E --> F --> G
+    A[Tailwind v4] --> B[Global tokens in index.css]
+    B --> C[Theme colors (OKLch)]
+    C --> D[Utilities & custom layers in main.css]
+    D --> E[UI components (src/components/ui)]
+    E --> F[Sections (src/components/sections)]
+    F --> G[Rendered in App.tsx]
 ```
 
 ---
