@@ -22,7 +22,9 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+# Secret Keys
+kraken-bot-key.json
+functions/kraken-bot-key.json*.sw?
 
 .env
 **/agent-eval-report*
