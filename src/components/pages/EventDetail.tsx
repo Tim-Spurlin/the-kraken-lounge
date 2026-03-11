@@ -16,9 +16,8 @@ export function EventDetail() {
         async function loadEvent() {
             try {
                 setLoading(true)
-                // You only need to fetch once if doing global state, 
-                // Use the much more stable Google Visualization API CSV export endpoint
-                const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv'
+                // Use the much more stable Google Visualization API CSV export endpoint and bypass aggressive caching
+                const sheetCsvUrl = `https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv&t=${Date.now()}`
                 const events = await fetchEvents(sheetCsvUrl)
                 const foundEvent = events.find(e => e.id === id)
 
@@ -136,7 +135,7 @@ export function EventDetail() {
                         )}
 
                         <div className="prose prose-invert max-w-none">
-                            <p className="text-lg leading-relaxed text-slate-300">
+                            <p className="text-lg leading-relaxed text-slate-300 whitespace-pre-wrap">
                                 {event.description}
                             </p>
                         </div>

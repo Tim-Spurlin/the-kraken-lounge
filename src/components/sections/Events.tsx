@@ -7,8 +7,8 @@ import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
 import { Event, defaultEvents, fetchEvents } from '@/data/events'
-
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv'
+// The base URL to the sheet, but we will dynamically append a timestamp in the component
+const BASE_GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv'
 
 export function Events() {
   const [events, setEvents] = useState<Event[]>(defaultEvents)
@@ -17,15 +17,12 @@ export function Events() {
 
   useEffect(() => {
     async function loadEvents() {
-      if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes('YOUR_PUBLISHED')) {
-        console.warn('Google Sheets URL not configured. Using default events.')
-        setIsLoading(false)
-        return
-      }
+      // Append a timestamp to completely bypass Google's aggressive CDN caching
+      const CACHE_BUSTED_URL = `https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv&t=${Date.now()}`
 
       try {
         console.log('Fetching events from Google Sheets...')
-        const data = await fetchEvents(GOOGLE_SHEET_CSV_URL)
+        const data = await fetchEvents(CACHE_BUSTED_URL)
         console.log('Fetched events:', data)
         if (data && data.length > 0) {
           setEvents(data)
