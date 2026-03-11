@@ -1,5 +1,4 @@
 import { Pizza, Martini, CurrencyDollar } from '@phosphor-icons/react'
-import pizzaVideo from '@/assets/video/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb.mp4'
 
 export function FoodDrinks() {
   return (
@@ -28,15 +27,15 @@ export function FoodDrinks() {
                 controls
                 preload="auto"
               >
-                <source src={pizzaVideo} type="video/mp4" />
+                <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773184699/Flow_delpmaspu__hkzt6j.mp4" type="video/mp4" />
               </video>
-              </video>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3 sm:p-4 md:p-6">
                 <h3 className="font-heading text-lg sm:text-xl md:text-2xl text-accent mb-1 sm:mb-2">
                   The Kraken's Famous Pizza
-                  The Kraken's Famous Pizza
+                </h3>
                 <p className="text-foreground/90 text-xs sm:text-sm md:text-base leading-relaxed">
-                <p className="text-foreground/90 text-xs sm:text-sm md:text-base leading-relaxed">s to perfection, and our secret sauce blend that keeps people coming back. Each pizza is made fresh to order with locally-sourced ingredients whenever possible. Whether you're here for the music or the food, you won't leave disappointed — this is honestly some of the best pizza in Brownsville, and our customers agree!
                   Watch our kitchen crew craft the perfect pie! Our signature pizza features a hand-tossed crust with that ideal crispy texture, topped with premium mozzarella that melts to perfection, and our secret sauce blend that keeps people coming back. Each pizza is made fresh to order with locally-sourced ingredients whenever possible. Whether you're here for the music or the food, you won't leave disappointed — this is honestly some of the best pizza in Brownsville, and our customers agree!
+                </p>
               </div>
             </div>
           </div>

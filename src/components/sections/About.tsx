@@ -1,4 +1,4 @@
-import { Lightning, Heart, MusicNotes } from '@phosphor-icons/react'
+import { Palette, PaintBrush, Heart, Pen } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 
 export function About() {
@@ -16,7 +16,7 @@ export function About() {
             transition={{ duration: 0.8 }}
             className="font-heading text-5xl md:text-6xl text-center mb-12 text-gradient-purple gothic-glow"
           >
-            A Sanctuary for Alternative Culture
+            A Canvas for Creative Expression
           </motion.h2>
           
           <motion.div 
@@ -27,7 +27,7 @@ export function About() {
             className="prose prose-invert prose-lg max-w-none space-y-6 text-foreground/90"
           >
             <p className="text-xl leading-relaxed">
-              Since its doors first opened, <span className="text-accent font-bold">The Kraken Lounge</span> has stood as Brownsville's definitive refuge for alternative music and underground culture. Located in the heart of historic downtown at 1123 E Adams St, Suite C, we are more than just a bar—we are a cultural institution, a community hub, and a sanctuary for those who refuse to conform.
+              At <span className="text-accent font-bold">The Kraken Lounge</span>, we believe art is the soul of culture. Our walls aren't just walls—they're living galleries, constantly evolving canvases that showcase the boundless creativity of local and regional artists. From striking paintings and evocative photography to experimental mixed-media installations, every surface tells a story.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 my-12">
@@ -39,9 +39,9 @@ export function About() {
                 className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 hexagon-pattern relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
-                <Lightning className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
-                <h3 className="font-heading text-2xl text-accent relative z-10">Rebellious</h3>
-                <p className="text-muted-foreground relative z-10">A getaway from mainstream music, championing heavy metal, punk, goth, industrial, and underground techno.</p>
+                <Palette className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl text-accent relative z-10">Rotating Exhibitions</h3>
+                <p className="text-muted-foreground relative z-10">Our gallery is never static. New artists, new visions, new stories—constantly refreshed to keep the space alive and inspiring.</p>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -51,9 +51,9 @@ export function About() {
                 className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 circuit-lines relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
-                <MusicNotes className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
-                <h3 className="font-heading text-2xl text-accent relative z-10">Authentic</h3>
-                <p className="text-muted-foreground relative z-10">Low-lit, gothic atmosphere meets genuine dive bar warmth. Raw, unpretentious, and real.</p>
+                <PaintBrush className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl text-accent relative z-10">All Mediums Welcome</h3>
+                <p className="text-muted-foreground relative z-10">Painters, illustrators, photographers, sculptors, digital artists—all forms of visual expression find a home here.</p>
               </motion.div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -63,18 +63,18 @@ export function About() {
                 className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 cyber-grid relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
-                <Heart className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
-                <h3 className="font-heading text-2xl text-accent relative z-10">Welcoming</h3>
-                <p className="text-muted-foreground relative z-10">A safe, inclusive space where alternative subcultures thrive and everyone belongs.</p>
+                <Pen className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <h3 className="font-heading text-2xl text-accent relative z-10">Supporting Artists</h3>
+                <p className="text-muted-foreground relative z-10">We provide free exhibition space, promotion, and a platform for artists to connect with an engaged, appreciative audience.</p>
               </motion.div>
             </div>
             
             <p className="text-xl leading-relaxed">
-              Under the leadership of owner <span className="font-bold text-accent">Daniel Alvarado</span>, The Kraken Lounge has weathered storms—both literal and metaphorical. When the COVID-19 pandemic forced venues across the country to shutter permanently, we fought to survive. Through the darkest days of 2020, Daniel's unwavering commitment to the community kept the dream alive. In 2021, we reopened with strict safety protocols, proving that The Kraken Lounge was here to stay.
+              We're proud to contribute to artists of all kinds—emerging talents and established voices alike. By offering our venue as a gallery space, we help creators gain visibility, build their portfolios, and connect with buyers and fans. Art isn't a luxury at The Kraken; it's essential. It transforms the atmosphere, sparks conversation, and reminds us that creativity is rebellion.
             </p>
             
             <p className="text-xl leading-relaxed">
-              Today, we continue to champion the artists, musicians, and creatives who make the Rio Grande Valley's alternative scene pulse with life. Our walls showcase rotating exhibitions of local visual art. Our stage hosts touring indie bands, local legends, and everything in between. Our kitchen serves up some of the best pizza in Brownsville. And our bar pours ice-cold beers and handcrafted cocktails at prices that honor our working-class roots.
+              Whether you're sipping a cold beer while admiring a hauntingly beautiful portrait, or debating the meaning of an abstract piece with friends between sets, art is woven into the very fabric of The Kraken experience. This isn't a sterile white-cube gallery—it's a dive bar gallery, where raw talent meets raw authenticity.
             </p>
             
             <motion.div 
@@ -84,10 +84,22 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="border-gradient deep-shadow p-8 rounded-md mt-8"
             >
-              <p className="text-lg italic text-center text-accent font-heading text-2xl">
-                "One of the absolute only establishments in Brownsville catered specifically and unapologetically to the alternative music scene."
-              </p>
+              <div className="text-center space-y-4">
+                <Heart className="w-12 h-12 mx-auto text-accent" weight="fill" />
+                <p className="text-lg italic text-accent font-heading text-2xl">
+                  "Art is the heartbeat of The Kraken. Every piece on our walls is a testament to the vibrant creative community thriving in the Rio Grande Valley."
+                </p>
+              </div>
             </motion.div>
+
+            <div className="mt-8 bg-primary/10 border-2 border-primary p-6 rounded-sm">
+              <h3 className="font-heading text-2xl text-accent mb-3 text-center">
+                Artists: Want to Exhibit?
+              </h3>
+              <p className="text-foreground/80 text-center">
+                We're always looking for new voices to feature on our walls. Contact us to discuss showcasing your work at The Kraken Lounge—where art and music collide.
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>
