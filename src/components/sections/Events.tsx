@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 import { Event, defaultEvents, fetchEvents } from '@/data/events'
 
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnWH78yA361c47g1pIhG6K2VnZJ29NlWvUXXZ0a_lPszR4QhGxg2t42S1Yn7E-JzV_hT-D-a4hF-Y/pub?output=csv'
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv'
 
 export function Events() {
   const [events, setEvents] = useState<Event[]>(defaultEvents)
