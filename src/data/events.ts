@@ -17,11 +17,16 @@ export interface Event {
 
 function parseFlexibleDate(dateStr: string): string {
     if (!dateStr) return '';
-    // Remove ordinal indicators (st, nd, rd, th) from days
-    let cleanStr = dateStr.replace(/\b(\d+)(st|nd|rd|th)\b/gi, '$1');
+
+    // 1. Inject spaces between letters and numbers (e.g. "July18" -> "July 18", "18th2026" -> "18th 2026")
+    let cleanStr = dateStr.replace(/([a-zA-Z])(\d)/g, '$1 $2').replace(/(\d)([a-zA-Z])/g, '$1 $2');
+
+    // 2. Remove ordinal indicators (st, nd, rd, th) from days
+    cleanStr = cleanStr.replace(/\b(\d+)\s?(st|nd|rd|th)\b/gi, '$1');
+
     let d = new Date(cleanStr);
 
-    // Check for DD-MM-YYYY format
+    // 3. Fallback for European formats (DD-MM-YYYY)
     if (isNaN(d.getTime())) {
         const parts = cleanStr.split(/[-/]/);
         if (parts.length === 3 && parts[2].length === 4) {
