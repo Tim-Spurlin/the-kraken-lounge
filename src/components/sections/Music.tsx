@@ -149,14 +149,15 @@ export function Music() {
               <div className="flex justify-center">
                 <div className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]">
                   <video 
-                    controls 
-                    controlsList="nodownload"
+                    controls
+                    controlsList="nodownload noplaybackrate"
                     disablePictureInPicture
                     onContextMenu={(e) => e.preventDefault()}
                     className="w-full h-full object-cover"
                     poster="https://res.cloudinary.com/dw3lf8roj/image/upload/v1772991787/ChatGPT_Image_Mar_8_2026_10_12_36_AM_owghcv.png"
                     playsInline
                     preload="metadata"
+                    style={{ pointerEvents: 'auto' }}
                   >
                     <source src="https://www.dropbox.com/scl/fi/t4bpagqx89xg2m524bjmj/Kraken-Music-Video_Official-03-10-2026.mp4?rlkey=1l5wt7qgugsb6znyec2clm48r&st=xf6jqv1o&raw=1" type="video/mp4" />
                     Your browser does not support the video element.
