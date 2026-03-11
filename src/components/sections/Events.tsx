@@ -74,12 +74,12 @@ export function Events() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8 bg-card">
-            <TabsTrigger value="all">All Events</TabsTrigger>
-            <TabsTrigger value="live">Live Bands</TabsTrigger>
-            <TabsTrigger value="themed">Themed Nights</TabsTrigger>
-            <TabsTrigger value="recurring">Weekly</TabsTrigger>
-            <TabsTrigger value="special">Special Events</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-3 md:grid-cols-5 mb-8 bg-card gap-2">
+            <TabsTrigger value="all" className="text-xs sm:text-sm">All Events</TabsTrigger>
+            <TabsTrigger value="live" className="text-xs sm:text-sm">Live Bands</TabsTrigger>
+            <TabsTrigger value="themed" className="text-xs sm:text-sm">Themed Nights</TabsTrigger>
+            <TabsTrigger value="recurring" className="text-xs sm:text-sm">Weekly</TabsTrigger>
+            <TabsTrigger value="special" className="text-xs sm:text-sm">Special Events</TabsTrigger>
           </TabsList>
 
           <TabsContent value={activeTab} className="space-y-6">
