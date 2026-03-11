@@ -6,24 +6,14 @@ import { Badge } from '@/components/ui/badge'
 import { CalendarBlank, Clock, MapPin } from '@phosphor-icons/react'
 import { format } from 'date-fns'
 
-interface Event {
-  id: string
-  title: string
-  date: string
-  time: string
-  type: 'live' | 'themed' | 'recurring' | 'special'
-  genres: string[]
-  bands?: string[]
-  description: string
-  price?: string
-}
+import { Event, defaultEvents } from '@/data/events'
 
 export function Events() {
-  const [events] = useKV<Event[]>('events', [])
+  const [events] = useKV<Event[]>('events', defaultEvents)
   const [activeTab, setActiveTab] = useState('all')
 
-  const filteredEvents = activeTab === 'all' 
-    ? events || [] 
+  const filteredEvents = activeTab === 'all'
+    ? events || []
     : (events || []).filter(event => event.type === activeTab)
 
   const getGenreColor = (genre: string) => {
@@ -73,8 +63,8 @@ export function Events() {
               </Card>
             ) : (
               filteredEvents.map((event) => (
-                <Card 
-                  key={event.id} 
+                <Card
+                  key={event.id}
                   className="p-6 bg-card border-2 border-primary/40 hover:border-primary card-glow transition-all relative overflow-hidden"
                 >
                   <div className="absolute inset-0 circuit-lines opacity-30 pointer-events-none" />
