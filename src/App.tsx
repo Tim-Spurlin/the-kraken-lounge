@@ -2,7 +2,6 @@ import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Events } from '@/components/sections/Events'
 import { Music } from '@/components/sections/Music'
-import { ArtGallery } from '@/components/sections/ArtGallery'
 import { FoodDrinks } from '@/components/sections/FoodDrinks'
 import { Community } from '@/components/sections/Community'
 import { Contact } from '@/components/sections/Contact'
@@ -18,7 +17,6 @@ function App() {
         <About />
         <Events />
         <Music />
-        <ArtGallery />
         <FoodDrinks />
         <Community />
         <Contact />

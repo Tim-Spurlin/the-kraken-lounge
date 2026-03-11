@@ -1,5 +1,6 @@
 import { Pizza, Martini, CurrencyDollar } from '@phosphor-icons/react'
-import pizzaVideo from '@/assets/video/grok-video-3bf85262-57e5-4733-adb1-5bfc67481dab_1772972300.mp4'
+
+const pizzaVideo = 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773184699/Flow_delpmaspu__hkzt6j.mp4'
 
 export function FoodDrinks() {
   return (
