@@ -115,7 +115,9 @@ export function Contact() {
                     <FacebookLogo className="w-6 h-6 text-primary-foreground" weight="fill" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/thekrakenlounge/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-primary hover:bg-accent rounded-md flex items-center justify-center transition-all hover:scale-110 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.6)]"
                     aria-label="Instagram"
                   >

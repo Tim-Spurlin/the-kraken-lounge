@@ -27,7 +27,7 @@ export function About() {
             className="prose prose-invert prose-lg max-w-none space-y-6 text-foreground/90"
           >
             <p className="text-xl leading-relaxed">
-              At <span className="text-accent font-bold">The Kraken Lounge</span>, we believe art is the soul of culture. Our walls aren't just walls—they're living galleries, constantly evolving canvases that showcase the boundless creativity of local and regional artists. From striking paintings and evocative photography to experimental mixed-media installations, every surface tells a story.
+              Since opening around 2015-2016, <span className="text-accent font-bold">The Kraken Lounge</span> has been more than just a music venue—it's a cultural institution operating under the leadership of owner Daniel Alvarado through AlvaradoEstrada LLC. Situated in Brownsville's historic downtown corridor, we've spent a decade cultivating a space where alternative culture thrives. Our walls aren't just walls—they're living galleries, constantly evolving canvases that showcase the boundless creativity of local and regional artists. From striking paintings and evocative photography to experimental mixed-media installations, every surface tells a story.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 my-12">
@@ -74,7 +74,7 @@ export function About() {
             </p>
             
             <p className="text-xl leading-relaxed">
-              Whether you're sipping a cold beer while admiring a hauntingly beautiful portrait, or debating the meaning of an abstract piece with friends between sets, art is woven into the very fabric of The Kraken experience. This isn't a sterile white-cube gallery—it's a dive bar gallery, where raw talent meets raw authenticity.
+              Whether you're sipping a cold beer while admiring a hauntingly beautiful portrait, or debating the meaning of an abstract piece with friends between sets, art is woven into the very fabric of The Kraken experience. This isn't a sterile white-cube gallery—it's a dive bar gallery, where raw talent meets raw authenticity. Our quintessential "badass dive bar" aesthetic provides an authentic backdrop for artistic expression, featuring distinct architectural zones including a welcoming foyer, dedicated billiards room, and main performance area—all serving as gallery spaces.
             </p>
             
             <motion.div 
