@@ -285,6 +285,8 @@ function onOpen() {
       .addSeparator()
       .addItem('📝 Generate Missing Descriptions', 'generateDescriptions')
       .addItem('✨ Enhance Existing Descriptions', 'enhanceDescriptions')
+      .addSeparator()
+      .addItem('Remove Blueprint Preamble (Clean Sheet)', 'cleanPreambleFromDescriptions')
       .addToUi();
 }
 
@@ -646,14 +648,65 @@ function callGeminiFlash(promptText, apiKey) {
 }
 
 /**
- * Run this function ONCE from the Apps Script Editor (the dropdown next to the Run button).
- * Because the AI functions use dynamic URLs, Google's security scanner sometimes 
- * fails to pop up the "Allow" window. Running this simple, hardcoded function 
- * forces the "Authorization Required" popup to appear.
+ * Utility function to strip the massive blueprint preamble from existing rows.
+ * This runs across the entire Sheet1 and drops the preamble chunks that were mass-injected.
  */
-function testGooglePermissions() {
-  UrlFetchApp.fetch('https://www.google.com');
-  SpreadsheetApp.getUi().alert('Permissions granted successfully! You can now use the Kraken AI from the spreadsheet menu.');
+function cleanPreambleFromDescriptions() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
+  if (!sheet) {
+    SpreadsheetApp.getUi().alert("Error: 'Sheet1' not found.");
+    return;
+  }
+
+  const dataRange = sheet.getDataRange();
+  const values = dataRange.getValues();
+  
+  if (values.length <= 1) return;
+  
+  const headers = values[0];
+  const descIdx = headers.indexOf('description');
+  const teaserIdx = headers.indexOf('teaser');
+  
+  if (descIdx === -1) {
+    SpreadsheetApp.getUi().alert("Error: 'description' column not found.");
+    return;
+  }
+  
+  let cleanedCount = 0;
+  
+  for (let i = 1; i < values.length; i++) {
+    let description = String(values[i][descIdx] || "");
+    let teaser = String(values[i][teaserIdx] || "");
+    let needsUpdate = false;
+    
+    // The exact cutoff phrase that ends the giant blueprint preamble
+    const cutoffPhrase = "niche booking agencies.";
+    
+    if (description.includes("Cultivating the Alternative Underground") && description.includes(cutoffPhrase)) {
+      const splitParts = description.split(cutoffPhrase);
+      if (splitParts.length > 1) {
+        // Drop the preamble, keep the rest, remove leading asterisks/whitespace
+        let newDescription = splitParts[1].replace(/^[\*\s]+/, '').trim();
+        sheet.getRange(i + 1, descIdx + 1).setValue(newDescription);
+        needsUpdate = true;
+      }
+    }
+    
+    // Clear out any teasers that were accidentally polluted too
+    if (teaserIdx !== -1 && teaser.includes("Cultivating the Alternative Underground")) {
+      sheet.getRange(i + 1, teaserIdx + 1).setValue("");
+      needsUpdate = true;
+    }
+    
+    if (needsUpdate) {
+      cleanedCount++;
+    }
+  }
+  
+  if (cleanedCount > 0) {
+    SpreadsheetApp.getUi().alert(`Successfully removed the blueprint preamble from ${cleanedCount} event rows!`);
+  } else {
+    SpreadsheetApp.getUi().alert("No blueprint preambles found. The sheet is already clean!");
+  }
 }
 
-}
