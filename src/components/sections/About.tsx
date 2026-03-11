@@ -1,4 +1,4 @@
-import { Palette, PaintBrush, Heart, Pen } from '@phosphor-icons/react'
+import { Palette, PaintBrush, Heart, HandHeart } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 
 export function About() {
@@ -51,7 +51,7 @@ export function About() {
                 className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 circuit-lines relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
-                <Paintbrush className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <PaintBrush className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
                 <h3 className="font-heading text-2xl text-accent relative z-10">All Mediums Welcome</h3>
                 <p className="text-muted-foreground relative z-10">Painters, illustrators, photographers, sculptors, digital artists—all forms of visual expression find a home here.</p>
               </motion.div>
@@ -63,7 +63,7 @@ export function About() {
                 className="text-center space-y-3 deep-shadow p-6 rounded-md bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 cyber-grid relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
-                <Easel className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
+                <HandHeart className="w-12 h-12 mx-auto text-accent animate-pulse-glow relative z-10" weight="fill" />
                 <h3 className="font-heading text-2xl text-accent relative z-10">Supporting Artists</h3>
                 <p className="text-muted-foreground relative z-10">We provide free exhibition space, promotion, and a platform for artists to connect with an engaged, appreciative audience.</p>
               </motion.div>
