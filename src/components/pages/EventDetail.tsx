@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 import { fetchEvents, type Event } from '@/data/events'
 
 // The URL from Google Apps Script you provided
@@ -151,10 +152,10 @@ export function EventDetail() {
                             </div>
                         )}
 
-                        <div className="prose prose-invert max-w-none">
-                            <p className="text-lg leading-relaxed text-slate-300 whitespace-pre-wrap">
+                        <div className="prose prose-invert max-w-none text-slate-300">
+                            <ReactMarkdown>
                                 {event.description}
-                            </p>
+                            </ReactMarkdown>
                         </div>
 
                         {event.genres && (
