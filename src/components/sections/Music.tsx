@@ -154,11 +154,11 @@ export function Music() {
                     disablePictureInPicture
                     onContextMenu={(e) => e.preventDefault()}
                     className="w-full h-full object-cover"
-                    style={{ pointerEvents: 'auto' }}
                     poster="https://res.cloudinary.com/dw3lf8roj/image/upload/v1772991787/ChatGPT_Image_Mar_8_2026_10_12_36_AM_owghcv.png"
                     playsInline
+                    preload="metadata"
                   >
-                    <source src="https://dl.dropboxusercontent.com/scl/fi/t4bpagqx89xg2m524bjmj/Kraken-Music-Video_Official-03-10-2026.mp4?rlkey=1l5wt7qgugsb6znyec2clm48r&st=xf6jqv1o&dl=0" type="video/mp4" />
+                    <source src="https://www.dropbox.com/scl/fi/t4bpagqx89xg2m524bjmj/Kraken-Music-Video_Official-03-10-2026.mp4?rlkey=1l5wt7qgugsb6znyec2clm48r&st=xf6jqv1o&raw=1" type="video/mp4" />
                     Your browser does not support the video element.
                   </video>
                 </div>
