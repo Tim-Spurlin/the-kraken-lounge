@@ -37,7 +37,7 @@ export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
                             time: row.time || 'TBA',
                             type: (['live', 'themed', 'recurring', 'special'].includes(row.type) ? row.type : 'special') as Event['type'],
                             // Convert comma-separated string columns into arrays
-                            genres: row.genres ? row.genres.split(',').map((g: string) => g.trim()).filter(Boolean) : [],
+                            genres: (row.genres || row.genre) ? (row.genres || row.genre).split(',').map((g: string) => g.trim()).filter(Boolean) : [],
                             bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
                             description: row.description || '',
                             price: row.price || 'TBA'
