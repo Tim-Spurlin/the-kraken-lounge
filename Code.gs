@@ -445,6 +445,11 @@ function processDescriptions(mode) {
   const currentDate = new Date().toISOString().split('T')[0];
   let updatedCount = 0;
 
+  // Check if the user has specifically selected a single row to force an update on it
+  const activeRange = sheet.getActiveRange();
+  const activeRow = activeRange ? activeRange.getRow() : -1;
+  const isSingleRowSelected = activeRange ? activeRange.getNumRows() === 1 : false;
+
   for (let i = 1; i < values.length; i++) {
     const row = values[i];
     const description = String(row[descIdx] || "").trim();
@@ -456,7 +461,17 @@ function processDescriptions(mode) {
     let shouldProcess = false;
     let inputNotes = "";
 
-    if (mode === 'GENERATE' && description === "") {
+    // Force process if the user explicitly clicked on this exact row
+    const isTargetRow = isSingleRowSelected && (i + 1) === activeRow;
+
+    if (isTargetRow) {
+      shouldProcess = true;
+      if (description === "") {
+        inputNotes = "Empty description. Generate from scratch based on title/genre/bands.";
+      } else {
+        inputNotes = `Manager's Basic Notes:\n"${description}"`;
+      }
+    } else if (mode === 'GENERATE' && description === "") {
       shouldProcess = true;
       inputNotes = "Empty description. Generate from scratch based on title/genre/bands.";
     } else if (mode === 'ENHANCE' && description !== "" && description.length < 350) {
@@ -466,6 +481,11 @@ function processDescriptions(mode) {
       // Edge case: they have a long description but no teaser yet
       shouldProcess = true;
       inputNotes = `Manager's Existing Description that needs a teaser auto-generated and formatting clean up:\n"${description}"`;
+    }
+
+    // Skip all other rows if the user specifically targeted one
+    if (isSingleRowSelected && !isTargetRow) {
+      shouldProcess = false;
     }
 
     if (shouldProcess) {
