@@ -61,46 +61,18 @@ export function ArtGallery() {
               <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                 <p className="text-white text-lg font-semibold">Click to view</p>
               </div>
+            </div>
           </div>
-        </div>
         </div>
 
-          <div className="max-w-2xl mx-auto bg-card border border-border p-12 rounded-sm text-center">
-            <p className="text-xl text-muted-foreground mb-4">
-              More gallery content coming soon
-            </p>
-            <p className="text-foreground/70">
-              The Kraken Lounge proudly displays rotating exhibitions of local visual art. Our physical walls are covered with paintings, illustrations, mixed-media pieces, and photography from diverse artists throughout the borderlands.
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {artworksList.map((artwork) => (
-              <div
-                key={artwork.id}
-                onClick={() => setSelectedArtwork(artwork)}
-                className="group cursor-pointer bg-card border-2 border-primary/40 rounded-sm overflow-hidden card-glow relative"
-              >
-                <div className="absolute inset-0 hexagon-pattern opacity-20 pointer-events-none" />
-                <div className="aspect-square bg-muted relative overflow-hidden">
-                  <img
-                    src={artwork.imageUrl}
-                    alt={artwork.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-heading text-xl text-foreground mb-1">
-                    {artwork.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    by {artwork.artist}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="max-w-2xl mx-auto bg-card border border-border p-12 rounded-sm text-center">
+          <p className="text-xl text-muted-foreground mb-4">
+            More gallery content coming soon
+          </p>
+          <p className="text-foreground/70">
+            The Kraken Lounge proudly displays rotating exhibitions of local visual art. Our physical walls are covered with paintings, illustrations, mixed-media pieces, and photography from diverse artists throughout the borderlands.
+          </p>
+        </div>
 
         <div className="mt-12 max-w-3xl mx-auto bg-background/50 border border-primary/30 p-6 rounded-sm text-center">
           <p className="text-lg text-foreground/80 mb-3">
