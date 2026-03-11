@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { fetchEvents, type Event } from '@/data/events'
 
 // The URL from Google Apps Script you provided
@@ -156,7 +157,19 @@ export function EventDetail() {
                         )}
 
                         <div className="prose prose-invert max-w-none text-slate-300">
-                            <ReactMarkdown>
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    h1: ({ node, ...props }) => <h1 className="text-3xl font-display text-primary mt-8 mb-4" {...props} />,
+                                    h2: ({ node, ...props }) => <h2 className="text-2xl font-display text-accent mt-8 mb-4 border-b border-border/50 pb-2" {...props} />,
+                                    h3: ({ node, ...props }) => <h3 className="text-xl font-heading text-foreground mt-6 mb-3" {...props} />,
+                                    p: ({ node, ...props }) => <p className="text-lg leading-relaxed mb-6" {...props} />,
+                                    ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-2 mb-6 ml-4" {...props} />,
+                                    ol: ({ node, ...props }) => <ol className="list-decimal list-inside space-y-2 mb-6 ml-4" {...props} />,
+                                    li: ({ node, ...props }) => <li className="text-slate-300" {...props} />,
+                                    strong: ({ node, ...props }) => <strong className="font-semibold text-white tracking-wide" {...props} />
+                                }}
+                            >
                                 {event.description}
                             </ReactMarkdown>
                         </div>
