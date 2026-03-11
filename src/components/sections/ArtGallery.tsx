@@ -74,35 +74,6 @@ export function ArtGallery() {
           </p>
         </div>
 
-        <div className="mt-12 max-w-3xl mx-auto bg-background/50 border border-primary/30 p-6 rounded-sm text-center">
-          <p className="text-lg text-foreground/80 mb-3">
-            <span className="font-bold text-accent">Local Artists:</span> Want to display your work at The Kraken Lounge?
-          </p>
-          <p className="text-muted-foreground">
-            We provide a platform for painters, illustrators, photographers, and mixed-media creators outside the constraints of traditional galleries. Contact us to learn about exhibition opportunities.
-          </p>
-        </div>
-      </div>
-
-      <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
-        <DialogContent className="max-w-3xl bg-card border-border">
-          {selectedArtwork && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="font-heading text-3xl text-foreground">
-                  {selectedArtwork.title}
-                </DialogTitle>
-                <p className="text-muted-foreground">by {selectedArtwork.artist}</p>
-              </DialogHeader>
-              <div className="space-y-4">
-                <img
-                  src={selectedArtwork.imageUrl}
-                  alt={selectedArtwork.title}
-                  className="w-full rounded-sm"
-                />
-                <p className="text-foreground/80">
-                  {selectedArtwork.description}
-                </p>
               </div>
             </>
           )}
@@ -131,3 +102,4 @@ export function ArtGallery() {
     </section>
   )
 }
+            <div className="relative" style={{ aspectRatio: '9 / 16' }}>              <video                src={selectedVideo.videoUrl}                controls                controlsList="nodownload"                className="w-full h-full object-cover rounded-sm"                preload="metadata"                onContextMenu={(e) => e.preventDefault()}                autoPlay              >                Your browser does not support the video tag.              </video>
