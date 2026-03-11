@@ -24,7 +24,6 @@ export function FoodDrinks() {
                 loop
                 muted
                 playsInline
-                controls
                 preload="auto"
               >
                 <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773184699/Flow_delpmaspu__hkzt6j.mp4" type="video/mp4" />
