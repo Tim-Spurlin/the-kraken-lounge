@@ -21,7 +21,7 @@ export function Events() {
         setIsLoading(false)
         return
       }
-      
+
       try {
         console.log('Fetching events from Google Sheets...')
         const data = await fetchEvents(GOOGLE_SHEET_CSV_URL)
@@ -46,7 +46,18 @@ export function Events() {
   // Filter out events that occurred before today
   const upcomingEvents = events.filter((event) => {
     if (!event.date) return true; // keep if no date
-    const eventDate = new Date(event.date)
+
+    let eventDate = new Date(event.date)
+
+    // If user typed "July 18" without a year, JavaScript defaults to the year 2001
+    if (!isNaN(eventDate.getTime()) && eventDate.getFullYear() === 2001) {
+      eventDate = new Date(`${event.date}, ${today.getFullYear()}`)
+      // If the new date has already passed this year, assume they meant next year
+      if (eventDate < today) {
+        eventDate = new Date(`${event.date}, ${today.getFullYear() + 1}`)
+      }
+    }
+
     if (isNaN(eventDate.getTime())) return true; // keep if date is malformed so it doesn't crash
     return eventDate >= today
   })
