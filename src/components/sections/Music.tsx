@@ -143,6 +143,33 @@ export function Music() {
 
           <div className="bg-card border border-primary p-8 rounded-sm card-glow">
             <h3 className="font-heading text-3xl mb-6 text-center text-accent">
+              Official Music Video
+            </h3>
+            <div className="space-y-6">
+              <div className="aspect-video w-full rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]">
+                <video 
+                  controls 
+                  controlsList="nodownload"
+                  className="w-full h-full object-cover"
+                  poster="https://res.cloudinary.com/dw3lf8roj/image/upload/v1772991787/ChatGPT_Image_Mar_8_2026_10_12_36_AM_owghcv.png"
+                >
+                  <source src="https://www.dropbox.com/scl/fi/t4bpagqx89xg2m524bjmj/Kraken-Music-Video_Official-03-10-2026.mp4?rlkey=1l5wt7qgugsb6znyec2clm48r&st=xf6jqv1o&raw=1" type="video/mp4" />
+                  Your browser does not support the video element.
+                </video>
+              </div>
+              <div className="text-center">
+                <h4 className="font-heading text-2xl text-foreground mb-2">
+                  The Kraken - Official Music Video
+                </h4>
+                <p className="text-muted-foreground">
+                  A gift from one of our beloved regulars. This is what The Kraken Lounge inspires—raw creativity and musical passion from our community. A visual and sonic tribute to Brownsville's underground sanctuary.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-card border border-primary p-8 rounded-sm card-glow">
+            <h3 className="font-heading text-3xl mb-6 text-center text-accent">
               Featured Track
             </h3>
             <div className="flex flex-col md:flex-row gap-8 items-center">
