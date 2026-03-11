@@ -1,32 +1,6 @@
 import { Guitar, Microphone, Disc, Lightning } from '@phosphor-icons/react'
-import { useRef, useEffect } from 'react'
 
 export function Music() {
-  const audioRef = useRef<HTMLAudioElement>(null)
-
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    const handleLoadedMetadata = () => {
-      audio.currentTime = 0
-    }
-
-    const handleTimeUpdate = () => {
-      if (audio.currentTime >= 226) {
-        audio.pause()
-        audio.currentTime = 0
-      }
-    }
-
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata)
-    audio.addEventListener('timeupdate', handleTimeUpdate)
-    
-    return () => {
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata)
-      audio.removeEventListener('timeupdate', handleTimeUpdate)
-    }
-  }, [])
 
   const genres = [
     {
@@ -170,47 +144,6 @@ export function Music() {
                 <p className="text-muted-foreground">
                   A gift from one of our beloved regulars. This is what The Kraken Lounge inspires—raw creativity and musical passion from our community. A visual and sonic tribute to Brownsville's underground sanctuary.
                 </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-card border border-primary p-8 rounded-sm card-glow">
-            <h3 className="font-heading text-3xl mb-6 text-center text-accent">
-              Featured Track
-            </h3>
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="w-full md:w-1/3 flex-shrink-0">
-                <img 
-                  src="https://res.cloudinary.com/dw3lf8roj/image/upload/v1772991787/ChatGPT_Image_Mar_8_2026_10_12_36_AM_owghcv.png"
-                  alt="The Kraken single artwork"
-                  className="w-full aspect-square object-cover rounded-sm border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]"
-                />
-              </div>
-              <div className="flex-1 space-y-4">
-                <div>
-                  <h4 className="font-heading text-2xl text-foreground mb-2">
-                    The Kraken
-                  </h4>
-                  <p className="text-muted-foreground mb-1">
-                    An original track created as a gift by one of our beloved regulars. This is what The Kraken Lounge inspires—raw creativity and musical passion from our community.
-                  </p>
-                  <p className="text-accent text-sm font-bold">
-                    Duration: 3:46
-                  </p>
-                </div>
-                <audio 
-                  ref={audioRef}
-                  controls 
-                  controlsList="nodownload"
-                  className="w-full"
-                  style={{
-                    accentColor: 'oklch(0.65 0.24 310)',
-                    filter: 'brightness(0.9) contrast(1.1)'
-                  }}
-                >
-                  <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773027817/41qnq-5adv5_apk5ll.wav" type="audio/wav" />
-                  Your browser does not support the audio element.
-                </audio>
               </div>
             </div>
           </div>
