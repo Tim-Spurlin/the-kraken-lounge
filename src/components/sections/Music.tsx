@@ -1,6 +1,8 @@
 import { Guitar, Microphone, Disc, Lightning } from '@phosphor-icons/react'
+import { useRef } from 'react'
 
 export function Music() {
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   const genres = [
     {
@@ -121,8 +123,20 @@ export function Music() {
             </h3>
             <div className="space-y-6">
               <div className="flex justify-center">
-                <div className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]">
+                <div 
+                  className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)] cursor-pointer"
+                  onClick={() => {
+                    if (videoRef.current) {
+                      if (videoRef.current.paused) {
+                        videoRef.current.play()
+                      } else {
+                        videoRef.current.pause()
+                      }
+                    }
+                  }}
+                >
                   <video 
+                    ref={videoRef}
                     controls
                     controlsList="nodownload"
                     disablePictureInPicture
