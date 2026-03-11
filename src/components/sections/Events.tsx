@@ -37,7 +37,9 @@ export function Events() {
 
   // Filter out events that occurred before today
   const upcomingEvents = events.filter((event) => {
+    if (!event.date) return true; // keep if no date
     const eventDate = new Date(event.date)
+    if (isNaN(eventDate.getTime())) return true; // keep if date is malformed so it doesn't crash
     return eventDate >= today
   })
 

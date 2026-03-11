@@ -16,38 +16,48 @@ export interface Event {
 // id, title, date, time, type, genres, bands, description, price
 
 export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
-    return new Promise((resolve, reject) => {
-        Papa.parse(sheetCsvUrl, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: (results) => {
-                try {
-                    // Transform the CSV data into our Event interface
-                    const events: Event[] = results.data.map((row: any) => ({
-                        id: row.id || String(Math.random()),
-                        title: row.title || 'Untitled Event',
-                        date: row.date || new Date().toISOString().split('T')[0],
-                        time: row.time || 'TBA',
-                        type: (['live', 'themed', 'recurring', 'special'].includes(row.type) ? row.type : 'special') as Event['type'],
-                        // Convert comma-separated string columns into arrays
-                        genres: row.genres ? row.genres.split(',').map((g: string) => g.trim()).filter(Boolean) : [],
-                        bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
-                        description: row.description || '',
-                        price: row.price || 'TBA'
-                    }))
-                    resolve(events)
-                } catch (err) {
-                    console.error("Error transforming CSV data", err)
-                    reject(err)
+    try {
+        const res = await fetch(sheetCsvUrl)
+        if (!res.ok) {
+            throw new Error(`Failed to fetch CSV: ${res.statusText}`)
+        }
+        const csvText = await res.text()
+
+        return new Promise((resolve, reject) => {
+            Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    try {
+                        // Transform the CSV data into our Event interface
+                        const events: Event[] = results.data.map((row: any) => ({
+                            id: row.id || String(Math.random()),
+                            title: row.title || 'Untitled Event',
+                            date: row.date || new Date().toISOString().split('T')[0],
+                            time: row.time || 'TBA',
+                            type: (['live', 'themed', 'recurring', 'special'].includes(row.type) ? row.type : 'special') as Event['type'],
+                            // Convert comma-separated string columns into arrays
+                            genres: row.genres ? row.genres.split(',').map((g: string) => g.trim()).filter(Boolean) : [],
+                            bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
+                            description: row.description || '',
+                            price: row.price || 'TBA'
+                        }))
+                        resolve(events)
+                    } catch (err) {
+                        console.error("Error transforming CSV data", err)
+                        reject(err)
+                    }
+                },
+                error: (error: any) => {
+                    console.error("Error parsing CSV data", error)
+                    reject(error)
                 }
-            },
-            error: (error) => {
-                console.error("Error fetching CSV data", error)
-                reject(error)
-            }
+            })
         })
-    })
+    } catch (error) {
+        console.error("Error fetching events", error)
+        throw error
+    }
 }
 
 export const defaultEvents: Event[] = [
