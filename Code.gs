@@ -443,6 +443,12 @@ Determine if this new event is a duplicate of any existing scheduled events. Pro
 }
 
 function processDescriptions(mode) {
+  // PRE-FLIGHT AUTH CHECK
+  // Google will silently block the AI if this script isn't authorized for external requests.
+  // By putting this naked fetch outside of a try/catch block, we force the script to legitimately 
+  // crash with a security exception, which FINALLY triggers the "Authorization Required" popup for the user!
+  UrlFetchApp.fetch('https://www.google.com', {muteHttpExceptions: true});
+
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
   if (!sheet) {
     SpreadsheetApp.getUi().alert("Error: 'Sheet1' not found. Please ensure your events are on a tab named Sheet1.");
