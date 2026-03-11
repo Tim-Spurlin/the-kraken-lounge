@@ -1,6 +1,5 @@
 import { Pizza, Martini, CurrencyDollar } from '@phosphor-icons/react'
-
-const pizzaVideo = 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773184699/Flow_delpmaspu__hkzt6j.mp4'
+import pizzaVideo from '@/assets/video/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb.mp4'
 
 export function FoodDrinks() {
   return (
@@ -19,28 +18,24 @@ export function FoodDrinks() {
           </div>
 
           <div className="mb-12 relative flex justify-center">
-            <div className="relative overflow-hidden rounded-lg border-2 border-primary card-glow w-full max-w-md md:max-w-lg">
+            <div className="relative overflow-hidden rounded-lg border-2 border-primary card-glow w-full max-w-[360px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] shadow-2xl">
               <video 
-                className="w-full aspect-[9/16] object-cover"
+                className="w-full h-auto aspect-[9/16] object-cover bg-black"
                 autoPlay
                 loop
                 muted
                 playsInline
                 controls
+                preload="auto"
               >
                 <source src={pizzaVideo} type="video/mp4" />
-                <track
-                  kind="captions"
-                  srcLang="en"
-                  label="English"
-                  default
-                />
+                Your browser does not support the video tag.
               </video>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent p-4 md:p-6">
-                <h3 className="font-heading text-xl md:text-2xl text-accent mb-2">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/98 via-background/85 to-transparent p-4 sm:p-5 md:p-6">
+                <h3 className="font-heading text-lg sm:text-xl md:text-2xl text-accent mb-1 sm:mb-2">
                   The Kraken's Famous Pizza
                 </h3>
-                <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
+                <p className="text-foreground/90 text-xs sm:text-sm md:text-base leading-relaxed">
                   Watch our kitchen crew craft the perfect pie! Our signature pizza features a hand-tossed crust with that ideal crispy texture, topped with premium mozzarella that melts to perfection, and our secret sauce blend that keeps people coming back. Each pizza is made fresh to order with locally-sourced ingredients whenever possible. Whether you're here for the music or the food, you won't leave disappointed — this is honestly some of the best pizza in Brownsville, and our customers agree!
                 </p>
               </div>
