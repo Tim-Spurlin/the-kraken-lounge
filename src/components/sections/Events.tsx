@@ -10,6 +10,21 @@ import { Event, defaultEvents, fetchEvents } from '@/data/events'
 // The base URL to the sheet, but we will dynamically append a timestamp in the component
 const BASE_GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv'
 
+// Helper function to turn Markdown into plain text for the teaser previews
+const stripMarkdown = (text: string) => {
+  if (!text) return '';
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold
+    .replace(/\*(.*?)\*/g, '$1')     // Remove italic
+    .replace(/__(.*?)__/g, '$1')     // Remove underline
+    .replace(/_(.*?)_/g, '$1')       // Remove italic
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links
+    .replace(/#+\s/g, '')            // Remove headers
+    .replace(/`{1,3}(.*?)`{1,3}/g, '$1') // Remove inline code
+    .replace(/^\s*[-*+]\s/gm, '')    // Remove bullet points
+    .trim();
+}
+
 export function Events() {
   const [events, setEvents] = useState<Event[]>(defaultEvents)
   const [activeTab, setActiveTab] = useState('all')
@@ -153,7 +168,7 @@ export function Events() {
                         )}
 
                         <p className="text-foreground/80 leading-relaxed md:text-lg line-clamp-3">
-                          {event.teaser || event.description}
+                          {stripMarkdown(event.teaser || event.description)}
                         </p>
 
                         <div className="pt-2">
