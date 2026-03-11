@@ -623,3 +623,14 @@ function callGeminiFlash(promptText, apiKey) {
   return JSON.parse(responseText);
 }
 
+/**
+ * Run this function ONCE from the Apps Script Editor (the dropdown next to the Run button).
+ * Because the AI functions use dynamic URLs, Google's security scanner sometimes 
+ * fails to pop up the "Allow" window. Running this simple, hardcoded function 
+ * forces the "Authorization Required" popup to appear.
+ */
+function testGooglePermissions() {
+  UrlFetchApp.fetch('https://www.google.com');
+  SpreadsheetApp.getUi().alert('Permissions granted successfully! You can now use the Kraken AI from the spreadsheet menu.');
+}
+
