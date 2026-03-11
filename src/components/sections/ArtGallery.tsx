@@ -25,3 +25,6 @@ export function ArtGallery() {
           </p>
         </div>
       </div>
+    </section>
+  )
+}
