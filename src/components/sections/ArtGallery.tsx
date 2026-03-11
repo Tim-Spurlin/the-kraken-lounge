@@ -54,18 +54,16 @@ export function ArtGallery() {
             <div className="relative aspect-[9/16] bg-muted overflow-hidden">
               <video
                 src={featuredVideo.videoUrl}
-                className="w-full h-full object-cover"
-                preload="metadata"
                 muted
                 playsInline
-              >
-                Your browser does not support the video tag.
+                muted
+                playsInline
               </video>
               <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <p className="text-white text-lg font-semibold">Click to view</p>
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">Click to view</p>
               </div>
-            </div>
-          </div>
         </div>
 
         {artworksList.length === 0 ? (
@@ -142,6 +140,8 @@ export function ArtGallery() {
       </Dialog>
 
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+
+      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-2xl bg-card border-border">
           {selectedVideo && (
             <div className="space-y-4">
@@ -162,6 +162,4 @@ export function ArtGallery() {
           )}
         </DialogContent>
       </Dialog>
-    </section>
-  )
 }
