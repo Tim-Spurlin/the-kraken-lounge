@@ -73,7 +73,31 @@ export function ArtGallery() {
             The Kraken Lounge proudly displays rotating exhibitions of local visual art. Our physical walls are covered with paintings, illustrations, mixed-media pieces, and photography from diverse artists throughout the borderlands.
           </p>
         </div>
+      </div>
 
+      <Dialog open={!!selectedArtwork} onOpenChange={() => setSelectedArtwork(null)}>
+        <DialogContent className="max-w-4xl bg-card border-border">
+          {selectedArtwork && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="font-heading text-3xl text-accent">
+                  {selectedArtwork.title}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <img
+                  src={selectedArtwork.imageUrl}
+                  alt={selectedArtwork.title}
+                  className="w-full h-auto rounded-sm"
+                />
+                <div>
+                  <p className="text-lg font-semibold text-foreground">
+                    Artist: {selectedArtwork.artist}
+                  </p>
+                  <p className="text-muted-foreground mt-2">
+                    {selectedArtwork.description}
+                  </p>
+                </div>
               </div>
             </>
           )}
@@ -102,4 +126,3 @@ export function ArtGallery() {
     </section>
   )
 }
-            <div className="relative" style={{ aspectRatio: '9 / 16' }}>              <video                src={selectedVideo.videoUrl}                controls                controlsList="nodownload"                className="w-full h-full object-cover rounded-sm"                preload="metadata"                onContextMenu={(e) => e.preventDefault()}                autoPlay              >                Your browser does not support the video tag.              </video>
