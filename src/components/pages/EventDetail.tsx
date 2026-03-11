@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { format } from 'date-fns'
 import { fetchEvents, type Event } from '@/data/events'
 
 // The URL from Google Apps Script you provided
@@ -59,6 +61,9 @@ export function EventDetail() {
             const pageTitle = `${event.title} | The Kraken Lounge`;
             document.title = pageTitle;
 
+            // Force browser to scroll to top of page when navigating to a new event
+            window.scrollTo(0, 0);
+
             // Trigger Google Analytics explicitly since this is a Single Page Application route change
             if (typeof window !== 'undefined' && (window as any).gtag) {
                 (window as any).gtag('event', 'page_view', {
@@ -83,8 +88,8 @@ export function EventDetail() {
             <div className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center text-center px-4">
                 <h1 className="text-4xl font-display text-destructive mb-4">Error</h1>
                 <p className="text-muted-foreground mb-8">{error || 'Event not found'}</p>
-                <Link to="/" className="text-accent hover:text-accent/80 flex items-center gap-2 transition-colors">
-                    <ArrowLeft size={16} /> Back to Home
+                <Link to="/#events" className="text-accent hover:text-accent/80 flex items-center gap-2 transition-colors">
+                    <ArrowLeft size={16} /> Back to Events
                 </Link>
             </div>
         )
@@ -94,7 +99,7 @@ export function EventDetail() {
 
     return (
         <div className="min-h-screen pt-32 pb-20 px-4 md:px-8 max-w-4xl mx-auto">
-            <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
+            <Link to="/#events" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
                 <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                 Back to all events
             </Link>
@@ -127,7 +132,13 @@ export function EventDetail() {
                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-muted-foreground mb-8 font-heading">
                             <div className="flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-accent" />
-                                <span>{event.date}</span>
+                                <span>
+                                    {event.date ? (
+                                        !isNaN(new Date(event.date).getTime())
+                                            ? format(new Date(event.date), 'MMMM d, yyyy')
+                                            : event.date
+                                    ) : 'TBA'}
+                                </span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Clock className="w-5 h-5 text-accent" />
@@ -153,7 +164,19 @@ export function EventDetail() {
                         )}
 
                         <div className="prose prose-invert max-w-none text-slate-300">
-                            <ReactMarkdown>
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    h1: ({ node, ...props }) => <h1 className="text-3xl font-display text-primary mt-8 mb-4" {...props} />,
+                                    h2: ({ node, ...props }) => <h2 className="text-2xl font-display text-accent mt-8 mb-4 border-b border-border/50 pb-2" {...props} />,
+                                    h3: ({ node, ...props }) => <h3 className="text-xl font-heading text-foreground mt-6 mb-3" {...props} />,
+                                    p: ({ node, ...props }) => <p className="text-lg leading-relaxed mb-6" {...props} />,
+                                    ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-2 mb-6 ml-4" {...props} />,
+                                    ol: ({ node, ...props }) => <ol className="list-decimal list-inside space-y-2 mb-6 ml-4" {...props} />,
+                                    li: ({ node, ...props }) => <li className="text-slate-300" {...props} />,
+                                    strong: ({ node, ...props }) => <strong className="font-semibold text-white tracking-wide" {...props} />
+                                }}
+                            >
                                 {event.description}
                             </ReactMarkdown>
                         </div>

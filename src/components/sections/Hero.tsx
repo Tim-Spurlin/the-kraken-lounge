@@ -1,33 +1,68 @@
-import { Flame, Lightning } from '@phosphor-icons/react'
+import { Flame, Lightning, PlayCircle, PauseCircle } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      <video 
-        autoPlay 
-        loop 
-        muted
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted={false} // Allow audio if the music video has it, though browsers may block autoplay
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-60"
         onVolumeChange={(e) => {
-          const video = e.target as HTMLVideoElement
-          video.muted = true
-          video.volume = 0
+          // If the previous developer forced mute here, we'll override it since you want a "music video" player experience
         }}
         onLoadedMetadata={(e) => {
           const video = e.target as HTMLVideoElement
-          video.muted = true
-          video.volume = 0
+          // Let the user unmute it via controls or ensure standard playback volume
+          video.volume = 0.8
         }}
       >
         <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772992664/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb_xr7ho7.mp4" type="video/mp4" />
       </video>
-      
-      <div className="absolute inset-0 bg-black/40" />
-      
-      <div className="container mx-auto px-4 text-center relative z-10 py-32">
-        <motion.div 
+
+      {/* Clickable Overlay to Play/Pause the Video */}
+      <div
+        className="absolute inset-0 bg-black/40 cursor-pointer flex items-center justify-center z-20 group"
+        onClick={togglePlay}
+      >
+        {/* Massive Play Button Overlay when Paused */}
+        {!isPlaying && (
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="absolute z-30"
+          >
+            <PlayCircle weight="fill" className="w-32 h-32 md:w-48 md:h-48 text-white/80 filter drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]" />
+          </motion.div>
+        )}
+
+        {/* Subtle hover indication when playing */}
+        {isPlaying && (
+          <div className="absolute z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <PauseCircle weight="fill" className="w-24 h-24 text-white/30 filter drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]" />
+          </div>
+        )}
+      </div>
+
+      <div className="container mx-auto px-4 text-center relative z-10 py-32 pointer-events-none">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -40,8 +75,8 @@ export function Hero() {
           >
             <Lightning className="w-16 h-16 md:w-24 md:h-24 mx-auto text-foreground animate-pulse-glow" weight="fill" />
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -49,8 +84,8 @@ export function Hero() {
           >
             The Kraken Lounge
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
@@ -58,8 +93,8 @@ export function Hero() {
           >
             Brownsville's Underground Music Sanctuary
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -75,24 +110,26 @@ export function Hero() {
               <p className="font-heading text-xl text-foreground">1123 E Adams St, Suite C</p>
             </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
             className="pt-8"
           >
-            <a 
-              href="#events" 
-              className="inline-block bg-primary hover:bg-secondary text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.25_0.02_0_/_0.6)] hover:scale-105"
-            >
-              See Upcoming Shows
-            </a>
+            <div className="pointer-events-auto flex justify-center">
+              <a
+                href="#events"
+                className="inline-block bg-primary hover:bg-secondary text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.25_0.02_0_/_0.6)] hover:scale-105"
+              >
+                See Upcoming Shows
+              </a>
+            </div>
           </motion.div>
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}

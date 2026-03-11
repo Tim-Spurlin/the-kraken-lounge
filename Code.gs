@@ -220,6 +220,37 @@ If event information is incomplete:
 - still write a polished full description based only on verified facts
 - gracefully omit missing items instead of inventing them
 
+MASTER VENUE KNOWLEDGE BASE
+Below is the official 2026 Performer Biographies and Event Deep-Dive for The Kraken Lounge.
+CRITICAL INSTRUCTION: You must ONLY write about the specific artist, bands, or event name provided in your "Input Data". Do NOT mention any other artists, showcases, or history from this Knowledge Base unless they are explicitly performing at the current event. Use this knowledge base purely as a dictionary to look up the facts for the specific band on the current row.
+
+*** Knowledge Base Start ***
+The Well-Known Recurring Programming
+Karaoke Wednesdays: Wednesday Karaoke is a recurring staple, heavily praised for democratizing the performance stage and allowing the local alternative community to participate directly in the venue's musical culture.
+First Friday Goth Night: First Friday Goth Night is a recurring, highly anticipated monthly event. Typically kicking off with live performances at 11:00 PM and anchored by sets from DJ Vikingo, this no-cover night is the premier gathering for the local dark alternative community.
+Sunday Sessions (Techno Night): Sunday Sessions are a recurring staple aimed at closing out the weekend with electronic music, utilizing the motto "Less drama, more #techno on Sundays!". These sessions frequently feature:
+- Luna León: An open-format DJ and visual artist who paints atmospheric tapestries with sounds ranging from dark industrial techno to breakcore, RnB, and hyperpop. Beyond the decks, she is a curator for university exhibitions and DIY maker spaces.
+- DJ Chavo: A frequently highlighted local talent who commands the decks during late-night Sunday electronic sets.
+
+Deep Dive: Upcoming 2026 Touring Artists & Bands
+The Revies (January 10, 2026): Hailing from Monterrey, Mexico, The Revies are a high-energy rock band that has rapidly ascended the North American indie ranks. They achieved a massive milestone by winning 1st place among over 500 submissions in the "Nuevo Talento Nuevo Leon" contest. In November 2024, they were the only Mexican band invited to perform at the Machaca Rock Fest, playing to a crowd of 30,000 people and sharing the stage with titans like Limp Bizkit, Marilyn Manson, and Hoobastank. Their January appearance is part of a dedicated fundraising tour.
+Acid Wizard Tx (February 7, 2026): Formed in late 2023 in Corpus Christi, Texas, Acid Wizard Tx is a heavy trio that blends doom, sludge, and heavy rock. The band consists of Riot (guitar), Fernando Moreno (bass/vocals), and Tommy Gunnz (drums). Heavily influenced by the godfathers of the genre like Black Sabbath, the band describes their sound as "doom/sludge from the perpetual summer hell that is South Texas". They recorded their debut album at Red Barn Studios in Mission, Texas, bringing a massive, sludgy wall of sound to the live stage.
+Dark Constellation Tour: Dead Cool, Astari Nite & Pilgrims (April 16, 2026)
+- Dead Cool: Operating out of Wilmington, North Carolina, Dead Cool is an intriguing darkwave and synth-pop duo formed in 2020 by husband and wife Johnny and Angela Yeagher. Johnny provides multifaceted vocals, synthesizers, and guitar, perfectly paired with Angela's driving bass rhythms and harmonizing vocals. Influenced by The Sisters of Mercy, Depeche Mode, and Suicide, the band is known for catchy dark anthems like "Are We Living, Are We Dead" and "Story of Another Life". They were recently rated among the Top 50 Goth Bands by Goths Worldwide.
+- Astari Nite: Formed in Miami, Florida in 2008 by vocalist Mychael Ghost and drummer Illia Tulloch, Astari Nite is an alternative rock band that conjures a mesmerizing blend of 80s goth and new wave vibes. Their music explores themes of death, love, and the occult. The band is currently touring in support of their 2024 album, Resolution of Happiness, a brilliantly cinematic, slightly more upbeat record infused with the spirit of David Bowie and The Cure, featuring standout tracks like "Tongue Tied Galore" and "Double Feature Matinee".
+- Pilgrims: A Boston-based Latine post-punk and coldwave band founded in 2018 by Chilean vocalist Juls Garat and Colombian guitarist Claudio Marcio. Joined by bassist Sean Woodbury, the band explores their experiences as immigrants through a dark, driving musical lens. Their newest album, Gemini, features the euphoric, resistance-themed post-punk single "Blissing Hour" and the bi-lingual track "Alien," which directly addresses their decade-long journey as immigrants in the US.
+Frenchy and the Punk w/ Ego Likeness Acoustic (April 23, 2026)
+- Frenchy and the Punk: Formed in New York City in 2005, this dynamic duo consists of French-born singer and percussionist Samantha Stephenson and American guitarist Scott Helland (formerly the bassist of the legendary 80s hardcore punk band Deep Wound, alongside J Mascis). Their sound is a wild, bohemian blend of dark alternative, post-punk, and cabaret folk. They recently released their eighth studio album, Midnight Garden, which bursts with dance grooves and soaring vocals.
+- Ego Likeness: Created in Baltimore, Maryland in 1999, Ego Likeness is the brainchild of artist/musician Steven Archer and writer/vocalist Donna Lynch. Taking their name from Frank Herbert's classic sci-fi novel Dune, the band evolved from dark trip-hop into a powerhouse of industrial rock and darkwave. With six full-length albums under Metropolis Records, including Breedless and When the Wolves Return, they are renowned for Donna's passionately emotive vocals and Steven's heavy, atmospheric electronics.
+Das Ich w/ Melody Zenith (May 14, 2026)
+- Das Ich: One of the most legendary electronic acts to ever play the venue, Das Ich are the pioneers of "Neue Deutsche Todeskunst" (New German Death Art). Formed in Bavaria in 1989 by vocalist Stefan Ackermann and keyboardist/programmer Bruno Kramm, the band is famous for its classically inspired gothic-industrial style, extreme on-stage theatrics, and German-language lyrics. After a 19-year hiatus due to Ackermann's severe health struggles and Kramm's political activism, the band returned triumphantly with their 2025 album Fanal, a dark, orchestral, and industrial masterpiece warning against societal decay and the post-factual age.
+- Melody Zenith: Serving as the opener, Melody Zenith is a darkwave enchantress who weaves poetry into dramatic electronic soundscapes. Her music utilizes glossy synths and pulsing basslines to channel gothic romanticism and cinematic glamour.
+The Phoenix Within (August 2, 2026): Hailing from Queens, New York, The Phoenix Within is an independent alternative prog-rock band formed in 2012. Fronted by singer-songwriter Omar Feliciano, and backed by Nick Narlis (bass), John Narlis (guitar), and Steve Khan (drums), the band creates emotionally charged music focused on resilience and the underdog mentality. They are known for tackling heavy sociological issues, such as their intense metal track "Next," which directly addresses the harsh realities of mass shootings and gun violence in America. Feliciano is also notably a published author of guitar chord songbooks based on the band's catalog.
+Rob Zombie & Marilyn Manson (November 14, 2026)
+- Rob Zombie: The undisputed king of shock-rock and industrial metal, Zombie is touring in support of his highly anticipated new album, The Great Satan (releasing in early 2026), featuring blistering new singles like "(I'm a) Rock 'N' Roller" and "Punks And Demons".
+- Marilyn Manson: The controversial and iconic industrial rock frontman joins Zombie as a co-headliner, bringing decades of gothic-metal history to the border.
+*** Knowledge Base End ***
+
 OUTPUT FORMAT
 Return structured output in this exact JSON shape:
 
@@ -412,6 +443,12 @@ Determine if this new event is a duplicate of any existing scheduled events. Pro
 }
 
 function processDescriptions(mode) {
+  // PRE-FLIGHT AUTH CHECK
+  // Google will silently block the AI if this script isn't authorized for external requests.
+  // By putting this naked fetch outside of a try/catch block, we force the script to legitimately 
+  // crash with a security exception, which FINALLY triggers the "Authorization Required" popup for the user!
+  UrlFetchApp.fetch('https://www.google.com', {muteHttpExceptions: true});
+
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
   if (!sheet) {
     SpreadsheetApp.getUi().alert("Error: 'Sheet1' not found. Please ensure your events are on a tab named Sheet1.");
@@ -444,6 +481,12 @@ function processDescriptions(mode) {
   const teaserIdx = getOrAddTeaserColumn(sheet, headers);
   const currentDate = new Date().toISOString().split('T')[0];
   let updatedCount = 0;
+  let errorMessages = [];
+
+  // Check if the user has specifically selected a single row to force an update on it
+  const activeRange = sheet.getActiveRange();
+  const activeRow = activeRange ? activeRange.getRow() : -1;
+  const isSingleRowSelected = activeRange ? activeRange.getNumRows() === 1 : false;
 
   for (let i = 1; i < values.length; i++) {
     const row = values[i];
@@ -456,7 +499,17 @@ function processDescriptions(mode) {
     let shouldProcess = false;
     let inputNotes = "";
 
-    if (mode === 'GENERATE' && description === "") {
+    // Force process if the user explicitly clicked on this exact row
+    const isTargetRow = isSingleRowSelected && (i + 1) === activeRow;
+
+    if (isTargetRow) {
+      shouldProcess = true;
+      if (description === "") {
+        inputNotes = "Empty description. Generate from scratch based on title/genre/bands.";
+      } else {
+        inputNotes = `Manager's Basic Notes:\n"${description}"`;
+      }
+    } else if (mode === 'GENERATE' && description === "") {
       shouldProcess = true;
       inputNotes = "Empty description. Generate from scratch based on title/genre/bands.";
     } else if (mode === 'ENHANCE' && description !== "" && description.length < 350) {
@@ -466,6 +519,11 @@ function processDescriptions(mode) {
       // Edge case: they have a long description but no teaser yet
       shouldProcess = true;
       inputNotes = `Manager's Existing Description that needs a teaser auto-generated and formatting clean up:\n"${description}"`;
+    }
+
+    // Skip all other rows if the user specifically targeted one
+    if (isSingleRowSelected && !isTargetRow) {
+      shouldProcess = false;
     }
 
     if (shouldProcess) {
@@ -500,12 +558,17 @@ function processDescriptions(mode) {
         }
       } catch (e) {
         Logger.log("Error processing row " + (i + 1) + ": " + e.message);
+        errorMessages.push(`Row ${i + 1}: ${e.message}`);
       }
     }
   }
 
   if (updatedCount === 0) {
-    SpreadsheetApp.getUi().alert(`No events matched the criteria for ${mode.toLowerCase()} mode. Try adding some basic notes or new blank events!`);
+    if (errorMessages.length > 0) {
+      SpreadsheetApp.getUi().alert(`Errors occurred during processing:\n${errorMessages.join('\n')}`);
+    } else {
+      SpreadsheetApp.getUi().alert(`No events matched the criteria for ${mode.toLowerCase()} mode. Try adding some basic notes or new blank events!`);
+    }
   } else {
     SpreadsheetApp.getUi().alert(`Success! Processed and injected ${updatedCount} event descriptions using Gemini 2.0 Flash Lite.`);
   }
@@ -549,14 +612,48 @@ function callGeminiFlash(promptText, apiKey) {
     "muteHttpExceptions": true
   };
 
-  const response = UrlFetchApp.fetch(url, options);
-  const json = JSON.parse(response.getContentText());
+  let maxRetries = 3;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    const response = UrlFetchApp.fetch(url, options);
+    const json = JSON.parse(response.getContentText());
 
-  if (json.error) {
-    throw new Error(json.error.message);
+    if (json.error) {
+      if (json.error.code === 429) {
+        // Rate limit hit. Extract wait time if possible, default to 6s
+        let waitMs = 6000;
+        const match = json.error.message.match(/retry in (\d+\.?\d*)s/);
+        if (match && match[1]) {
+          waitMs = Math.ceil(parseFloat(match[1]) * 1000) + 1000; // adding 1s buffer
+        }
+        
+        Logger.log(`Rate limit hit (Attempt ${attempt}/${maxRetries}). Waiting ${waitMs}ms...`);
+        if (attempt < maxRetries) {
+          Utilities.sleep(waitMs);
+          continue; // Try again
+        }
+      }
+      throw new Error(json.error.message);
+    }
+
+    let responseText = json.candidates[0].content.parts[0].text.trim();
+  
+  // Strip markdown code block wrapping if Gemini outputs it
+  if (responseText.startsWith('```')) {
+    responseText = responseText.replace(/^```json/i, '').replace(/^```/i, '').replace(/```$/i, '').trim();
   }
-
-  const responseText = json.candidates[0].content.parts[0].text.trim();
+  
   return JSON.parse(responseText);
 }
 
+/**
+ * Run this function ONCE from the Apps Script Editor (the dropdown next to the Run button).
+ * Because the AI functions use dynamic URLs, Google's security scanner sometimes 
+ * fails to pop up the "Allow" window. Running this simple, hardcoded function 
+ * forces the "Authorization Required" popup to appear.
+ */
+function testGooglePermissions() {
+  UrlFetchApp.fetch('https://www.google.com');
+  SpreadsheetApp.getUi().alert('Permissions granted successfully! You can now use the Kraken AI from the spreadsheet menu.');
+}
+
+}
