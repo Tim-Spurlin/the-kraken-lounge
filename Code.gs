@@ -475,6 +475,7 @@ function processDescriptions(mode) {
   const teaserIdx = getOrAddTeaserColumn(sheet, headers);
   const currentDate = new Date().toISOString().split('T')[0];
   let updatedCount = 0;
+  let errorMessages = [];
 
   // Check if the user has specifically selected a single row to force an update on it
   const activeRange = sheet.getActiveRange();
@@ -551,12 +552,17 @@ function processDescriptions(mode) {
         }
       } catch (e) {
         Logger.log("Error processing row " + (i + 1) + ": " + e.message);
+        errorMessages.push(`Row ${i + 1}: ${e.message}`);
       }
     }
   }
 
   if (updatedCount === 0) {
-    SpreadsheetApp.getUi().alert(`No events matched the criteria for ${mode.toLowerCase()} mode. Try adding some basic notes or new blank events!`);
+    if (errorMessages.length > 0) {
+      SpreadsheetApp.getUi().alert(`Errors occurred during processing:\n${errorMessages.join('\n')}`);
+    } else {
+      SpreadsheetApp.getUi().alert(`No events matched the criteria for ${mode.toLowerCase()} mode. Try adding some basic notes or new blank events!`);
+    }
   } else {
     SpreadsheetApp.getUi().alert(`Success! Processed and injected ${updatedCount} event descriptions using Gemini 2.0 Flash Lite.`);
   }
@@ -607,7 +613,13 @@ function callGeminiFlash(promptText, apiKey) {
     throw new Error(json.error.message);
   }
 
-  const responseText = json.candidates[0].content.parts[0].text.trim();
+  let responseText = json.candidates[0].content.parts[0].text.trim();
+  
+  // Strip markdown code block wrapping if Gemini outputs it
+  if (responseText.startsWith('```')) {
+    responseText = responseText.replace(/^```json/i, '').replace(/^```/i, '').replace(/```$/i, '').trim();
+  }
+  
   return JSON.parse(responseText);
 }
 
