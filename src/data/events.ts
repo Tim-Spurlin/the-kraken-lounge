@@ -36,6 +36,33 @@ function parseFlexibleDate(dateStr: string): string {
     return isNaN(d.getTime()) ? dateStr : d.toISOString();
 }
 
+function parseFlexibleType(typeStr: string): Event['type'] {
+    if (!typeStr) return 'special'; // Default fallback
+
+    // Normalize string to lowercase and remove extra spaces
+    const normalized = typeStr.toLowerCase().trim();
+
+    // Fuzzy match for "Live Bands"
+    if (normalized.includes('live') || normalized.includes('band') || normalized.includes('show')) {
+        return 'live';
+    }
+    // Fuzzy match for "Themed Nights"
+    if (normalized.includes('theme') || normalized.includes('night') || normalized.includes('goth') || normalized.includes('emo')) {
+        return 'themed';
+    }
+    // Fuzzy match for "Recurring Events"
+    if (normalized.includes('recur') || normalized.includes('weekly') || normalized.includes('monthly') || normalized.includes('regular')) {
+        return 'recurring';
+    }
+    // Fuzzy match for "Special Events"
+    if (normalized.includes('special') || normalized.includes('event')) {
+        return 'special';
+    }
+
+    // If it doesn't match anything, assume it's a special event
+    return 'special';
+}
+
 export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
     try {
         const res = await fetch(sheetCsvUrl)
@@ -56,7 +83,7 @@ export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
                             title: row.title || 'Untitled Event',
                             date: row.date ? parseFlexibleDate(row.date) : new Date().toISOString(),
                             time: row.time || 'TBA',
-                            type: (['live', 'themed', 'recurring', 'special'].includes(row.type) ? row.type : 'special') as Event['type'],
+                            type: parseFlexibleType(row.type),
                             // Convert comma-separated string columns into arrays
                             genres: (row.genres || row.genre) ? (row.genres || row.genre).split(',').map((g: string) => g.trim()).filter(Boolean) : [],
                             bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
