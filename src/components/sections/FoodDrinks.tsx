@@ -18,10 +18,10 @@ export function FoodDrinks() {
             </p>
           </div>
 
-          <div className="mb-12 relative">
-            <div className="relative overflow-hidden rounded-lg border-2 border-primary card-glow">
+          <div className="mb-12 relative flex justify-center">
+            <div className="relative overflow-hidden rounded-lg border-2 border-primary card-glow w-full max-w-md md:max-w-lg">
               <video 
-                className="w-full aspect-video object-cover"
+                className="w-full aspect-[9/16] object-cover"
                 autoPlay
                 loop
                 muted
@@ -36,11 +36,11 @@ export function FoodDrinks() {
                   default
                 />
               </video>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent p-6">
-                <h3 className="font-heading text-2xl md:text-3xl text-accent mb-2">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent p-4 md:p-6">
+                <h3 className="font-heading text-xl md:text-2xl text-accent mb-2">
                   The Kraken's Famous Pizza
                 </h3>
-                <p className="text-foreground/90 text-base md:text-lg leading-relaxed">
+                <p className="text-foreground/90 text-sm md:text-base leading-relaxed">
                   Watch our kitchen crew craft the perfect pie! Our signature pizza features a hand-tossed crust with that ideal crispy texture, topped with premium mozzarella that melts to perfection, and our secret sauce blend that keeps people coming back. Each pizza is made fresh to order with locally-sourced ingredients whenever possible. Whether you're here for the music or the food, you won't leave disappointed — this is honestly some of the best pizza in Brownsville, and our customers agree!
                 </p>
               </div>
