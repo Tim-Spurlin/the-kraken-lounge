@@ -55,7 +55,7 @@ export function FoodDrinks() {
                 preload="auto"
                 controlsList="nodownload"
               >
-                <source src="https://www.dropbox.com/scl/fi/t5oetud940u0s0kn90tq0/kraken-pizza-guy-pic-on-wall.mp4?rlkey=vo44rqzagz7drs89xo2y7tw3y&st=1tmkpn39&raw=1" type="video/mp4" />
+                <source src="https://www.dropbox.com/scl/fi/w1df5q902f611plfwv7af/pizza-guy.mp4?rlkey=8ixcb8gzllzwfbq5jhefbdz83&st=urb56wog&raw=1" type="video/mp4" />
               </video>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3 sm:p-4 md:p-6">
                 <h3 className="font-heading text-lg sm:text-xl md:text-2xl text-accent mb-1 sm:mb-2">
