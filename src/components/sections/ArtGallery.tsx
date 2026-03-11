@@ -58,11 +58,12 @@ export function ArtGallery() {
                 playsInline
                 className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                 <p className="text-white text-lg font-semibold">Click to view</p>
-              </div>
               </div>
             </div>
           </div>
+        </div>
 
         {artworksList.length === 0 ? (
           <div className="max-w-2xl mx-auto bg-card border border-border p-12 rounded-sm text-center">
@@ -139,19 +140,19 @@ export function ArtGallery() {
 
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-2xl bg-card border-border">
-              <div className="relative" style={{ aspectRatio: '9 / 16' }}>
-                <video
-                  src={selectedVideo.videoUrl}
-                  controls
-                  controlsList="nodownload"
-                  className="w-full h-full object-cover rounded-sm"
-                  preload="metadata"
-                  onContextMenu={(e) => e.preventDefault()}
-                  autoPlay
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+          {selectedVideo && (
+            <div className="relative" style={{ aspectRatio: '9 / 16' }}>
+              <video
+                src={selectedVideo.videoUrl}
+                controls
+                controlsList="nodownload"
+                className="w-full h-full object-cover rounded-sm"
+                preload="metadata"
+                onContextMenu={(e) => e.preventDefault()}
+                autoPlay
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           )}
         </DialogContent>
@@ -159,5 +160,3 @@ export function ArtGallery() {
     </section>
   )
 }
-    </section>
-  )
