@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { List } from '@phosphor-icons/react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,22 +30,27 @@ export function Navigation() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    if (location.pathname !== '/') {
+      // Navigate to homepage with hash
+      navigate(`/${href}`)
+    } else {
+      // Standard smooth scroll
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-primary/30 shadow-[0_4px_20px_oklch(0.08_0.02_280_/_0.8)]' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-primary/30 shadow-[0_4px_20px_oklch(0.08_0.02_280_/_0.8)]' : 'bg-transparent'
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <a
-            href="#home"
+            href="/#home"
             onClick={(e) => {
               e.preventDefault()
               handleNavClick('#home')
@@ -55,7 +64,7 @@ export function Navigation() {
             {navLinks.slice(1).map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={`/${link.href}`}
                 onClick={(e) => {
                   e.preventDefault()
                   handleNavClick(link.href)
@@ -83,7 +92,7 @@ export function Navigation() {
                   {navLinks.map((link) => (
                     <a
                       key={link.href}
-                      href={link.href}
+                      href={`/${link.href}`}
                       onClick={(e) => {
                         e.preventDefault()
                         handleNavClick(link.href)

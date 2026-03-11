@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { CalendarBlank, Clock, MapPin } from '@phosphor-icons/react'
 import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
 
 import { Event, defaultEvents, fetchEvents } from '@/data/events'
 
@@ -104,66 +105,67 @@ export function Events() {
               </Card>
             ) : (
               filteredEvents.map((event) => (
-                <Card
-                  key={event.id}
-                  className="p-6 bg-card border-2 border-primary/40 hover:border-primary card-glow transition-all relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 circuit-lines opacity-30 pointer-events-none" />
-                  <div className="relative z-10 flex flex-col md:flex-row gap-6">
-                    <div className="md:w-32 flex-shrink-0">
-                      <div className="bg-primary text-primary-foreground p-4 rounded-sm text-center">
-                        <div className="text-3xl font-heading">
-                          {format(new Date(event.date), 'dd')}
-                        </div>
-                        <div className="text-sm uppercase tracking-wider">
-                          {format(new Date(event.date), 'MMM')}
+                <Link key={event.id} to={`/event/${event.id}`} className="block transition-transform hover:-translate-y-1">
+                  <Card
+                    className="p-6 bg-card border-2 border-primary/40 hover:border-primary card-glow transition-all relative overflow-hidden h-full cursor-pointer"
+                  >
+                    <div className="absolute inset-0 circuit-lines opacity-30 pointer-events-none" />
+                    <div className="relative z-10 flex flex-col md:flex-row gap-6">
+                      <div className="md:w-32 flex-shrink-0">
+                        <div className="bg-primary text-primary-foreground p-4 rounded-sm text-center">
+                          <div className="text-3xl font-heading">
+                            {format(new Date(event.date), 'dd')}
+                          </div>
+                          <div className="text-sm uppercase tracking-wider">
+                            {format(new Date(event.date), 'MMM')}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="flex-1 space-y-3">
-                      <div className="flex flex-wrap items-start justify-between gap-2">
-                        <h3 className="font-heading text-2xl md:text-3xl text-foreground">
-                          {event.title}
-                        </h3>
-                        {event.price && (
-                          <span className="text-accent font-bold text-lg">
-                            {event.price}
-                          </span>
+                      <div className="flex-1 space-y-3">
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <h3 className="font-heading text-2xl md:text-3xl text-foreground">
+                            {event.title}
+                          </h3>
+                          {event.price && (
+                            <span className="text-accent font-bold text-lg">
+                              {event.price}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                          {event.genres.map((genre) => (
+                            <Badge key={genre} className={getGenreColor(genre)}>
+                              {genre}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        {event.bands && event.bands.length > 0 && (
+                          <div className="text-foreground/80">
+                            <span className="font-bold">Lineup:</span> {event.bands.join(' • ')}
+                          </div>
                         )}
-                      </div>
 
-                      <div className="flex flex-wrap gap-2">
-                        {event.genres.map((genre) => (
-                          <Badge key={genre} className={getGenreColor(genre)}>
-                            {genre}
-                          </Badge>
-                        ))}
-                      </div>
+                        <p className="text-foreground/70">
+                          {event.description}
+                        </p>
 
-                      {event.bands && event.bands.length > 0 && (
-                        <div className="text-foreground/80">
-                          <span className="font-bold">Lineup:</span> {event.bands.join(' • ')}
-                        </div>
-                      )}
-
-                      <p className="text-foreground/70">
-                        {event.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pt-2">
-                        <div className="flex items-center gap-2">
-                          <Clock weight="bold" className="w-4 h-4" />
-                          {event.time}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin weight="bold" className="w-4 h-4" />
-                          The Kraken Lounge
+                        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pt-2">
+                          <div className="flex items-center gap-2">
+                            <Clock weight="bold" className="w-4 h-4" />
+                            {event.time}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin weight="bold" className="w-4 h-4" />
+                            The Kraken Lounge
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               ))
             )}
           </TabsContent>
