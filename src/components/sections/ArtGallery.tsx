@@ -20,6 +20,7 @@ interface VideoContent {
 export function ArtGallery() {
   const [artworks] = useKV<Artwork[]>('artworks', [])
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<VideoContent | null>(null)
 
   const artworksList = artworks || []
   
@@ -44,20 +45,25 @@ export function ArtGallery() {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto mb-12">
-          <div className="bg-card border-2 border-primary/40 rounded-sm overflow-hidden card-glow relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+          <div
+            onClick={() => setSelectedVideo(featuredVideo)}
+            className="group cursor-pointer bg-card border-2 border-primary/40 rounded-sm overflow-hidden card-glow relative"
+          >
             <div className="absolute inset-0 hexagon-pattern opacity-20 pointer-events-none" />
-            <div className="relative" style={{ aspectRatio: '9 / 16' }}>
+            <div className="relative aspect-[9/16] bg-muted overflow-hidden">
               <video
                 src={featuredVideo.videoUrl}
-                controls
-                controlsList="nodownload"
                 className="w-full h-full object-cover"
                 preload="metadata"
-                onContextMenu={(e) => e.preventDefault()}
+                muted
+                playsInline
               >
                 Your browser does not support the video tag.
               </video>
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">Click to view</p>
+              </div>
             </div>
           </div>
         </div>
@@ -131,6 +137,28 @@ export function ArtGallery() {
                 </p>
               </div>
             </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+        <DialogContent className="max-w-2xl bg-card border-border">
+          {selectedVideo && (
+            <div className="space-y-4">
+              <div className="relative" style={{ aspectRatio: '9 / 16' }}>
+                <video
+                  src={selectedVideo.videoUrl}
+                  controls
+                  controlsList="nodownload"
+                  className="w-full h-full object-cover rounded-sm"
+                  preload="metadata"
+                  onContextMenu={(e) => e.preventDefault()}
+                  autoPlay
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
