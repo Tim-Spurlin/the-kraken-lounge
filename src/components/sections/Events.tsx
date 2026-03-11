@@ -107,7 +107,7 @@ export function Events() {
               filteredEvents.map((event) => (
                 <Link key={event.id} to={`/event/${event.id}`} className="block transition-transform hover:-translate-y-1">
                   <Card
-                    className="p-6 bg-card border-2 border-primary/40 hover:border-primary card-glow transition-all relative overflow-hidden h-full cursor-pointer"
+                    className="group p-6 bg-card border-2 border-primary/40 hover:border-primary card-glow transition-all relative overflow-hidden h-full cursor-pointer"
                   >
                     <div className="absolute inset-0 circuit-lines opacity-30 pointer-events-none" />
                     <div className="relative z-10 flex flex-col md:flex-row gap-6">
@@ -148,9 +148,15 @@ export function Events() {
                           </div>
                         )}
 
-                        <p className="text-foreground/70">
-                          {event.description}
+                        <p className="text-foreground/80 leading-relaxed md:text-lg line-clamp-3">
+                          {event.teaser || event.description}
                         </p>
+
+                        <div className="pt-2">
+                          <span className="inline-flex items-center text-primary font-bold text-sm tracking-wider uppercase group-hover:text-primary-foreground group-hover:bg-primary transition-all px-3 py-1.5 rounded-sm border border-primary/50">
+                            Explore Event <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                          </span>
+                        </div>
 
                         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pt-2">
                           <div className="flex items-center gap-2">

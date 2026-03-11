@@ -9,6 +9,7 @@ export interface Event {
     genres: string[]
     bands?: string[]
     description: string
+    teaser?: string
     price?: string
 }
 
@@ -88,6 +89,7 @@ export async function fetchEvents(sheetCsvUrl: string): Promise<Event[]> {
                             genres: (row.genres || row.genre) ? (row.genres || row.genre).split(',').map((g: string) => g.trim()).filter(Boolean) : [],
                             bands: row.bands ? row.bands.split(',').map((b: string) => b.trim()).filter(Boolean) : undefined,
                             description: row.description || '',
+                            teaser: row.teaser || '',
                             price: row.price || 'TBA'
                         }))
                         resolve(events)
