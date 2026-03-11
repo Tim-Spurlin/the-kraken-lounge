@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { format } from 'date-fns'
 import { fetchEvents, type Event } from '@/data/events'
 
 // The URL from Google Apps Script you provided
@@ -131,7 +132,13 @@ export function EventDetail() {
                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-muted-foreground mb-8 font-heading">
                             <div className="flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-accent" />
-                                <span>{event.date}</span>
+                                <span>
+                                    {event.date ? (
+                                        !isNaN(new Date(event.date).getTime())
+                                            ? format(new Date(event.date), 'MMMM d, yyyy')
+                                            : event.date
+                                    ) : 'TBA'}
+                                </span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Clock className="w-5 h-5 text-accent" />
