@@ -1,6 +1,33 @@
 import { Pizza, Martini, CurrencyDollar } from '@phosphor-icons/react'
+import { useEffect, useRef } from 'react'
 
 export function FoodDrinks() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {})
+          } else {
+            video.pause()
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(video)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <section id="food" className="py-20 bg-card relative overflow-hidden">
       <div className="absolute inset-0 bg-noise" />
@@ -19,14 +46,15 @@ export function FoodDrinks() {
           <div className="mb-12 relative flex justify-center">
             <div className="relative overflow-hidden rounded-lg border-2 border-primary card-glow w-full max-w-[360px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] shadow-2xl">
               <video 
+                ref={videoRef}
                 className="w-full h-auto aspect-[9/16] object-cover bg-black"
-                autoPlay
                 loop
                 muted
                 playsInline
                 preload="auto"
+                controlsList="nodownload"
               >
-                <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773184699/Flow_delpmaspu__hkzt6j.mp4" type="video/mp4" />
+                <source src="https://www.dropbox.com/scl/fi/t5oetud940u0s0kn90tq0/kraken-pizza-guy-pic-on-wall.mp4?rlkey=vo44rqzagz7drs89xo2y7tw3y&st=1tmkpn39&raw=1" type="video/mp4" />
               </video>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3 sm:p-4 md:p-6">
                 <h3 className="font-heading text-lg sm:text-xl md:text-2xl text-accent mb-1 sm:mb-2">
