@@ -52,6 +52,23 @@ export function EventDetail() {
         }
     }, [id])
 
+    // Update Document Title and Fire Google Analytics Page View when Event loads
+    useEffect(() => {
+        if (event) {
+            const pageTitle = `${event.title} | The Kraken Lounge`;
+            document.title = pageTitle;
+
+            // Trigger Google Analytics explicitly since this is a Single Page Application route change
+            if (typeof window !== 'undefined' && (window as any).gtag) {
+                (window as any).gtag('event', 'page_view', {
+                    page_title: pageTitle,
+                    page_location: window.location.href,
+                    page_path: window.location.pathname
+                });
+            }
+        }
+    }, [event]);
+
     if (loading) {
         return (
             <div className="min-h-screen pt-32 pb-20 flex justify-center items-center">
