@@ -56,14 +56,13 @@ export function ArtGallery() {
                 src={featuredVideo.videoUrl}
                 muted
                 playsInline
-                muted
-                playsInline
-              </video>
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <p className="text-white text-lg font-semibold">Click to view</p>
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <p className="text-white text-lg font-semibold">Click to view</p>
               </div>
+            </div>
+          </div>
         </div>
 
         {artworksList.length === 0 ? (
@@ -140,8 +139,6 @@ export function ArtGallery() {
       </Dialog>
 
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-
-      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-2xl bg-card border-border">
           {selectedVideo && (
             <div className="space-y-4">
@@ -162,4 +159,6 @@ export function ArtGallery() {
           )}
         </DialogContent>
       </Dialog>
+    </section>
+  )
 }
