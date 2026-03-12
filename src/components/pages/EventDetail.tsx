@@ -48,7 +48,7 @@ export function EventDetail() {
     const [event, setEvent] = useState<Event | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
-    const { playTrack, currentTrack, isPlaying, setPlaylist } = useAudioPlayer()
+    const { playTrack, currentTrack, isPlaying } = useAudioPlayer()
 
     useEffect(() => {
         async function loadEvent() {
@@ -99,29 +99,8 @@ export function EventDetail() {
                     page_path: window.location.pathname
                 })
             }
-
-            if (event.id && EVENT_AUDIO_URLS[event.id]) {
-                const audioUrls = EVENT_AUDIO_URLS[event.id]
-                const audioTracks = [
-                    {
-                        title: event.title,
-                        url: audioUrls.english,
-                        language: 'english' as const,
-                        eventId: event.id,
-                        eventTitle: event.title
-                    },
-                    {
-                        title: event.title,
-                        url: audioUrls.spanish,
-                        language: 'spanish' as const,
-                        eventId: event.id,
-                        eventTitle: event.title
-                    }
-                ]
-                setPlaylist(audioTracks)
-            }
         }
-    }, [event, setPlaylist])
+    }, [event])
 
     const hasAudioOverview = event?.id && EVENT_AUDIO_URLS[event.id]
     const audioUrls = hasAudioOverview ? EVENT_AUDIO_URLS[event.id] : null
