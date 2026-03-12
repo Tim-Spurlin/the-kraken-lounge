@@ -70,12 +70,12 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="pt-8"
+            className="pt-8 pointer-events-auto relative z-30"
           >
-            <div className="pointer-events-auto flex justify-center">
+            <div className="flex justify-center">
               <a
                 href="#events"
-                className="inline-block bg-primary hover:bg-secondary text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.25_0.02_0_/_0.6)] hover:scale-105"
+                className="inline-block bg-primary hover:bg-secondary text-primary-foreground font-heading text-lg px-10 py-5 rounded-md transition-all duration-300 hover:shadow-[0_0_50px_oklch(0.25_0.02_0_/_0.6)] hover:scale-105 cursor-pointer"
               >
                 See Upcoming Shows
               </a>

@@ -14,6 +14,7 @@ import { EventDetail } from '@/components/pages/EventDetail'
 import { ScrollToHash } from '@/components/ScrollToHash'
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext'
 import { PersistentPlayer } from '@/components/PersistentPlayer'
+import { AudioPlaylistManager } from '@/components/AudioPlaylistManager'
 
 function Home() {
   return (
@@ -35,6 +36,7 @@ function App() {
   return (
     <AudioPlayerProvider>
       <Router>
+        <AudioPlaylistManager />
         <ScrollToHash />
         <div className="min-h-screen bg-background text-foreground pb-24">
           <Navigation />

@@ -87,10 +87,15 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
       } else {
         setCurrentTrack(track)
         
-        const index = playlist.findIndex(t => t.url === track.url)
-        if (index !== -1) {
-          setCurrentTrackIndex(index)
+        let index = playlist.findIndex(t => t.url === track.url)
+        
+        if (index === -1) {
+          const newPlaylist = [...playlist, track]
+          setPlaylist(newPlaylist)
+          index = newPlaylist.length - 1
         }
+        
+        setCurrentTrackIndex(index)
         
         audioRef.current.src = track.url
         audioRef.current.play()
