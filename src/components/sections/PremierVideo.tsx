@@ -26,7 +26,7 @@ export function PremierVideo() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src="https://www.dropbox.com/scl/fi/jf8gvsh06ocj40ctfvdgl/official-kraken-music-video-project-OFFICIAL22222.mp4?rlkey=jtwzszz82byumstmr3nlohtol&st=nhcsynd3&raw=1"
+                  src="https://www.dropbox.com/scl/fi/x8vzxq1pyglo56usrkilc/official-kraken-music-video-project-OFFICIAlL333_Final-Edit.mp4?rlkey=hr6o94gdpi1xcpjf85v6b757f&st=si4bb8ih&raw=1"
                   title="Official Kraken Music Video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

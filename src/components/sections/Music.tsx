@@ -146,7 +146,7 @@ export function Music() {
                     playsInline
                     preload="metadata"
                   >
-                    <source src="https://www.dropbox.com/scl/fi/jf8gvsh06ocj40ctfvdgl/official-kraken-music-video-project-OFFICIAL22222.mp4?rlkey=jtwzszz82byumstmr3nlohtol&st=nhcsynd3&raw=1" type="video/mp4" />
+                    <source src="https://www.dropbox.com/scl/fi/x8vzxq1pyglo56usrkilc/official-kraken-music-video-project-OFFICIAlL333_Final-Edit.mp4?rlkey=hr6o94gdpi1xcpjf85v6b757f&st=si4bb8ih&raw=1" type="video/mp4" />
                     Your browser does not support the video element.
                   </video>
                 </div>
