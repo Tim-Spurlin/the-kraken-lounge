@@ -14,9 +14,9 @@ export function Hero() {
         <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1772992664/grok-video-4f82c481-47da-4ab2-b84a-195a0c260deb_xr7ho7.mp4" type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-black/40 z-20" />
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
-      <div className="container mx-auto px-4 text-center relative z-10 py-32 pointer-events-none">
+      <div className="container mx-auto px-4 text-center relative z-20 py-32 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
