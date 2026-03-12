@@ -32,8 +32,8 @@ const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
     spanish: 'https://dl.dropboxusercontent.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof&dl=1'
   },
   '7': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=04sk6q2f&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=7dretta6&dl=1'
+    english: 'https://dl.dropboxusercontent.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=pm109ryd&dl=1',
+    spanish: 'https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=0nyefxb1&dl=1'
   },
   '8': {
     english: 'https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5&dl=1',
