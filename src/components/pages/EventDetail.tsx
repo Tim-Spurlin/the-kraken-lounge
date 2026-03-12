@@ -12,8 +12,8 @@ const TRACKING_API_URL = 'https://script.google.com/macros/s/AKfycbxPaQivWxKDYw3
 
 const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
   '1': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/nhobtjkvkgrv8ktdy24za/Release_the_Kraken_Raves_and_Reefs.m4a?rlkey=nm6tnwm5503oc2hy3l3hbb27c&st=zpys66d7&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/ebu4tv1czqziz63f963c2/Ciencia_y_dise-o_de_Release_the_Kraken.m4a?rlkey=83h9jrvi6m38xqxp3eabq32nx&st=hqa9vmvs&dl=1'
+    english: 'https://www.dropbox.com/scl/fi/nhobtjkvkgrv8ktdy24za/Release_the_Kraken_Raves_and_Reefs.m4a?rlkey=nm6tnwm5503oc2hy3l3hbb27c&st=nza4mzr4&dl=1',
+    spanish: 'https://www.dropbox.com/scl/fi/ebu4tv1czqziz63f963c2/Ciencia_y_dise-o_de_Release_the_Kraken.m4a?rlkey=83h9jrvi6m38xqxp3eabq32nx&st=7bustczg&dl=1'
   },
   '2': {
     english: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4',
