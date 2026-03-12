@@ -209,6 +209,18 @@ export function EventDetail() {
                                 'goth night': {
                                     english: "https://dl.dropboxusercontent.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=pm109ryd",
                                     spanish: "https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=0nyefxb1",
+                                },
+                                'dark alternative collision': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg",
+                                    spanish: "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4",
+                                },
+                                'das ich': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/2m0layi9i35jm6v12bdx1/Das_Ich_conquista_Brownsville.m4a?rlkey=ltdfvqvbmzasmsgz0ffzbvzka&st=qs3xw2n2",
+                                },
+                                'brujeria': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/uj6huaplmys2ng3gj1x52/Brujeria-s_Masked_Deathgrind_Rebellion_in_Brownsville.m4a?rlkey=ybz1dzzuesuvprjvydvc7luly&st=90m3vuel",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof",
                                 }
                             };
 
