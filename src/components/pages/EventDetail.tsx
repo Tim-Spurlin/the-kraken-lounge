@@ -37,7 +37,7 @@ const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
   }
 }
 
-const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVFxhкултовый_id/pub?output=csv'
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVFxhкультовый_id/pub?output=csv'
 
 export function EventDetail() {
     const { id } = useParams()
@@ -277,29 +277,6 @@ export function EventDetail() {
                                     ol: ({ ...props }) => <ol className="list-decimal list-inside space-y-2 mb-6 ml-4" {...props} />,
                                     li: ({ ...props }) => <li className="text-slate-300" {...props} />,
                                     strong: ({ ...props }) => <strong className="font-semibold text-white tracking-wide" {...props} />
-                                }}
-                            >
-                                {event.description}
-                            </ReactMarkdown>
-                        </div>
-
-                        <div className="mt-12 flex flex-wrap gap-4">
-                            <a
-                                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kraken+Lounge:+Event"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-6 py-3 rounded-xl bg-accent text-background font-heading tracking-wider font-semibold hover:bg-accent/90 transition-all duration-300 shadow-[0_0_15px_oklch(0.6_0.2_280_/_0.5)] hover:shadow-[0_0_25px_oklch(0.6_0.2_280_/_0.7)] text-center"
-                            >
-                                Add to Calendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    )
-}
-
                                 }}
                             >
                                 {event.description}
