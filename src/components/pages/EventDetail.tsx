@@ -78,6 +78,36 @@ export function EventDetail() {
         }
     }, [event]);
 
+    useEffect(() => {
+        const handleEnglishEnded = () => setPlayingAudio(null)
+        const handleSpanishEnded = () => setPlayingAudio(null)
+
+        const englishAudio = englishAudioRef.current
+        const spanishAudio = spanishAudioRef.current
+
+        englishAudio?.addEventListener('ended', handleEnglishEnded)
+        spanishAudio?.addEventListener('ended', handleSpanishEnded)
+
+        return () => {
+            englishAudio?.removeEventListener('ended', handleEnglishEnded)
+            spanishAudio?.removeEventListener('ended', handleSpanishEnded)
+        }
+    }, [])
+
+    const handlePlayAudio = (language: 'english' | 'spanish') => {
+        const currentAudio = language === 'english' ? englishAudioRef.current : spanishAudioRef.current
+        const otherAudio = language === 'english' ? spanishAudioRef.current : englishAudioRef.current
+
+        if (playingAudio === language) {
+            currentAudio?.pause()
+            setPlayingAudio(null)
+        } else {
+            otherAudio?.pause()
+            currentAudio?.play()
+            setPlayingAudio(language)
+        }
+    }
+
     if (loading) {
         return (
             <div className="min-h-screen pt-32 pb-20 flex justify-center items-center">
@@ -99,36 +129,6 @@ export function EventDetail() {
     }
 
     const isFree = !event.price || event.price.toLowerCase() === 'free'
-
-    const handlePlayAudio = (language: 'english' | 'spanish') => {
-        const currentAudio = language === 'english' ? englishAudioRef.current : spanishAudioRef.current
-        const otherAudio = language === 'english' ? spanishAudioRef.current : englishAudioRef.current
-
-        if (playingAudio === language) {
-            currentAudio?.pause()
-            setPlayingAudio(null)
-        } else {
-            otherAudio?.pause()
-            currentAudio?.play()
-            setPlayingAudio(language)
-        }
-    }
-
-    useEffect(() => {
-        const handleEnglishEnded = () => setPlayingAudio(null)
-        const handleSpanishEnded = () => setPlayingAudio(null)
-
-        const englishAudio = englishAudioRef.current
-        const spanishAudio = spanishAudioRef.current
-
-        englishAudio?.addEventListener('ended', handleEnglishEnded)
-        spanishAudio?.addEventListener('ended', handleSpanishEnded)
-
-        return () => {
-            englishAudio?.removeEventListener('ended', handleEnglishEnded)
-            spanishAudio?.removeEventListener('ended', handleSpanishEnded)
-        }
-    }, [])
 
     return (
         <div className="min-h-screen pt-32 pb-20 px-4 md:px-8 max-w-4xl mx-auto">
