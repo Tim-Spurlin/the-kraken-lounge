@@ -104,13 +104,9 @@ export function AudioOverview() {
                     </div>
                     <div>
                       <h3 className="font-heading text-3xl text-accent">English</h3>
-                      <p className="text-sm text-muted-foreground uppercase tracking-wider">Audio Overview</p>
+                      <p className="text-sm text-muted-foreground">Audio overview of The Kraken Lounge</p>
                     </div>
                   </div>
-
-                  <p className="text-foreground/80 leading-relaxed">
-                    Experience the full story of The Kraken Lounge's radical South Texas sanctuary. Learn about our mission, community, and cultural impact in English.
-                  </p>
 
                   <audio
                     ref={englishAudioRef}
@@ -152,13 +148,9 @@ export function AudioOverview() {
                     </div>
                     <div>
                       <h3 className="font-heading text-3xl text-accent">Español</h3>
-                      <p className="text-sm text-muted-foreground uppercase tracking-wider">Vista General de Audio</p>
+                      <p className="text-sm text-muted-foreground">Resumen de audio del Kraken Lounge</p>
                     </div>
                   </div>
-
-                  <p className="text-foreground/80 leading-relaxed">
-                    Vive la historia completa del oasis cultural de Brownsville. Descubre nuestra misión, comunidad e impacto cultural en español.
-                  </p>
 
                   <audio
                     ref={spanishAudioRef}
