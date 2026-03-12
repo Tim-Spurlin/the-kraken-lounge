@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin, Headphones, Languages } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { format } from 'date-fns'
@@ -159,6 +159,86 @@ export function EventDetail() {
                                             {band.trim()}
                                         </span>
                                     ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Audio Overview Section - Only for Constellation Event */}
+                        {(event.title.toLowerCase().includes('constellation') && event.title.toLowerCase().includes('dark read')) && (
+                            <div className="mb-10 relative">
+                                <div className="absolute inset-0 bg-gradient-mesh rounded-2xl blur-xl opacity-30" />
+                                <div className="relative border-gradient p-8 rounded-2xl bg-card/60 backdrop-blur-sm">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-3 rounded-xl bg-accent/20 border border-accent/40">
+                                            <Headphones className="w-6 h-6 text-accent" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-2xl font-display text-gradient-purple">Event Audio Overview</h3>
+                                            <p className="text-sm text-muted-foreground mt-1">In-depth look at everything you need to know about this event</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        {/* English Audio */}
+                                        <div className="group relative overflow-hidden rounded-xl border border-primary/30 bg-background/40 backdrop-blur-sm hover:border-primary/60 transition-all duration-300">
+                                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+                                            <div className="p-6">
+                                                <div className="flex items-center gap-2 mb-4">
+                                                    <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
+                                                        <Languages className="w-5 h-5 text-primary" />
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-heading text-lg text-foreground tracking-wide">English</h4>
+                                                        <p className="text-xs text-muted-foreground">Audio Overview</p>
+                                                    </div>
+                                                </div>
+                                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                                                    Comprehensive overview covering the dark alternative aesthetic, featured bands, venue atmosphere, and what makes this night essential for goth and industrial music fans.
+                                                </p>
+                                                <audio 
+                                                    controls 
+                                                    controlsList="nodownload"
+                                                    className="w-full rounded-lg"
+                                                    style={{
+                                                        filter: 'hue-rotate(280deg) saturate(1.5) brightness(0.9)',
+                                                    }}
+                                                >
+                                                    <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4" type="audio/mp4" />
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                            </div>
+                                        </div>
+
+                                        {/* Spanish Audio */}
+                                        <div className="group relative overflow-hidden rounded-xl border border-accent/30 bg-background/40 backdrop-blur-sm hover:border-accent/60 transition-all duration-300">
+                                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-primary to-accent" />
+                                            <div className="p-6">
+                                                <div className="flex items-center gap-2 mb-4">
+                                                    <div className="w-10 h-10 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center">
+                                                        <Languages className="w-5 h-5 text-accent" />
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-heading text-lg text-foreground tracking-wide">Español</h4>
+                                                        <p className="text-xs text-muted-foreground">Descripción de Audio</p>
+                                                    </div>
+                                                </div>
+                                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                                                    Descripción completa sobre la estética alternativa oscura, las bandas presentadas, el ambiente del lugar, y por qué esta noche es esencial para los fanáticos del goth e industrial.
+                                                </p>
+                                                <audio 
+                                                    controls 
+                                                    controlsList="nodownload"
+                                                    className="w-full rounded-lg"
+                                                    style={{
+                                                        filter: 'hue-rotate(320deg) saturate(1.5) brightness(0.9)',
+                                                    }}
+                                                >
+                                                    <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4" type="audio/mp4" />
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )}
