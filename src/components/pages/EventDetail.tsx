@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin, Headphones, Languages } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin, Headphones, Play, Pause } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { format } from 'date-fns'
@@ -14,6 +14,9 @@ export function EventDetail() {
     const [event, setEvent] = useState<Event | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
+    const [playingAudio, setPlayingAudio] = useState<'english' | 'spanish' | null>(null)
+    const englishAudioRef = useRef<HTMLAudioElement>(null)
+    const spanishAudioRef = useRef<HTMLAudioElement>(null)
 
     useEffect(() => {
         async function loadEvent() {
@@ -97,6 +100,33 @@ export function EventDetail() {
 
     const isFree = !event.price || event.price.toLowerCase() === 'free'
 
+    const handlePlayAudio = (language: 'english' | 'spanish') => {
+        const currentAudio = language === 'english' ? englishAudioRef.current : spanishAudioRef.current
+        const otherAudio = language === 'english' ? spanishAudioRef.current : englishAudioRef.current
+
+        if (playingAudio === language) {
+            currentAudio?.pause()
+            setPlayingAudio(null)
+        } else {
+            otherAudio?.pause()
+            currentAudio?.play()
+            setPlayingAudio(language)
+        }
+    }
+
+    useEffect(() => {
+        const handleEnglishEnded = () => setPlayingAudio(null)
+        const handleSpanishEnded = () => setPlayingAudio(null)
+
+        englishAudioRef.current?.addEventListener('ended', handleEnglishEnded)
+        spanishAudioRef.current?.addEventListener('ended', handleSpanishEnded)
+
+        return () => {
+            englishAudioRef.current?.removeEventListener('ended', handleEnglishEnded)
+            spanishAudioRef.current?.removeEventListener('ended', handleSpanishEnded)
+        }
+    }, [])
+
     return (
         <div className="min-h-screen pt-32 pb-20 px-4 md:px-8 max-w-4xl mx-auto">
             <Link to="/#events" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
@@ -172,37 +202,38 @@ export function EventDetail() {
                                 </div>
                                 <p className="text-sm text-muted-foreground mb-4">In-depth look at everything you need to know about this event</p>
 
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    {/* English Audio */}
-                                    <div className="space-y-2">
-                                        <div className="px-4 py-2 rounded-lg bg-primary/20 border border-primary/40 text-center">
-                                            <span className="font-heading text-sm text-foreground tracking-wide">English</span>
-                                        </div>
-                                        <audio 
-                                            controls 
-                                            controlsList="nodownload"
-                                            className="w-full h-10"
-                                        >
-                                            <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4" type="audio/mp4" />
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    </div>
+                                <div className="flex flex-wrap gap-3">
+                                    <button
+                                        onClick={() => handlePlayAudio('english')}
+                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/20 hover:bg-primary/30 border border-primary/40 hover:border-primary/60 transition-all duration-300"
+                                    >
+                                        {playingAudio === 'english' ? (
+                                            <Pause className="w-5 h-5 text-primary" />
+                                        ) : (
+                                            <Play className="w-5 h-5 text-primary" />
+                                        )}
+                                        <span className="font-heading text-sm text-foreground tracking-wide">English</span>
+                                    </button>
 
-                                    {/* Spanish Audio */}
-                                    <div className="space-y-2">
-                                        <div className="px-4 py-2 rounded-lg bg-accent/20 border border-accent/40 text-center">
-                                            <span className="font-heading text-sm text-foreground tracking-wide">Español</span>
-                                        </div>
-                                        <audio 
-                                            controls 
-                                            controlsList="nodownload"
-                                            className="w-full h-10"
-                                        >
-                                            <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4" type="audio/mp4" />
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    </div>
+                                    <button
+                                        onClick={() => handlePlayAudio('spanish')}
+                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-accent/20 hover:bg-accent/30 border border-accent/40 hover:border-accent/60 transition-all duration-300"
+                                    >
+                                        {playingAudio === 'spanish' ? (
+                                            <Pause className="w-5 h-5 text-accent" />
+                                        ) : (
+                                            <Play className="w-5 h-5 text-accent" />
+                                        )}
+                                        <span className="font-heading text-sm text-foreground tracking-wide">Español</span>
+                                    </button>
                                 </div>
+
+                                <audio ref={englishAudioRef} className="hidden">
+                                    <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4" type="audio/mp4" />
+                                </audio>
+                                <audio ref={spanishAudioRef} className="hidden">
+                                    <source src="https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4" type="audio/mp4" />
+                                </audio>
                             </div>
                         )}
 
