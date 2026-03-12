@@ -23,7 +23,6 @@ export function Navigation() {
     { href: '#about', label: 'About' },
     { href: '#events', label: 'Events' },
     { href: '#music', label: 'Music' },
-    { href: '#gallery', label: 'Gallery' },
     { href: '#food', label: 'Food & Drinks' },
     { href: '#community', label: 'Community' },
     { href: '#contact', label: 'Contact' }
