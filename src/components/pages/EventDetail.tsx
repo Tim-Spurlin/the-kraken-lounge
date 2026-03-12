@@ -118,12 +118,15 @@ export function EventDetail() {
         const handleEnglishEnded = () => setPlayingAudio(null)
         const handleSpanishEnded = () => setPlayingAudio(null)
 
-        englishAudioRef.current?.addEventListener('ended', handleEnglishEnded)
-        spanishAudioRef.current?.addEventListener('ended', handleSpanishEnded)
+        const englishAudio = englishAudioRef.current
+        const spanishAudio = spanishAudioRef.current
+
+        englishAudio?.addEventListener('ended', handleEnglishEnded)
+        spanishAudio?.addEventListener('ended', handleSpanishEnded)
 
         return () => {
-            englishAudioRef.current?.removeEventListener('ended', handleEnglishEnded)
-            spanishAudioRef.current?.removeEventListener('ended', handleSpanishEnded)
+            englishAudio?.removeEventListener('ended', handleEnglishEnded)
+            spanishAudio?.removeEventListener('ended', handleSpanishEnded)
         }
     }, [])
 
