@@ -196,11 +196,12 @@ export function EventDetail() {
                             </div>
                         )}
 
-                        {/* Audio Overview Section - For Constellation, Techno Sunday, Frenchy, and Das Ich Events */}
+                        {/* Audio Overview Section - For Constellation, Techno Sunday, Frenchy, Das Ich, and Brujeria Events */}
                         {((event.title.toLowerCase().includes('constellation') && event.title.toLowerCase().includes('dark read')) || 
                           event.title.toLowerCase().includes('techno sunday') ||
                           event.title.toLowerCase().includes('frenchy') ||
-                          event.title.toLowerCase().includes('das ich')) && (
+                          event.title.toLowerCase().includes('das ich') ||
+                          event.title.toLowerCase().includes('brujeria')) && (
                             <div className="mb-10 p-6 rounded-xl bg-card/40 border border-primary/20">
                                 <div className="flex items-center gap-2 mb-4">
                                     <Headphones className="w-5 h-5 text-accent" />
@@ -242,6 +243,8 @@ export function EventDetail() {
                                             ? "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg"
                                             : event.title.toLowerCase().includes('das ich')
                                             ? "https://www.dropbox.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo&dl=1"
+                                            : event.title.toLowerCase().includes('brujeria')
+                                            ? "https://www.dropbox.com/scl/fi/uj6huaplmys2ng3gj1x52/Brujeria-s_Masked_Deathgrind_Rebellion_in_Brownsville.m4a?rlkey=ybz1dzzuesuvprjvydvc7luly&st=90m3vuel&dl=1"
                                             : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4"
                                     } type="audio/mp4" />
                                 </audio>
@@ -253,6 +256,8 @@ export function EventDetail() {
                                             ? "https://dl.dropboxusercontent.com/scl/fi/SPANISH_URL_HERE/spanish_version.m4a?rlkey=SPANISH_KEY_HERE&st=SPANISH_ST_HERE"
                                             : event.title.toLowerCase().includes('das ich')
                                             ? "https://www.dropbox.com/scl/fi/2m0layi9i35jm6v12bdx1/Das_Ich_conquista_B.m4a?rlkey=SPANISH_KEY&st=SPANISH_ST&dl=1"
+                                            : event.title.toLowerCase().includes('brujeria')
+                                            ? "https://www.dropbox.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof&dl=1"
                                             : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4"
                                     } type="audio/mp4" />
                                 </audio>
