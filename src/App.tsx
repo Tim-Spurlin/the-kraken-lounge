@@ -11,6 +11,8 @@ import { Toaster } from '@/components/ui/sonner'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { EventDetail } from '@/components/pages/EventDetail'
 import { ScrollToHash } from '@/components/ScrollToHash'
+import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext'
+import { PersistentPlayer } from '@/components/PersistentPlayer'
 
 function Home() {
   return (
@@ -28,31 +30,33 @@ function Home() {
 }
 
 function App() {
-
   return (
-    <Router>
-      <ScrollToHash />
-      <div className="min-h-screen bg-background text-foreground">
-        <Navigation />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/event/:id" element={<EventDetail />} />
-          </Routes>
-        </main>
-        <footer className="bg-card border-t border-border py-12">
-          <div className="container mx-auto px-4 text-center">
-            <p className="text-muted-foreground text-sm">
-              © {new Date().getFullYear()} The Kraken Lounge. Brownsville's Underground Music Sanctuary.
-            </p>
-            <p className="text-muted-foreground text-xs mt-2">
-              1123 E Adams St, Suite C • Brownsville, TX 78520 • (956) 372-1550
-            </p>
-          </div>
-        </footer>
-        <Toaster />
-      </div>
-    </Router>
+    <AudioPlayerProvider>
+      <Router>
+        <ScrollToHash />
+        <div className="min-h-screen bg-background text-foreground pb-24">
+          <Navigation />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/event/:id" element={<EventDetail />} />
+            </Routes>
+          </main>
+          <footer className="bg-card border-t border-border py-12">
+            <div className="container mx-auto px-4 text-center">
+              <p className="text-muted-foreground text-sm">
+                © {new Date().getFullYear()} The Kraken Lounge. Brownsville's Underground Music Sanctuary.
+              </p>
+              <p className="text-muted-foreground text-xs mt-2">
+                1123 E Adams St, Suite C • Brownsville, TX 78520 • (956) 372-1550
+              </p>
+            </div>
+          </footer>
+          <PersistentPlayer />
+          <Toaster />
+        </div>
+      </Router>
+    </AudioPlayerProvider>
   )
 }
 
