@@ -247,7 +247,7 @@ export function EventDetail() {
                                         event.title.toLowerCase().includes('techno sunday')
                                             ? "https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97"
                                             : event.title.toLowerCase().includes('frenchy')
-                                            ? "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg"
+                                            ? "https://dl.dropboxusercontent.com/scl/fi/SPANISH_URL_HERE/spanish_version.m4a?rlkey=SPANISH_KEY_HERE&st=SPANISH_ST_HERE"
                                             : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4"
                                     } type="audio/mp4" />
                                 </audio>
