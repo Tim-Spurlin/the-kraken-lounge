@@ -258,11 +258,11 @@ export function EventDetail() {
                             </ReactMarkdown>
                         </div>
 
-                        {event.genres && (
+                        {event.genres && event.genres.length > 0 && (
                             <div className="flex items-center gap-2 mt-8 pt-6 border-t border-border/50 text-muted-foreground">
                                 <Tag className="w-4 h-4" />
                                 <span className="text-sm font-medium uppercase tracking-wider">
-                                    {event.genres}
+                                    {event.genres.join(', ')}
                                 </span>
                             </div>
                         )}
