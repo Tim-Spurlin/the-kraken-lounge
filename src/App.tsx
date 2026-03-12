@@ -3,6 +3,7 @@ import { AudioOverview } from '@/components/sections/AudioOverview'
 import { About } from '@/components/sections/About'
 import { Events } from '@/components/sections/Events'
 import { Music } from '@/components/sections/Music'
+import { PremierVideo } from '@/components/sections/PremierVideo'
 import { FoodDrinks } from '@/components/sections/FoodDrinks'
 import { Community } from '@/components/sections/Community'
 import { Contact } from '@/components/sections/Contact'
@@ -22,6 +23,7 @@ function Home() {
       <About />
       <Events />
       <Music />
+      <PremierVideo />
       <FoodDrinks />
       <Community />
       <Contact />
