@@ -58,7 +58,7 @@ export function Music() {
     <section id="music" className="py-20 bg-card relative overflow-hidden">
       <div className="absolute inset-0 circuit-lines" />
       <div className="absolute inset-0 plasma-glow opacity-20" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-heading text-5xl md:text-6xl mb-4 text-accent">
@@ -72,7 +72,7 @@ export function Music() {
         <div className="max-w-5xl mx-auto space-y-16">
           <div className="grid md:grid-cols-2 gap-8">
             {genres.map((genre) => (
-              <div 
+              <div
                 key={genre.name}
                 className="bg-card border-2 border-primary/40 p-6 rounded-sm card-glow relative overflow-hidden"
               >
@@ -94,7 +94,7 @@ export function Music() {
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {recurringEvents.map((event) => (
-                <div 
+                <div
                   key={event.day}
                   className="bg-card border-2 border-primary/40 p-6 rounded-sm hover:border-primary transition-colors card-glow relative overflow-hidden"
                 >
@@ -123,7 +123,7 @@ export function Music() {
             </h3>
             <div className="space-y-6">
               <div className="flex justify-center">
-                <div 
+                <div
                   className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)] cursor-pointer"
                   onClick={() => {
                     if (videoRef.current) {
@@ -135,7 +135,7 @@ export function Music() {
                     }
                   }}
                 >
-                  <video 
+                  <video
                     ref={videoRef}
                     controls
                     controlsList="nodownload"
@@ -146,7 +146,7 @@ export function Music() {
                     playsInline
                     preload="metadata"
                   >
-                    <source src="https://www.dropbox.com/scl/fi/3qodg26tnyemvmhld5ex4/official-kraken-music-video-project-OFFICIAL.mp4?rlkey=xd5bo53cp84zuzs8uaw62pq55&st=0mx8x1ul&raw=1" type="video/mp4" />
+                    <source src="https://www.dropbox.com/scl/fi/jf8gvsh06ocj40ctfvdgl/official-kraken-music-video-project-OFFICIAL22222.mp4?rlkey=jtwzszz82byumstmr3nlohtol&st=nhcsynd3&raw=1" type="video/mp4" />
                     Your browser does not support the video element.
                   </video>
                 </div>
@@ -169,8 +169,8 @@ export function Music() {
             <p className="text-muted-foreground mb-6">
               We're always looking for talented alternative artists to grace our stage
             </p>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="inline-block bg-primary hover:bg-accent text-primary-foreground font-heading px-8 py-3 rounded-sm transition-all hover:shadow-[0_0_30px_oklch(0.55_0.25_25_/_0.5)]"
             >
               Get in Touch
