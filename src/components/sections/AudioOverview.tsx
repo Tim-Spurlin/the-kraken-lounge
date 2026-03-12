@@ -1,9 +1,10 @@
 import { Headphones, Globe, SpeakerHigh } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext'
+import { useEffect } from 'react'
 
 export function AudioOverview() {
-  const { playTrack, currentTrack, isPlaying } = useAudioPlayer()
+  const { playTrack, currentTrack, isPlaying, setPlaylist } = useAudioPlayer()
 
   const englishTrack = {
     title: 'The Kraken Lounge Overview',
@@ -16,6 +17,10 @@ export function AudioOverview() {
     url: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773202453/The_Kraken_Lounge_oasis_cultural_de_Brownsville_unssbh.mp4',
     language: 'spanish' as const,
   }
+
+  useEffect(() => {
+    setPlaylist([englishTrack, spanishTrack])
+  }, [setPlaylist])
 
   const handleEnglishPlay = () => {
     playTrack(englishTrack)

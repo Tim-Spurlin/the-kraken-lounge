@@ -1,12 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Pause, SpeakerHigh, SpeakerSlash, SpeakerLow, SpeakerX } from '@phosphor-icons/react'
+import { Play, Pause, SpeakerHigh, SpeakerSlash, SpeakerLow, SpeakerX, SkipBack, SkipForward } from '@phosphor-icons/react'
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext'
 import { Slider } from '@/components/ui/slider'
 import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export function PersistentPlayer() {
-  const { currentTrack, isPlaying, togglePlayPause, currentTime, duration, seek, volume, setVolume, isMuted, toggleMute } = useAudioPlayer()
+  const { currentTrack, isPlaying, togglePlayPause, currentTime, duration, seek, volume, setVolume, isMuted, toggleMute, nextTrack, previousTrack, playlist } = useAudioPlayer()
   const [showVolumeSlider, setShowVolumeSlider] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const formatTime = (seconds: number) => {
     if (!isFinite(seconds)) return '0:00'
@@ -30,6 +33,20 @@ export function PersistentPlayer() {
     return <SpeakerHigh weight="fill" className="w-5 h-5" />
   }
 
+  const handleTitleClick = () => {
+    if (currentTrack?.eventId) {
+      if (location.pathname !== `/event/${currentTrack.eventId}`) {
+        navigate(`/event/${currentTrack.eventId}`)
+      }
+    } else {
+      if (location.pathname !== '/' || location.hash !== '#overview') {
+        navigate('/#overview')
+      }
+    }
+  }
+
+  const hasNavigation = playlist.length > 1
+
   return (
     <AnimatePresence>
       {currentTrack && (
@@ -44,7 +61,19 @@ export function PersistentPlayer() {
           }}
         >
           <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {hasNavigation && (
+                <motion.button
+                  onClick={previousTrack}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary text-foreground flex items-center justify-center transition-all duration-300"
+                  title="Previous track"
+                >
+                  <SkipBack weight="fill" className="w-5 h-5" />
+                </motion.button>
+              )}
+
               <motion.button
                 onClick={togglePlayPause}
                 whileHover={{ scale: 1.1 }}
@@ -58,12 +87,28 @@ export function PersistentPlayer() {
                 )}
               </motion.button>
 
+              {hasNavigation && (
+                <motion.button
+                  onClick={nextTrack}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary text-foreground flex items-center justify-center transition-all duration-300"
+                  title="Next track"
+                >
+                  <SkipForward weight="fill" className="w-5 h-5" />
+                </motion.button>
+              )}
+
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2 min-w-0">
-                    <h3 className="font-heading text-sm uppercase tracking-wider text-foreground truncate">
-                      {currentTrack.title}
-                    </h3>
+                    <button
+                      onClick={handleTitleClick}
+                      className="font-heading text-sm uppercase tracking-wider text-foreground truncate hover:text-primary transition-colors cursor-pointer"
+                      title={currentTrack.eventTitle || currentTrack.title}
+                    >
+                      {currentTrack.eventTitle || currentTrack.title}
+                    </button>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-heading uppercase tracking-wide flex-shrink-0 ${
                       currentTrack.language === 'english' 
                         ? 'bg-primary/20 text-primary border border-primary/30' 

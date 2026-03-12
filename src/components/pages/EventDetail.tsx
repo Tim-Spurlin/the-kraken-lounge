@@ -1,28 +1,53 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin, Headphones, Play, Pause } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin, Headphones } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { format } from 'date-fns'
 import { fetchEvents, type Event } from '@/data/events'
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext'
+import { Globe, SpeakerHigh } from '@phosphor-icons/react'
 
-// The URL from Google Apps Script you provided
 const TRACKING_API_URL = 'https://script.google.com/macros/s/AKfycbxPaQivWxKDYw31OIbjOjphwOFG6C4Rp286fz1YmRnYEOJffvGVSdKSeo-tNPgcmJmu/exec'
+
+const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
+  '4': {
+    english: 'https://www.dropbox.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo&dl=1',
+    spanish: 'https://www.dropbox.com/scl/fi/2m0layi9i35jm6v12bdx1/Das_Ich_conquista_Brownsville.m4a?rlkey=ltdfvqvbmzasmsgz0ffzbvzka&st=qs3xw2n2&dl=1'
+  },
+  '5': {
+    english: 'https://www.dropbox.com/scl/fi/uj6huaplmys2ng3gj1x52/Brujeria-s_Masked_Deathgrind_Rebellion_in_Brownsville.m4a?rlkey=ybz1dzzuesuvprjvydvc7luly&st=90m3vuel&dl=1',
+    spanish: 'https://www.dropbox.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof&dl=1'
+  },
+  '7': {
+    english: 'https://www.dropbox.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=04sk6q2f&dl=1',
+    spanish: 'https://www.dropbox.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=7dretta6&dl=1'
+  },
+  '2': {
+    english: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4',
+    spanish: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4'
+  },
+  '8': {
+    english: 'https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5',
+    spanish: 'https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97'
+  },
+  '3': {
+    english: 'https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg',
+    spanish: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4'
+  }
+}
 
 export function EventDetail() {
     const { id } = useParams()
     const [event, setEvent] = useState<Event | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
-    const [playingAudio, setPlayingAudio] = useState<'english' | 'spanish' | null>(null)
-    const englishAudioRef = useRef<HTMLAudioElement>(null)
-    const spanishAudioRef = useRef<HTMLAudioElement>(null)
+    const { playTrack, currentTrack, isPlaying, setPlaylist } = useAudioPlayer()
 
     useEffect(() => {
         async function loadEvent() {
             try {
                 setLoading(true)
-                // Use the much more stable Google Visualization API CSV export endpoint and bypass aggressive caching
                 const sheetCsvUrl = `https://docs.google.com/spreadsheets/d/1eE5laJ0PUWvCJUrHWoYtVOoYz3YowZpOJWfVghkzLd8/gviz/tq?tqx=out:csv&t=${Date.now()}`
                 const events = await fetchEvents(sheetCsvUrl)
                 const foundEvent = events.find(e => e.id === id)
@@ -30,10 +55,9 @@ export function EventDetail() {
                 if (foundEvent) {
                     setEvent(foundEvent)
 
-                    // Trigger the analytics tracking!
                     fetch(TRACKING_API_URL, {
                         method: 'POST',
-                        mode: 'no-cors', // standard approach to avoid basic CORS blocks when we just need to send data
+                        mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -42,7 +66,7 @@ export function EventDetail() {
                             title: foundEvent.title,
                             date: foundEvent.date
                         })
-                    }).catch(err => console.error("Tracking Error:", err)); // fire and forget
+                    }).catch(err => console.error("Tracking Error:", err))
                 } else {
                     setError('Event not found')
                 }
@@ -58,16 +82,12 @@ export function EventDetail() {
         }
     }, [id])
 
-    // Update Document Title and Fire Google Analytics Page View when Event loads
     useEffect(() => {
         if (event) {
             const pageTitle = `${event.title} | The Kraken Lounge`;
             document.title = pageTitle;
-
-            // Force browser to scroll to top of page when navigating to a new event
             window.scrollTo(0, 0);
 
-            // Trigger Google Analytics explicitly since this is a Single Page Application route change
             if (typeof window !== 'undefined' && (window as any).gtag) {
                 (window as any).gtag('event', 'page_view', {
                     page_title: pageTitle,
@@ -75,38 +95,59 @@ export function EventDetail() {
                     page_path: window.location.pathname
                 });
             }
+
+            if (event.id && EVENT_AUDIO_URLS[event.id]) {
+                const audioUrls = EVENT_AUDIO_URLS[event.id]
+                const audioTracks = [
+                    {
+                        title: event.title,
+                        url: audioUrls.english,
+                        language: 'english' as const,
+                        eventId: event.id,
+                        eventTitle: event.title
+                    },
+                    {
+                        title: event.title,
+                        url: audioUrls.spanish,
+                        language: 'spanish' as const,
+                        eventId: event.id,
+                        eventTitle: event.title
+                    }
+                ]
+                setPlaylist(audioTracks)
+            }
         }
-    }, [event]);
+    }, [event, setPlaylist])
 
-    useEffect(() => {
-        const handleEnglishEnded = () => setPlayingAudio(null)
-        const handleSpanishEnded = () => setPlayingAudio(null)
+    const hasAudioOverview = event?.id && EVENT_AUDIO_URLS[event.id]
+    const audioUrls = hasAudioOverview ? EVENT_AUDIO_URLS[event.id] : null
 
-        const englishAudio = englishAudioRef.current
-        const spanishAudio = spanishAudioRef.current
-
-        englishAudio?.addEventListener('ended', handleEnglishEnded)
-        spanishAudio?.addEventListener('ended', handleSpanishEnded)
-
-        return () => {
-            englishAudio?.removeEventListener('ended', handleEnglishEnded)
-            spanishAudio?.removeEventListener('ended', handleSpanishEnded)
-        }
-    }, [])
-
-    const handlePlayAudio = (language: 'english' | 'spanish') => {
-        const currentAudio = language === 'english' ? englishAudioRef.current : spanishAudioRef.current
-        const otherAudio = language === 'english' ? spanishAudioRef.current : englishAudioRef.current
-
-        if (playingAudio === language) {
-            currentAudio?.pause()
-            setPlayingAudio(null)
-        } else {
-            otherAudio?.pause()
-            currentAudio?.play()
-            setPlayingAudio(language)
+    const handlePlayEnglish = () => {
+        if (event && audioUrls) {
+            playTrack({
+                title: event.title,
+                url: audioUrls.english,
+                language: 'english',
+                eventId: event.id,
+                eventTitle: event.title
+            })
         }
     }
+
+    const handlePlaySpanish = () => {
+        if (event && audioUrls) {
+            playTrack({
+                title: event.title,
+                url: audioUrls.spanish,
+                language: 'spanish',
+                eventId: event.id,
+                eventTitle: event.title
+            })
+        }
+    }
+
+    const isEnglishPlaying = audioUrls && currentTrack?.url === audioUrls.english && isPlaying
+    const isSpanishPlaying = audioUrls && currentTrack?.url === audioUrls.spanish && isPlaying
 
     if (loading) {
         return (
@@ -138,7 +179,6 @@ export function EventDetail() {
             </Link>
 
             <article className="glass-panel p-8 md:p-12 rounded-2xl border border-primary/20 relative overflow-hidden group">
-                {/* Subtle background glow based on event type */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
                 <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start justify-between">
@@ -196,13 +236,7 @@ export function EventDetail() {
                             </div>
                         )}
 
-                        {/* Audio Overview Section - For Constellation, Techno Sunday, Frenchy, Das Ich, Brujeria, and First Friday Events */}
-                        {((event.title.toLowerCase().includes('constellation') && event.title.toLowerCase().includes('dark read')) || 
-                          event.title.toLowerCase().includes('techno sunday') ||
-                          event.title.toLowerCase().includes('frenchy') ||
-                          event.title.toLowerCase().includes('das ich') ||
-                          event.title.toLowerCase().includes('brujeria') ||
-                          event.title.toLowerCase().includes('first friday')) && (
+                        {hasAudioOverview && (
                             <div className="mb-10 p-6 rounded-xl bg-card/40 border border-primary/20">
                                 <div className="flex items-center gap-2 mb-4">
                                     <Headphones className="w-5 h-5 text-accent" />
@@ -212,60 +246,23 @@ export function EventDetail() {
 
                                 <div className="flex flex-wrap gap-3">
                                     <button
-                                        onClick={() => handlePlayAudio('english')}
-                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-primary/20 hover:bg-primary/30 border border-primary/40 hover:border-primary/60 transition-all duration-300"
+                                        onClick={handlePlayEnglish}
+                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.7)] border border-primary/50"
                                     >
-                                        {playingAudio === 'english' ? (
-                                            <Pause className="w-5 h-5 text-primary" />
-                                        ) : (
-                                            <Play className="w-5 h-5 text-primary" />
-                                        )}
-                                        <span className="font-heading text-sm text-foreground tracking-wide">English</span>
+                                        <Globe weight="fill" className="w-5 h-5" />
+                                        <span className="font-heading text-sm tracking-wide">{isEnglishPlaying ? 'Pause' : 'English'}</span>
+                                        <SpeakerHigh weight="fill" className={`w-5 h-5 ${isEnglishPlaying ? 'animate-pulse' : ''}`} />
                                     </button>
 
                                     <button
-                                        onClick={() => handlePlayAudio('spanish')}
-                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-accent/20 hover:bg-accent/30 border border-accent/40 hover:border-accent/60 transition-all duration-300"
+                                        onClick={handlePlaySpanish}
+                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-accent via-accent/90 to-accent/80 hover:from-accent/90 hover:via-accent hover:to-accent text-accent-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.75_0.20_330_/_0.7)] border border-accent/50"
                                     >
-                                        {playingAudio === 'spanish' ? (
-                                            <Pause className="w-5 h-5 text-accent" />
-                                        ) : (
-                                            <Play className="w-5 h-5 text-accent" />
-                                        )}
-                                        <span className="font-heading text-sm text-foreground tracking-wide">Español</span>
+                                        <Globe weight="fill" className="w-5 h-5" />
+                                        <span className="font-heading text-sm tracking-wide">{isSpanishPlaying ? 'Pausar' : 'Español'}</span>
+                                        <SpeakerHigh weight="fill" className={`w-5 h-5 ${isSpanishPlaying ? 'animate-pulse' : ''}`} />
                                     </button>
                                 </div>
-
-                                <audio ref={englishAudioRef} className="hidden">
-                                    <source src={
-                                        event.title.toLowerCase().includes('techno sunday')
-                                            ? "https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5"
-                                            : event.title.toLowerCase().includes('frenchy')
-                                            ? "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg"
-                                            : event.title.toLowerCase().includes('das ich')
-                                            ? "https://www.dropbox.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo&dl=1"
-                                            : event.title.toLowerCase().includes('brujeria')
-                                            ? "https://www.dropbox.com/scl/fi/uj6huaplmys2ng3gj1x52/Brujeria-s_Masked_Deathgrind_Rebellion_in_Brownsville.m4a?rlkey=ybz1dzzuesuvprjvydvc7luly&st=90m3vuel&dl=1"
-                                            : event.title.toLowerCase().includes('first friday')
-                                            ? "https://www.dropbox.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=04sk6q2f&dl=1"
-                                            : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4"
-                                    } type="audio/mp4" />
-                                </audio>
-                                <audio ref={spanishAudioRef} className="hidden">
-                                    <source src={
-                                        event.title.toLowerCase().includes('techno sunday')
-                                            ? "https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97"
-                                            : event.title.toLowerCase().includes('frenchy')
-                                            ? "https://dl.dropboxusercontent.com/scl/fi/SPANISH_URL_HERE/spanish_version.m4a?rlkey=SPANISH_KEY_HERE&st=SPANISH_ST_HERE"
-                                            : event.title.toLowerCase().includes('das ich')
-                                            ? "https://www.dropbox.com/scl/fi/2m0layi9i35jm6v12bdx1/Das_Ich_conquista_B.m4a?rlkey=SPANISH_KEY&st=SPANISH_ST&dl=1"
-                                            : event.title.toLowerCase().includes('brujeria')
-                                            ? "https://www.dropbox.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof&dl=1"
-                                            : event.title.toLowerCase().includes('first friday')
-                                            ? "https://www.dropbox.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=7dretta6&dl=1"
-                                            : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4"
-                                    } type="audio/mp4" />
-                                </audio>
                             </div>
                         )}
 
@@ -273,14 +270,14 @@ export function EventDetail() {
                             <ReactMarkdown
                                 remarkPlugins={[remarkGfm]}
                                 components={{
-                                    h1: ({ node, ...props }) => <h1 className="text-3xl font-display text-primary mt-8 mb-4" {...props} />,
-                                    h2: ({ node, ...props }) => <h2 className="text-2xl font-display text-accent mt-8 mb-4 border-b border-border/50 pb-2" {...props} />,
-                                    h3: ({ node, ...props }) => <h3 className="text-xl font-heading text-foreground mt-6 mb-3" {...props} />,
-                                    p: ({ node, ...props }) => <p className="text-lg leading-relaxed mb-6" {...props} />,
-                                    ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-2 mb-6 ml-4" {...props} />,
-                                    ol: ({ node, ...props }) => <ol className="list-decimal list-inside space-y-2 mb-6 ml-4" {...props} />,
-                                    li: ({ node, ...props }) => <li className="text-slate-300" {...props} />,
-                                    strong: ({ node, ...props }) => <strong className="font-semibold text-white tracking-wide" {...props} />
+                                    h1: ({ ...props }) => <h1 className="text-3xl font-display text-primary mt-8 mb-4" {...props} />,
+                                    h2: ({ ...props }) => <h2 className="text-2xl font-display text-accent mt-8 mb-4 border-b border-border/50 pb-2" {...props} />,
+                                    h3: ({ ...props }) => <h3 className="text-xl font-heading text-foreground mt-6 mb-3" {...props} />,
+                                    p: ({ ...props }) => <p className="text-lg leading-relaxed mb-6" {...props} />,
+                                    ul: ({ ...props }) => <ul className="list-disc list-inside space-y-2 mb-6 ml-4" {...props} />,
+                                    ol: ({ ...props }) => <ol className="list-decimal list-inside space-y-2 mb-6 ml-4" {...props} />,
+                                    li: ({ ...props }) => <li className="text-slate-300" {...props} />,
+                                    strong: ({ ...props }) => <strong className="font-semibold text-white tracking-wide" {...props} />
                                 }}
                             >
                                 {event.description}
@@ -308,7 +305,6 @@ export function EventDetail() {
                                     })
                                 } else {
                                     navigator.clipboard.writeText(window.location.href)
-                                    alert('Link copied to clipboard!')
                                 }
                             }}
                             className="px-6 py-3 rounded-xl bg-secondary/80 hover:bg-secondary text-foreground font-heading tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border border-border"

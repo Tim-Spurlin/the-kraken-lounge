@@ -5,6 +5,8 @@ interface AudioTrack {
   title: string
   url: string
   language: 'english' | 'spanish'
+  eventId?: string
+  eventTitle?: string
 }
 
 interface AudioPlayerContextType {
@@ -22,6 +24,11 @@ interface AudioPlayerContextType {
   setVolume: (volume: number) => void
   isMuted: boolean
   toggleMute: () => void
+  nextTrack: () => void
+  previousTrack: () => void
+  playlist: AudioTrack[]
+  setPlaylist: (tracks: AudioTrack[]) => void
+  currentTrackIndex: number
 }
 
 const AudioPlayerContext = createContext<AudioPlayerContextType | undefined>(undefined)
@@ -35,6 +42,8 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
   const [volume, setVolumeInternal] = useState(volumeKV ?? 0.7)
   const [isMuted, setIsMuted] = useState(false)
   const [previousVolume, setPreviousVolume] = useState(0.7)
+  const [playlist, setPlaylist] = useState<AudioTrack[]>([])
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(-1)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
@@ -77,10 +86,46 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
         setIsPlaying(false)
       } else {
         setCurrentTrack(track)
+        
+        const index = playlist.findIndex(t => t.url === track.url)
+        if (index !== -1) {
+          setCurrentTrackIndex(index)
+        }
+        
         audioRef.current.src = track.url
         audioRef.current.play()
         setIsPlaying(true)
       }
+    }
+  }
+
+  const nextTrack = () => {
+    if (playlist.length === 0) return
+    
+    const nextIndex = (currentTrackIndex + 1) % playlist.length
+    const nextTrack = playlist[nextIndex]
+    
+    if (nextTrack && audioRef.current) {
+      setCurrentTrack(nextTrack)
+      setCurrentTrackIndex(nextIndex)
+      audioRef.current.src = nextTrack.url
+      audioRef.current.play()
+      setIsPlaying(true)
+    }
+  }
+
+  const previousTrack = () => {
+    if (playlist.length === 0) return
+    
+    const prevIndex = currentTrackIndex - 1 < 0 ? playlist.length - 1 : currentTrackIndex - 1
+    const prevTrack = playlist[prevIndex]
+    
+    if (prevTrack && audioRef.current) {
+      setCurrentTrack(prevTrack)
+      setCurrentTrackIndex(prevIndex)
+      audioRef.current.src = prevTrack.url
+      audioRef.current.play()
+      setIsPlaying(true)
     }
   }
 
@@ -159,6 +204,11 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
         setVolume,
         isMuted,
         toggleMute,
+        nextTrack,
+        previousTrack,
+        playlist,
+        setPlaylist,
+        currentTrackIndex,
       }}
     >
       {children}
