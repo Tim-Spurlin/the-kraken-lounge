@@ -6,7 +6,6 @@ import { Music } from '@/components/sections/Music'
 import { FoodDrinks } from '@/components/sections/FoodDrinks'
 import { Community } from '@/components/sections/Community'
 import { Contact } from '@/components/sections/Contact'
-import { PhotoGallery } from '@/components/sections/PhotoGallery'
 import { Navigation } from '@/components/Navigation'
 import { Toaster } from '@/components/ui/sonner'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -25,7 +24,6 @@ function Home() {
       <Events />
       <Music />
       <FoodDrinks />
-      <PhotoGallery />
       <Community />
       <Contact />
     </>
