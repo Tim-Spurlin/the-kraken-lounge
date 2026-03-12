@@ -23,6 +23,7 @@ function Home() {
       <About />
       <Events />
       <Music />
+      <FoodDrinks />
       <PhotoGallery />
       <Community />
       <Contact />

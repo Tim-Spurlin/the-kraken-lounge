@@ -55,9 +55,6 @@ export function PhotoGallery() {
           <h2 className="font-heading text-5xl md:text-6xl mb-6 text-gradient-purple">
             Past Shows Gallery
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Relive the raw energy and unforgettable moments from our legendary nights of metal, punk, goth, and underground techno at Brownsville's premier alternative music sanctuary.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
