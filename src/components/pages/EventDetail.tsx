@@ -211,8 +211,20 @@ export function EventDetail() {
                                     spanish: "https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=0nyefxb1",
                                 },
                                 'dark alternative collision': {
-                                    english: "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg",
-                                    spanish: "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4",
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=op54ap6x",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/eotblc0h1ahv48glsrmn2/Industrial_y_loops_ac-sticos_en_Brownsville.m4a?rlkey=6kwwrwjdic6pw5t9zkj336fap&st=zent1t29",
+                                },
+                                'frenchy and the punk': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=op54ap6x",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/eotblc0h1ahv48glsrmn2/Industrial_y_loops_ac-sticos_en_Brownsville.m4a?rlkey=6kwwrwjdic6pw5t9zkj336fap&st=zent1t29",
+                                },
+                                'ego likeness': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=op54ap6x",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/eotblc0h1ahv48glsrmn2/Industrial_y_loops_ac-sticos_en_Brownsville.m4a?rlkey=6kwwrwjdic6pw5t9zkj336fap&st=zent1t29",
+                                },
+                                'dark cabaret': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=op54ap6x",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/eotblc0h1ahv48glsrmn2/Industrial_y_loops_ac-sticos_en_Brownsville.m4a?rlkey=6kwwrwjdic6pw5t9zkj336fap&st=zent1t29",
                                 },
                                 'das ich': {
                                     english: "https://dl.dropboxusercontent.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo",
