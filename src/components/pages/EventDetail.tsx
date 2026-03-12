@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, Calendar, Clock, Tag, Share2, MapPin, Headphones } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, MapPin, Headphones } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { format } from 'date-fns'
@@ -37,6 +37,8 @@ const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
   }
 }
 
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVFxhкултовый_id/pub?output=csv'
+
 export function EventDetail() {
     const { id } = useParams()
     const [event, setEvent] = useState<Event | null>(null)
@@ -55,9 +57,10 @@ export function EventDetail() {
                     setEvent(foundEvent)
 
                     fetch(TRACKING_API_URL, {
+                        method: 'POST',
                         mode: 'no-cors',
                         headers: {
-                        mode: 'no-cors',
+                            'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
                             eventId: foundEvent.id,
@@ -66,7 +69,7 @@ export function EventDetail() {
                         })
                     }).catch(err => console.error("Tracking Error:", err))
                 } else {
-                    }).catch(err => console.error("Tracking Error:", err))
+                    setError('Event not found')
                 }
             } catch (err) {
                 setError('Failed to load event details')
@@ -82,20 +85,17 @@ export function EventDetail() {
 
     useEffect(() => {
         if (event) {
-            document.title = pageTitle;
-            window.scrollTo(0, 0);
+            const pageTitle = `${event.title} | The Kraken Lounge`
+            document.title = pageTitle
+            window.scrollTo(0, 0)
 
             if (typeof window !== 'undefined' && (window as any).gtag) {
+                (window as any).gtag('config', 'G-KCDECFFH0G', {
                     page_location: window.location.href,
                     page_path: window.location.pathname
+                })
             }
 
-            if (event.id && EVENT_AUDIO_URLS[event.id]) {
-                const audioUrls = EVENT_AUDIO_URLS[event.id]
-                const audioTracks = [
-                    {
-                        title: event.title,
-               url: audioUrls.english,
             if (event.id && EVENT_AUDIO_URLS[event.id]) {
                 const audioUrls = EVENT_AUDIO_URLS[event.id]
                 const audioTracks = [
@@ -116,9 +116,9 @@ export function EventDetail() {
                 ]
                 setPlaylist(audioTracks)
             }
-    const handlePlayEnglish = () => {
+        }
     }, [event, setPlaylist])
-            playTrack({
+
     const hasAudioOverview = event?.id && EVENT_AUDIO_URLS[event.id]
     const audioUrls = hasAudioOverview ? EVENT_AUDIO_URLS[event.id] : null
 
@@ -131,9 +131,9 @@ export function EventDetail() {
                 eventId: event.id,
                 eventTitle: event.title
             })
-                title: event.title,
-                url: audioUrls.spanish,
-                language: 'spanish',
+        }
+    }
+
     const handlePlaySpanish = () => {
         if (event && audioUrls) {
             playTrack({
@@ -149,6 +149,12 @@ export function EventDetail() {
     const isEnglishPlaying = audioUrls && currentTrack?.url === audioUrls.english && isPlaying
     const isSpanishPlaying = audioUrls && currentTrack?.url === audioUrls.spanish && isPlaying
 
+    if (loading) {
+        return (
+            <div className="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center text-center px-4">
+                <h1 className="text-4xl font-display text-primary mb-4">Loading...</h1>
+            </div>
+        )
     }
 
     if (error || !event) {
@@ -179,6 +185,7 @@ export function EventDetail() {
                     <div className="flex-1">
                         <div className="flex flex-wrap gap-2 mb-4">
                             <span className="px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider bg-primary/20 text-primary border border-primary/30">
+                                {event.type}
                             </span>
                             {isFree ? (
                                 <span className="px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider bg-green-500/20 text-green-400 border border-green-500/30">
@@ -236,7 +243,12 @@ export function EventDetail() {
                                     <h3 className="text-xl font-display text-gradient-purple">Event Audio Overview</h3>
                                 </div>
                                 <p className="text-sm text-muted-foreground mb-4">In-depth look at everything you need to know about this event</p>
-                        {hasAudioOverview && (
+                                <div className="flex flex-wrap gap-3">
+                                    <button
+                                        onClick={handlePlayEnglish}
+                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.7)] border border-primary/50"
+                                    >
+                                        <Globe weight="fill" className="w-5 h-5" />
                                         <span className="font-heading text-sm tracking-wide">{isEnglishPlaying ? 'Pause' : 'English'}</span>
                                         <SpeakerHigh weight="fill" className={`w-5 h-5 ${isEnglishPlaying ? 'animate-pulse' : ''}`} />
                                     </button>
@@ -246,30 +258,17 @@ export function EventDetail() {
                                         className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-accent via-accent/90 to-accent/80 hover:from-accent/90 hover:via-accent hover:to-accent text-accent-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.75_0.20_330_/_0.7)] border border-accent/50"
                                     >
                                         <Globe weight="fill" className="w-5 h-5" />
-                                        onClick={handlePlayEnglish}
-                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.7)] border border-primary/50"
-                                    </button>
-                                        <Globe weight="fill" className="w-5 h-5" />
-                                        <span className="font-heading text-sm tracking-wide">{isEnglishPlaying ? 'Pause' : 'English'}</span>
-                                        <SpeakerHigh weight="fill" className={`w-5 h-5 ${isEnglishPlaying ? 'animate-pulse' : ''}`} />
-                                remarkPlugins={[remarkGfm]}
-                                components={{
-                                    h1: ({ ...props }) => <h1 className="text-3xl font-display text-primary mt-8 mb-4" {...props} />,
-                                        onClick={handlePlaySpanish}{...props} />,
-                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-accent via-accent/90 to-accent/80 hover:from-accent/90 hover:via-accent hover:to-accent text-accent-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.75_0.20_330_/_0.7)] border border-accent/50"
-                                    p: ({ ...props }) => <p className="text-lg leading-relaxed mb-6" {...props} />,
-                                        <Globe weight="fill" className="w-5 h-5" />
                                         <span className="font-heading text-sm tracking-wide">{isSpanishPlaying ? 'Pausar' : 'Español'}</span>
                                         <SpeakerHigh weight="fill" className={`w-5 h-5 ${isSpanishPlaying ? 'animate-pulse' : ''}`} />
-                                {event.description}
-                            </ReactMarkdown>
-                        <a
-                            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kraken+Lounge:+Event"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-6 py-3 rounded-xl bg-accent text-background font-heading tracking-wider font-semibold hover:bg-accent/90 transition-all duration-300 shadow-[0_0_15px_oklch(0.6_0.2_280_/_0.5)] hover:shadow-[0_0_25px_oklch(0.6_0.2_280_/_0.7)] text-center"
-                        >
-                            Add to Calendar
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="prose prose-invert prose-lg max-w-none">
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
                                     h1: ({ ...props }) => <h1 className="text-3xl font-display text-primary mt-8 mb-4" {...props} />,
                                     h2: ({ ...props }) => <h2 className="text-2xl font-display text-accent mt-8 mb-4 border-b border-border/50 pb-2" {...props} />,
                                     h3: ({ ...props }) => <h3 className="text-xl font-heading text-foreground mt-6 mb-3" {...props} />,
@@ -278,3 +277,25 @@ export function EventDetail() {
                                     ol: ({ ...props }) => <ol className="list-decimal list-inside space-y-2 mb-6 ml-4" {...props} />,
                                     li: ({ ...props }) => <li className="text-slate-300" {...props} />,
                                     strong: ({ ...props }) => <strong className="font-semibold text-white tracking-wide" {...props} />
+                                }}
+                            >
+                                {event.description}
+                            </ReactMarkdown>
+                        </div>
+
+                        <div className="mt-12 flex flex-wrap gap-4">
+                            <a
+                                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kraken+Lounge:+Event"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-6 py-3 rounded-xl bg-accent text-background font-heading tracking-wider font-semibold hover:bg-accent/90 transition-all duration-300 shadow-[0_0_15px_oklch(0.6_0.2_280_/_0.5)] hover:shadow-[0_0_25px_oklch(0.6_0.2_280_/_0.7)] text-center"
+                            >
+                                Add to Calendar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    )
+}
