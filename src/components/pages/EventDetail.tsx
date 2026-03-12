@@ -192,9 +192,6 @@ export function EventDetail() {
                                                         <p className="text-xs text-muted-foreground">Audio Overview</p>
                                                     </div>
                                                 </div>
-                                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                                                    Comprehensive overview covering the dark alternative aesthetic, featured bands, venue atmosphere, and what makes this night essential for goth and industrial music fans.
-                                                </p>
                                                 <audio 
                                                     controls 
                                                     controlsList="nodownload"
@@ -222,9 +219,6 @@ export function EventDetail() {
                                                         <p className="text-xs text-muted-foreground">Descripción de Audio</p>
                                                     </div>
                                                 </div>
-                                                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                                                    Descripción completa sobre la estética alternativa oscura, las bandas presentadas, el ambiente del lugar, y por qué esta noche es esencial para los fanáticos del goth e industrial.
-                                                </p>
                                                 <audio 
                                                     controls 
                                                     controlsList="nodownload"
