@@ -37,7 +37,7 @@ const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
   }
 }
 
-const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSVFxhкультовый_id/pub?output=csv'
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQf5qoMtNgc7kQTbmw_pJxKaWioKThrFdyp-3ZZt79gOiNz_pfYQf4f1lB81aGQzuQ3CqB_6xyFIyNL/pub?output=csv'
 
 export function EventDetail() {
     const { id } = useParams()
