@@ -196,9 +196,10 @@ export function EventDetail() {
                             </div>
                         )}
 
-                        {/* Audio Overview Section - For Constellation and Techno Sunday Events */}
+                        {/* Audio Overview Section - For Constellation, Techno Sunday, and Frenchy Events */}
                         {((event.title.toLowerCase().includes('constellation') && event.title.toLowerCase().includes('dark read')) || 
-                          event.title.toLowerCase().includes('techno sunday')) && (
+                          event.title.toLowerCase().includes('techno sunday') ||
+                          event.title.toLowerCase().includes('frenchy')) && (
                             <div className="mb-10 p-6 rounded-xl bg-card/40 border border-primary/20">
                                 <div className="flex items-center gap-2 mb-4">
                                     <Headphones className="w-5 h-5 text-accent" />
@@ -236,6 +237,8 @@ export function EventDetail() {
                                     <source src={
                                         event.title.toLowerCase().includes('techno sunday')
                                             ? "https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5"
+                                            : event.title.toLowerCase().includes('frenchy')
+                                            ? "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg"
                                             : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4"
                                     } type="audio/mp4" />
                                 </audio>
@@ -243,6 +246,8 @@ export function EventDetail() {
                                     <source src={
                                         event.title.toLowerCase().includes('techno sunday')
                                             ? "https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97"
+                                            : event.title.toLowerCase().includes('frenchy')
+                                            ? "https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg"
                                             : "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4"
                                     } type="audio/mp4" />
                                 </audio>
