@@ -11,34 +11,34 @@ import { Globe, SpeakerHigh } from '@phosphor-icons/react'
 const TRACKING_API_URL = 'https://script.google.com/macros/s/AKfycbxPaQivWxKDYw31OIbjOjphwOFG6C4Rp286fz1YmRnYEOJffvGVSdKSeo-tNPgcmJmu/exec'
 
 const EVENT_AUDIO_URLS: Record<string, { english: string; spanish: string }> = {
-  '1': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/nhobtjkvkgrv8ktdy24za/Release_the_Kraken_Raves_and_Reefs.m4a?rlkey=nm6tnwm5503oc2hy3l3hbb27c&st=nza4mzr4&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/ebu4tv1czqziz63f963c2/Ciencia_y_dise-o_de_Release_the_Kraken.m4a?rlkey=83h9jrvi6m38xqxp3eabq32nx&st=7bustczg&dl=1'
-  },
-  '2': {
-    english: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4',
-    spanish: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4'
-  },
-  '3': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg&dl=1',
-    spanish: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4'
-  },
-  '4': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/2m0layi9i35jm6v12bdx1/Das_Ich_conquista_Brownsville.m4a?rlkey=ltdfvqvbmzasmsgz0ffzbvzka&st=qs3xw2n2&dl=1'
-  },
-  '5': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/uj6huaplmys2ng3gj1x52/Brujeria-s_Masked_Deathgrind_Rebellion_in_Brownsville.m4a?rlkey=ybz1dzzuesuvprjvydvc7luly&st=90m3vuel&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof&dl=1'
-  },
-  '7': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=pm109ryd&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=0nyefxb1&dl=1'
-  },
-  '8': {
-    english: 'https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5&dl=1',
-    spanish: 'https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97&dl=1'
-  }
+    '1': {
+        english: 'https://dl.dropboxusercontent.com/scl/fi/nhobtjkvkgrv8ktdy24za/Release_the_Kraken_Raves_and_Reefs.m4a?rlkey=nm6tnwm5503oc2hy3l3hbb27c&st=nza4mzr4&dl=1',
+        spanish: 'https://dl.dropboxusercontent.com/scl/fi/ebu4tv1czqziz63f963c2/Ciencia_y_dise-o_de_Release_the_Kraken.m4a?rlkey=83h9jrvi6m38xqxp3eabq32nx&st=7bustczg&dl=1'
+    },
+    '2': {
+        english: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4',
+        spanish: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4'
+    },
+    '3': {
+        english: 'https://dl.dropboxusercontent.com/scl/fi/uf03itkdfagqfns0g213c/Dark_Alternative_Collision_in_Brownsville.m4a?rlkey=d5lo2j62obd2uw4ee10cfvgrc&st=0qd52thg&dl=1',
+        spanish: 'https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4'
+    },
+    '4': {
+        english: 'https://dl.dropboxusercontent.com/scl/fi/eq6782sfui2kzxkgkx68p/German_industrial_legends_Das_Ich_in_Brownsville.m4a?rlkey=d3h7uusk4xrb0s8svwtpvhy0q&st=eiyf5gzo&dl=1',
+        spanish: 'https://dl.dropboxusercontent.com/scl/fi/2m0layi9i35jm6v12bdx1/Das_Ich_conquista_Brownsville.m4a?rlkey=ltdfvqvbmzasmsgz0ffzbvzka&st=qs3xw2n2&dl=1'
+    },
+    '5': {
+        english: 'https://dl.dropboxusercontent.com/scl/fi/uj6huaplmys2ng3gj1x52/Brujeria-s_Masked_Deathgrind_Rebellion_in_Brownsville.m4a?rlkey=ybz1dzzuesuvprjvydvc7luly&st=90m3vuel&dl=1',
+        spanish: 'https://dl.dropboxusercontent.com/scl/fi/kj1oecb8ozom3vj01jd5q/Brujer-a_y_el_mito_del_metal_narcosat-nico.m4a?rlkey=d1osfqc36f2lpr0imkf3xu0f6&st=p8pb4lof&dl=1'
+    },
+    '7': {
+        english: 'https://dl.dropboxusercontent.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=pm109ryd&dl=1',
+        spanish: 'https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=0nyefxb1&dl=1'
+    },
+    '8': {
+        english: 'https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5&dl=1',
+        spanish: 'https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97&dl=1'
+    }
 }
 
 const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQf5qoMtNgc7kQTbmw_pJxKaWioKThrFdyp-3ZZt79gOiNz_pfYQf4f1lB81aGQzuQ3CqB_6xyFIyNL/pub?output=csv'
@@ -102,35 +102,6 @@ export function EventDetail() {
         }
     }, [event])
 
-    const hasAudioOverview = event?.id && EVENT_AUDIO_URLS[event.id]
-    const audioUrls = hasAudioOverview ? EVENT_AUDIO_URLS[event.id] : null
-
-    const handlePlayEnglish = () => {
-        if (event && audioUrls) {
-            playTrack({
-                title: event.title,
-                url: audioUrls.english,
-                language: 'english',
-                eventId: event.id,
-                eventTitle: event.title
-            })
-        }
-    }
-
-    const handlePlaySpanish = () => {
-        if (event && audioUrls) {
-            playTrack({
-                title: event.title,
-                url: audioUrls.spanish,
-                language: 'spanish',
-                eventId: event.id,
-                eventTitle: event.title
-            })
-        }
-    }
-
-    const isEnglishPlaying = audioUrls && currentTrack?.url === audioUrls.english && isPlaying
-    const isSpanishPlaying = audioUrls && currentTrack?.url === audioUrls.spanish && isPlaying
 
     if (loading) {
         return (
@@ -219,34 +190,89 @@ export function EventDetail() {
                             </div>
                         )}
 
-                        {hasAudioOverview && (
-                            <div className="mb-10 p-6 rounded-xl bg-card/40 border border-primary/20">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <Headphones className="w-5 h-5 text-accent" />
-                                    <h3 className="text-xl font-display text-gradient-purple">Event Audio Overview</h3>
-                                </div>
-                                <p className="text-sm text-muted-foreground mb-4">In-depth look at everything you need to know about this event</p>
-                                <div className="flex flex-wrap gap-3">
-                                    <button
-                                        onClick={handlePlayEnglish}
-                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.7)] border border-primary/50"
-                                    >
-                                        <Globe weight="fill" className="w-5 h-5" />
-                                        <span className="font-heading text-sm tracking-wide">{isEnglishPlaying ? 'Pause' : 'English'}</span>
-                                        <SpeakerHigh weight="fill" className={`w-5 h-5 ${isEnglishPlaying ? 'animate-pulse' : ''}`} />
-                                    </button>
+                        {/* Audio Overview Section - Dynamic from Known Audio Mapping */}
+                        {(() => {
+                            // Define known audio overviews based on event title or band names
+                            const knownOverviews: { [key: string]: { english: string; spanish: string; title?: string } } = {
+                                'techno sunday': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/8qa406tsq8hwhj5thmqog/Underground_Techno_Cures_Sunday_Scaries.m4a?rlkey=0ns4ltliqd0gel0n7mxu86imp&st=c9ltwtp5",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/3jtxdy6k6hixoomqax7ir/Terapia_de_techno_dominical_en_Brownsville.m4a?rlkey=s9sxxi8cgh7bu25631z4l1f6o&st=0zxner97",
+                                },
+                                'constellation': {
+                                    english: "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288866/Why_Heavy_Noise_Cures_Modern_Anxiety_pwleyp.mp4",
+                                    spanish: "https://res.cloudinary.com/dw3lf8roj/video/upload/v1773288899/M%C3%BAsica_oscura_como_herramienta_de_supervivencia_rsgftd.mp4",
+                                },
+                                'release the kraken': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/nhobtjkvkgrv8ktdy24za/Release_the_Kraken_Raves_and_Reefs.m4a?rlkey=nm6tnwm5503oc2hy3l3hbb27c&st=nza4mzr4",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/ebu4tv1czqziz63f963c2/Ciencia_y_dise-o_de_Release_the_Kraken.m4a?rlkey=83h9jrvi6m38xqxp3eabq32nx&st=7bustczg",
+                                },
+                                'goth night': {
+                                    english: "https://dl.dropboxusercontent.com/scl/fi/vrxbmgiazx2hf19iji86f/Brownsville_s_First_Friday_Goth_Night_Sanctuary.m4a?rlkey=yve8smahs8oqryym4p4qpvwqn&st=pm109ryd",
+                                    spanish: "https://dl.dropboxusercontent.com/scl/fi/kz8064avmqaqtcxeeul3m/G-ticos_impulsando_el_centro_de_Brownsville.m4a?rlkey=2vgqop1s503pnadvneqqaor9o&st=0nyefxb1",
+                                }
+                            };
 
-                                    <button
-                                        onClick={handlePlaySpanish}
-                                        className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-accent via-accent/90 to-accent/80 hover:from-accent/90 hover:via-accent hover:to-accent text-accent-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.75_0.20_330_/_0.7)] border border-accent/50"
-                                    >
-                                        <Globe weight="fill" className="w-5 h-5" />
-                                        <span className="font-heading text-sm tracking-wide">{isSpanishPlaying ? 'Pausar' : 'Español'}</span>
-                                        <SpeakerHigh weight="fill" className={`w-5 h-5 ${isSpanishPlaying ? 'animate-pulse' : ''}`} />
-                                    </button>
+                            // Check if the current event matches any of our known overviews
+                            let matchedOverview: { english: string; spanish: string; title?: string } | null = null;
+                            const titleLower = event.title.toLowerCase();
+
+                            // Check title first
+                            for (const [key, overview] of Object.entries(knownOverviews)) {
+                                if (titleLower.includes(key)) {
+                                    matchedOverview = overview;
+                                    break;
+                                }
+                            }
+
+                            // If not found in title, check bands
+                            if (!matchedOverview && event.bands) {
+                                for (const band of event.bands) {
+                                    const bandLower = band.toLowerCase().trim();
+                                    for (const [key, overview] of Object.entries(knownOverviews)) {
+                                        if (bandLower.includes(key)) {
+                                            matchedOverview = overview;
+                                            break;
+                                        }
+                                    }
+                                    if (matchedOverview) break;
+                                }
+                            }
+
+                            if (!matchedOverview) return null;
+
+                            const isEngPlaying = currentTrack?.url === matchedOverview.english && isPlaying;
+                            const isSpanPlaying = currentTrack?.url === matchedOverview.spanish && isPlaying;
+
+                            return (
+                                <div className="mb-10 p-6 rounded-xl bg-card/40 border border-primary/20">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <Headphones className="w-5 h-5 text-accent" />
+                                        <h3 className="text-xl font-display text-gradient-purple">Event Audio Overview</h3>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground mb-4">In-depth look at everything you need to know about this event</p>
+
+                                    <div className="flex flex-wrap gap-3">
+                                        <button
+                                            onClick={() => playTrack({ title: event.title, url: matchedOverview!.english, language: 'english', eventId: event.id, eventTitle: event.title })}
+                                            className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.65_0.24_310_/_0.7)] border border-primary/50"
+                                        >
+                                            <Globe weight="fill" className="w-5 h-5" />
+                                            <span className="font-heading text-sm tracking-wide">{isEngPlaying ? 'Pause' : 'English'}</span>
+                                            <SpeakerHigh weight="fill" className={`w-5 h-5 ${isEngPlaying ? 'animate-pulse' : ''}`} />
+                                        </button>
+
+                                        <button
+                                            onClick={() => playTrack({ title: event.title, url: matchedOverview!.spanish, language: 'spanish', eventId: event.id, eventTitle: event.title })}
+                                            className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-br from-accent via-accent/90 to-accent/80 hover:from-accent/90 hover:via-accent hover:to-accent text-accent-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_oklch(0.75_0.20_330_/_0.7)] border border-accent/50"
+                                        >
+                                            <Globe weight="fill" className="w-5 h-5" />
+                                            <span className="font-heading text-sm tracking-wide">{isSpanPlaying ? 'Pausar' : 'Español'}</span>
+                                            <SpeakerHigh weight="fill" className={`w-5 h-5 ${isSpanPlaying ? 'animate-pulse' : ''}`} />
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            );
+                        })()}
 
                         <div className="prose prose-invert prose-lg max-w-none">
                             <ReactMarkdown
