@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useRef, ReactNode, useEffect } from 'react'
+import { useKV } from '@github/spark/hooks'
 
 interface AudioTrack {
   title: string
@@ -9,7 +10,7 @@ interface AudioTrack {
 interface AudioPlayerContextType {
   currentTrack: AudioTrack | null
   isPlaying: boolean
-  audioRef: React.RefObject<HTMLAudioElement>
+  audioRef: React.RefObject<HTMLAudioElement | null>
   playTrack: (track: AudioTrack) => void
   pause: () => void
   resume: () => void
@@ -17,6 +18,10 @@ interface AudioPlayerContextType {
   currentTime: number
   duration: number
   seek: (time: number) => void
+  volume: number
+  setVolume: (volume: number) => void
+  isMuted: boolean
+  toggleMute: () => void
 }
 
 const AudioPlayerContext = createContext<AudioPlayerContextType | undefined>(undefined)
@@ -26,11 +31,23 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [volumeKV, setVolumeKV] = useKV<number>('audio-player-volume', 0.7)
+  const [volume, setVolumeInternal] = useState(volumeKV ?? 0.7)
+  const [isMuted, setIsMuted] = useState(false)
+  const [previousVolume, setPreviousVolume] = useState(0.7)
   const audioRef = useRef<HTMLAudioElement>(null)
+
+  useEffect(() => {
+    if (volumeKV !== undefined) {
+      setVolumeInternal(volumeKV)
+    }
+  }, [volumeKV])
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
+
+    audio.volume = isMuted ? 0 : volume
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime)
     const handleDurationChange = () => setDuration(audio.duration)
@@ -51,7 +68,7 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
       audio.removeEventListener('pause', handlePause)
       audio.removeEventListener('play', handlePlay)
     }
-  }, [])
+  }, [volume, isMuted])
 
   const playTrack = (track: AudioTrack) => {
     if (audioRef.current) {
@@ -96,6 +113,35 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  const setVolume = (newVolume: number) => {
+    const clampedVolume = Math.max(0, Math.min(1, newVolume))
+    setVolumeInternal(clampedVolume)
+    setVolumeKV(clampedVolume)
+    if (audioRef.current) {
+      audioRef.current.volume = clampedVolume
+    }
+    if (isMuted && clampedVolume > 0) {
+      setIsMuted(false)
+    }
+  }
+
+  const toggleMute = () => {
+    if (isMuted) {
+      setIsMuted(false)
+      if (audioRef.current && volume !== undefined) {
+        audioRef.current.volume = volume
+      }
+    } else {
+      if (volume !== undefined) {
+        setPreviousVolume(volume)
+      }
+      setIsMuted(true)
+      if (audioRef.current) {
+        audioRef.current.volume = 0
+      }
+    }
+  }
+
   return (
     <AudioPlayerContext.Provider
       value={{
@@ -109,6 +155,10 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
         currentTime,
         duration,
         seek,
+        volume,
+        setVolume,
+        isMuted,
+        toggleMute,
       }}
     >
       {children}

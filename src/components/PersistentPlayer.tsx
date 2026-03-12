@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Pause, X } from '@phosphor-icons/react'
+import { Play, Pause, SpeakerHigh, SpeakerSlash, SpeakerLow, SpeakerX } from '@phosphor-icons/react'
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext'
 import { Slider } from '@/components/ui/slider'
+import { useState } from 'react'
 
 export function PersistentPlayer() {
-  const { currentTrack, isPlaying, togglePlayPause, currentTime, duration, seek } = useAudioPlayer()
+  const { currentTrack, isPlaying, togglePlayPause, currentTime, duration, seek, volume, setVolume, isMuted, toggleMute } = useAudioPlayer()
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false)
 
   const formatTime = (seconds: number) => {
     if (!isFinite(seconds)) return '0:00'
@@ -13,8 +15,19 @@ export function PersistentPlayer() {
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
-  const handleSliderChange = (value: number[]) => {
+  const handleSeekChange = (value: number[]) => {
     seek(value[0])
+  }
+
+  const handleVolumeChange = (value: number[]) => {
+    setVolume(value[0])
+  }
+
+  const getVolumeIcon = () => {
+    if (isMuted || volume === 0) return <SpeakerX weight="fill" className="w-5 h-5" />
+    if (volume < 0.33) return <SpeakerSlash weight="fill" className="w-5 h-5" />
+    if (volume < 0.66) return <SpeakerLow weight="fill" className="w-5 h-5" />
+    return <SpeakerHigh weight="fill" className="w-5 h-5" />
   }
 
   return (
@@ -70,9 +83,50 @@ export function PersistentPlayer() {
                   value={[currentTime]}
                   max={duration || 100}
                   step={0.1}
-                  onValueChange={handleSliderChange}
+                  onValueChange={handleSeekChange}
                   className="cursor-pointer"
                 />
+              </div>
+
+              <div 
+                className="relative flex items-center gap-2"
+                onMouseEnter={() => setShowVolumeSlider(true)}
+                onMouseLeave={() => setShowVolumeSlider(false)}
+              >
+                <motion.button
+                  onClick={toggleMute}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary text-foreground flex items-center justify-center transition-all duration-300"
+                >
+                  {getVolumeIcon()}
+                </motion.button>
+
+                <AnimatePresence>
+                  {showVolumeSlider && (
+                    <motion.div
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-card/95 backdrop-blur-xl border border-primary/30 rounded-lg px-4 py-2 shadow-lg"
+                      style={{
+                        boxShadow: '0 4px 30px oklch(0.65 0.24 310 / 0.3)'
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-muted-foreground font-mono w-8">{Math.round(volume * 100)}%</span>
+                        <Slider
+                          value={[volume]}
+                          max={1}
+                          step={0.01}
+                          onValueChange={handleVolumeChange}
+                          className="w-24 cursor-pointer"
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>
