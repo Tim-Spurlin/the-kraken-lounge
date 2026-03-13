@@ -166,7 +166,7 @@ export function Music() {
               </button>
               <audio
                 ref={audioRef}
-                src="https://dl.dropboxusercontent.com/scl/fi/ekbcwbyhhjrw4w2bv4xex/ElevenLabs_2026-03-13T17_58_19_Theo-Silk-British-Deep-Sleep-Calm_pvc_sp110_s50_sb75_v3.mp3?rlkey=5uwxmepg3qfh7qymstbsmecfl&st=ydxj13ps&raw=1"
+                src="https://dl.dropboxusercontent.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=pa5oojoq&raw=1"
                 onEnded={() => setIsPlayingAudio(false)}
                 onPause={() => setIsPlayingAudio(false)}
                 onPlay={() => setIsPlayingAudio(true)}
