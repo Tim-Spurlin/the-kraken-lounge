@@ -1,21 +1,8 @@
-import { Guitar, Microphone, Disc, Lightning, PlayCircle, PauseCircle } from '@phosphor-icons/react'
-import { useRef, useState } from 'react'
+import { Guitar, Microphone, Disc, Lightning } from '@phosphor-icons/react'
+import { useRef } from 'react'
 
 export function Music() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false)
-
-  const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlayingAudio) {
-        audioRef.current.pause()
-      } else {
-        audioRef.current.play()
-      }
-      setIsPlayingAudio(!isPlayingAudio)
-    }
-  }
 
   const genres = [
     {
@@ -127,50 +114,6 @@ export function Music() {
                   </p>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className="bg-card border border-primary p-8 rounded-sm card-glow mb-8 text-center relative overflow-hidden">
-            <div className="absolute inset-0 plasma-glow opacity-10 pointer-events-none" />
-            <h3 className="font-heading text-3xl mb-4 text-accent relative z-10">
-              The Lore of The Kraken
-            </h3>
-            <p className="text-muted-foreground mb-6 relative z-10 max-w-2xl mx-auto">
-              Before you watch the official video, immerse yourself in the story.
-            </p>
-            <div className="flex flex-col items-center justify-center gap-4 relative z-10">
-              <button
-                onClick={toggleAudio}
-                className="relative group w-full max-w-[540px] aspect-video rounded-sm overflow-hidden border-2 border-accent transition-all hover:shadow-[0_0_30px_oklch(0.55_0.25_25_/_0.5)] cursor-pointer"
-              >
-                <img
-                  src="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=i4h710u8&raw=1"
-                  alt="The Kraken Lore"
-                  className={`w-full h-full object-cover transition-transform duration-700 ${isPlayingAudio ? 'scale-105' : 'group-hover:scale-105'}`}
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                  <div className="bg-primary hover:bg-accent text-primary-foreground font-heading px-6 py-3 rounded-sm transition-all flex items-center gap-2">
-                    {isPlayingAudio ? (
-                      <>
-                        <PauseCircle weight="fill" className="w-6 h-6" />
-                        Pause Narration
-                      </>
-                    ) : (
-                      <>
-                        <PlayCircle weight="fill" className="w-6 h-6" />
-                        Listen to Narration
-                      </>
-                    )}
-                  </div>
-                </div>
-              </button>
-              <audio
-                ref={audioRef}
-                src="https://dl.dropboxusercontent.com/scl/fi/ekbcwbyhhjrw4w2bv4xex/ElevenLabs_2026-03-13T17_58_19_Theo-Silk-British-Deep-Sleep-Calm_pvc_sp110_s50_sb75_v3.mp3?rlkey=5uwxmepg3qfh7qymstbsmecfl&st=ydxj13ps&raw=1"
-                onEnded={() => setIsPlayingAudio(false)}
-                onPause={() => setIsPlayingAudio(false)}
-                onPlay={() => setIsPlayingAudio(true)}
-              />
             </div>
           </div>
 
