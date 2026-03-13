@@ -22,8 +22,8 @@ export function PremierVideo() {
           </div>
 
           <div className="relative">
-            <div className="relative overflow-hidden rounded-lg border-2 border-primary deep-shadow">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <div className="relative overflow-hidden rounded-lg border-2 border-primary deep-shadow max-w-[540px] mx-auto">
+              <div className="relative w-full aspect-[9/16]">
                 <iframe
                   className="absolute inset-0 w-full h-full"
                   src="https://www.dropbox.com/scl/fi/x8vzxq1pyglo56usrkilc/official-kraken-music-video-project-OFFICIAlL333_Final-Edit.mp4?rlkey=hr6o94gdpi1xcpjf85v6b757f&st=si4bb8ih&raw=1"
