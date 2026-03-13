@@ -141,7 +141,7 @@ export function Music() {
             <div className="flex flex-col items-center justify-center gap-4 relative z-10">
               <button
                 onClick={toggleAudio}
-                className="relative group w-full max-w-[540px] aspect-video rounded-sm overflow-hidden border-2 border-accent transition-all hover:shadow-[0_0_30px_oklch(0.55_0.25_25_/_0.5)] cursor-pointer"
+                className="relative group w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent transition-all hover:shadow-[0_0_30px_oklch(0.55_0.25_25_/_0.5)] cursor-pointer"
               >
                 <img
                   src="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=i4h710u8&raw=1"
