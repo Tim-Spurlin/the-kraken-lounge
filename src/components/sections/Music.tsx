@@ -159,7 +159,7 @@ export function Music() {
 
           <div className="bg-card border border-primary p-8 rounded-sm card-glow">
             <h3 className="font-heading text-3xl mb-6 text-center text-accent">
-              The Lore of The Kraken
+              The Kraken
             </h3>
             <div className="space-y-6">
               <div className="flex justify-center">

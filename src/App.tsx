@@ -14,6 +14,7 @@ import { ScrollToHash } from '@/components/ScrollToHash'
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext'
 import { PersistentPlayer } from '@/components/PersistentPlayer'
 import { AudioPlaylistManager } from '@/components/AudioPlaylistManager'
+import { useEffect } from 'react'
 
 function Home() {
   return (
@@ -31,6 +32,27 @@ function Home() {
 }
 
 function App() {
+  useEffect(() => {
+    const handleGlobalPlay = (e: Event) => {
+      const target = e.target as HTMLMediaElement
+      if (target.tagName === 'AUDIO' || target.tagName === 'VIDEO') {
+        // Find all other media elements and pause them
+        const mediaElements = document.querySelectorAll('audio, video')
+        mediaElements.forEach((media) => {
+          if (media !== target && !(media as HTMLMediaElement).paused) {
+            (media as HTMLMediaElement).pause()
+          }
+        })
+      }
+    }
+
+    document.addEventListener('play', handleGlobalPlay, true)
+    
+    return () => {
+      document.removeEventListener('play', handleGlobalPlay, true)
+    }
+  }, [])
+
   return (
     <AudioPlayerProvider>
       <Router>
