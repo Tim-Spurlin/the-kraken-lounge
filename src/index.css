@@ -8,23 +8,23 @@
 }
 
 :root {
-  --background: oklch(0.08 0.01 270);
+  --background: oklch(0.10 0.02 270);
   --foreground: oklch(0.95 0.02 280);
 
-  --card: oklch(0.12 0.02 270);
+  --card: oklch(0.14 0.03 270);
   --card-foreground: oklch(0.95 0.02 280);
 
-  --popover: oklch(0.12 0.02 270);
+  --popover: oklch(0.14 0.03 270);
   --popover-foreground: oklch(0.95 0.02 280);
 
   --primary: oklch(0.65 0.24 310);
   --primary-foreground: oklch(0.98 0.01 280);
 
-  --secondary: oklch(0.18 0.03 270);
+  --secondary: oklch(0.20 0.04 270);
   --secondary-foreground: oklch(0.95 0.02 280);
 
-  --muted: oklch(0.15 0.02 270);
-  --muted-foreground: oklch(0.55 0.02 280);
+  --muted: oklch(0.18 0.03 270);
+  --muted-foreground: oklch(0.60 0.03 280);
 
   --accent: oklch(0.75 0.20 330);
   --accent-foreground: oklch(0.98 0.01 280);
@@ -32,8 +32,8 @@
   --destructive: oklch(0.62 0.18 35);
   --destructive-foreground: oklch(0.98 0.01 280);
 
-  --border: oklch(0.25 0.04 280);
-  --input: oklch(0.25 0.04 280);
+  --border: oklch(0.28 0.05 280);
+  --input: oklch(0.28 0.05 280);
   --ring: oklch(0.65 0.24 310);
 
   --radius: 1rem;
@@ -389,5 +389,125 @@ body {
   }
   50% {
     opacity: 0.7;
+  }
+}
+
+.paint-splatter {
+  position: relative;
+}
+
+.paint-splatter::before,
+.paint-splatter::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paint-splatter::before {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, oklch(0.65 0.24 310) 0%, transparent 70%);
+  top: -50px;
+  left: 10%;
+  filter: blur(8px);
+  animation: splatter-pulse 4s ease-in-out infinite;
+}
+
+.paint-splatter::after {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, oklch(0.75 0.20 330) 0%, transparent 70%);
+  bottom: -70px;
+  right: 15%;
+  filter: blur(10px);
+  animation: splatter-pulse 5s ease-in-out infinite reverse;
+}
+
+.paint-splatter-1 {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, oklch(0.60 0.22 320) 0%, transparent 65%);
+  border-radius: 50%;
+  top: 20%;
+  right: 8%;
+  opacity: 0.35;
+  filter: blur(6px);
+  animation: splatter-drift 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paint-splatter-2 {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, oklch(0.70 0.18 300) 0%, transparent 65%);
+  border-radius: 50%;
+  bottom: 15%;
+  left: 12%;
+  opacity: 0.3;
+  filter: blur(8px);
+  animation: splatter-drift 7s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paint-splatter-3 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, oklch(0.65 0.24 310) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 60%;
+  left: 5%;
+  opacity: 0.4;
+  filter: blur(5px);
+  animation: splatter-drift 5.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paint-splatter-4 {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  background: radial-gradient(circle, oklch(0.75 0.20 330) 0%, transparent 68%);
+  border-radius: 50%;
+  top: 40%;
+  right: 20%;
+  opacity: 0.35;
+  filter: blur(9px);
+  animation: splatter-pulse 6.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes splatter-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes splatter-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10px, -15px) scale(1.05);
+  }
+  50% {
+    transform: translate(-5px, 10px) scale(0.95);
+  }
+  75% {
+    transform: translate(-15px, -5px) scale(1.08);
   }
 }

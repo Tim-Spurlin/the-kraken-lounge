@@ -29,9 +29,13 @@ export function AudioOverview() {
   const isSpanishPlaying = currentTrack?.url === spanishTrack.url && isPlaying
 
   return (
-    <section id="overview" className="py-16 bg-gradient-to-b from-background via-card to-background relative overflow-hidden">
+    <section id="overview" className="py-16 bg-gradient-to-b from-background via-card to-background relative overflow-hidden paint-splatter">
       <div className="absolute inset-0 hexagon-pattern opacity-20" />
       <div className="absolute inset-0 aurora-gradient" />
+      <div className="paint-splatter-1" />
+      <div className="paint-splatter-2" />
+      <div className="paint-splatter-3" />
+      <div className="paint-splatter-4" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
