@@ -146,7 +146,7 @@ export function Music() {
                   disablePictureInPicture
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover"
-                  poster="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=i4h710u8&raw=1"
+                  poster="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=napvvh5c&raw=1"
                   playsInline
                   preload="metadata"
                 >
