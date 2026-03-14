@@ -1,31 +1,26 @@
-Thanks for helping make GitHub safe for everyone.
+# Security Policy
 
-# Security
+## Supported Versions
 
-GitHub takes the security of our software products and services seriously, including all of the open source code repositories managed through our GitHub organizations, such as [GitHub](https://github.com/GitHub).
+The Kraken Lounge only supports and provides security updates for the latest major version deployed to production.
 
-Even though [open source repositories are outside of the scope of our bug bounty program](https://bounty.github.com/index.html#scope) and therefore not eligible for bounty rewards, we will ensure that your finding gets passed along to the appropriate maintainers for remediation. 
+| Version | Supported          |
+| ------- | ------------------ |
+| v1      | :white_check_mark: |
+| < v1    | :x:                |
 
-## Reporting Security Issues
+## Reporting a Vulnerability
 
-If you believe you have found a security vulnerability in any GitHub-owned repository, please report it to us through coordinated disclosure.
+Security is a core priority for The Kraken Lounge. If you discover a vulnerability, **do not open a public issue.** This gives malicious actors time to exploit the flaw before a patch can be released.
 
-**Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
+Please confidentially report the issue by sending an email directly to the project maintainers:
 
-Instead, please send an email to opensource-security[@]github.com.
+**[INSERT_EMAIL_HERE]**
 
-Please include as much of the information listed below as you can to help us better understand and resolve the issue:
+Include the following in your report:
 
-  * The type of issue (e.g., buffer overflow, SQL injection, or cross-site scripting)
-  * Full paths of source file(s) related to the manifestation of the issue
-  * The location of the affected source code (tag/branch/commit or direct URL)
-  * Any special configuration required to reproduce the issue
-  * Step-by-step instructions to reproduce the issue
-  * Proof-of-concept or exploit code (if possible)
-  * Impact of the issue, including how an attacker might exploit the issue
+* Type of issue (e.g., buffer overflow, SQL injection, cross-site scripting, etc.)
+* Full paths of source file(s) related to the manifestation of the issue
+* A proof-of-concept (PoC) or detailed steps explaining how to reproduce the vulnerability so that it can be investigated and mitigated.
 
-This information will help us triage your report more quickly.
-
-## Policy
-
-See [GitHub's Safe Harbor Policy](https://docs.github.com/en/site-policy/security-policies/github-bug-bounty-program-legal-safe-harbor#1-safe-harbor-terms)
+All reports are taken seriously. You should expect an acknowledgment of your email within 48 hours. If the vulnerability is confirmed, a patch will be developed and deployed as swiftly as possible, and you will be credited for the responsible disclosure.
