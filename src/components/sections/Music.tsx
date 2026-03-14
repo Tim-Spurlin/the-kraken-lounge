@@ -1,21 +1,9 @@
-import { Guitar, Microphone, Disc, Lightning, PlayCircle, PauseCircle } from '@phosphor-icons/react'
-import { useRef, useState } from 'react'
+import { Guitar, Microphone, Disc, Lightning } from '@phosphor-icons/react'
+import { useRef } from 'react'
 
 export function Music() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false)
-
-  const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlayingAudio) {
-        audioRef.current.pause()
-      } else {
-        audioRef.current.play()
-      }
-      setIsPlayingAudio(!isPlayingAudio)
-    }
-  }
+  const introVideoRef = useRef<HTMLVideoElement>(null)
 
   const genres = [
     {
@@ -139,38 +127,33 @@ export function Music() {
               Before you watch the official video, immerse yourself in the story.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 relative z-10">
-              <button
-                onClick={toggleAudio}
-                className="relative group w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent transition-all hover:shadow-[0_0_30px_oklch(0.55_0.25_25_/_0.5)] cursor-pointer"
+              <div
+                className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.55_0.24_310_/_0.3)] cursor-pointer relative group"
+                onClick={() => {
+                  if (introVideoRef.current) {
+                    if (introVideoRef.current.paused) {
+                      introVideoRef.current.play()
+                    } else {
+                      introVideoRef.current.pause()
+                    }
+                  }
+                }}
               >
-                <img
-                  src="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=i4h710u8&raw=1"
-                  alt="The Kraken Lore"
-                  className={`w-full h-full object-cover transition-transform duration-700 ${isPlayingAudio ? 'scale-105' : 'group-hover:scale-105'}`}
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                  <div className="bg-primary hover:bg-accent text-primary-foreground font-heading px-6 py-3 rounded-sm transition-all flex items-center gap-2">
-                    {isPlayingAudio ? (
-                      <>
-                        <PauseCircle weight="fill" className="w-6 h-6" />
-                        Pause Narration
-                      </>
-                    ) : (
-                      <>
-                        <PlayCircle weight="fill" className="w-6 h-6" />
-                        Listen to Narration
-                      </>
-                    )}
-                  </div>
-                </div>
-              </button>
-              <audio
-                ref={audioRef}
-                src="https://dl.dropboxusercontent.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=pa5oojoq&raw=1"
-                onEnded={() => setIsPlayingAudio(false)}
-                onPause={() => setIsPlayingAudio(false)}
-                onPlay={() => setIsPlayingAudio(true)}
-              />
+                <video
+                  ref={introVideoRef}
+                  controls
+                  controlsList="nodownload"
+                  disablePictureInPicture
+                  onContextMenu={(e) => e.preventDefault()}
+                  className="w-full h-full object-cover"
+                  poster="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=i4h710u8&raw=1"
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src="https://dl.dropboxusercontent.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=ml87zf9p&raw=1" type="video/mp4" />
+                  Your browser does not support the video element.
+                </video>
+              </div>
             </div>
           </div>
 
