@@ -128,16 +128,7 @@ export function Music() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 relative z-10">
               <div
-                className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.55_0.24_310_/_0.3)] cursor-pointer relative group"
-                onClick={() => {
-                  if (introVideoRef.current) {
-                    if (introVideoRef.current.paused) {
-                      introVideoRef.current.play()
-                    } else {
-                      introVideoRef.current.pause()
-                    }
-                  }
-                }}
+                className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.55_0.24_310_/_0.3)] relative group"
               >
                 <video
                   ref={introVideoRef}
@@ -146,11 +137,11 @@ export function Music() {
                   disablePictureInPicture
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover"
-                  poster="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=napvvh5c&raw=1"
+                  poster="https://www.dropbox.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=napvvh5c&raw=1"
                   playsInline
                   preload="metadata"
                 >
-                  <source src="https://dl.dropboxusercontent.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=ml87zf9p&raw=1" type="video/mp4" />
+                  <source src="https://www.dropbox.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=ml87zf9p&raw=1" type="video/mp4" />
                   Your browser does not support the video element.
                 </video>
               </div>
@@ -159,21 +150,12 @@ export function Music() {
 
           <div className="bg-card border border-primary p-8 rounded-sm card-glow">
             <h3 className="font-heading text-3xl mb-6 text-center text-accent">
-              The Lore of The Kraken
+              The Kraken
             </h3>
             <div className="space-y-6">
               <div className="flex justify-center">
                 <div
-                  className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)] cursor-pointer"
-                  onClick={() => {
-                    if (videoRef.current) {
-                      if (videoRef.current.paused) {
-                        videoRef.current.play()
-                      } else {
-                        videoRef.current.pause()
-                      }
-                    }
-                  }}
+                  className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]"
                 >
                   <video
                     ref={videoRef}

@@ -94,7 +94,8 @@
         "globals": "^16.0.0",
         "tailwindcss": "^4.1.11",
         "typescript": "~5.7.2",
-        "typescript-eslint": "^8.57.0"
+        "typescript-eslint": "^8.57.0",
+        "vite-plugin-pwa": "^1.2.0"
     },
     "workspaces": {
         "packages": [

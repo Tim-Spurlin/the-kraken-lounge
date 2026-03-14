@@ -12,7 +12,7 @@ export function PremierVideo() {
             <div className="flex items-center justify-center gap-4 mb-4">
               <FilmSlate className="w-12 h-12 text-accent" weight="fill" />
               <h2 className="font-heading text-5xl md:text-6xl text-accent gothic-glow">
-                The Lore of The Kraken
+                The Kraken
               </h2>
               <FilmSlate className="w-12 h-12 text-accent" weight="fill" />
             </div>
