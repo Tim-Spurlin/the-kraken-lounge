@@ -33,7 +33,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/dl\.dropboxusercontent\.com\/.*/i,
+            urlPattern: /^https:\/\/.*dropbox(usercontent)?\.com\/.*/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'dropbox-media-cache',

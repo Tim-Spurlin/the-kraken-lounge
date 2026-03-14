@@ -146,11 +146,11 @@ export function Music() {
                   disablePictureInPicture
                   onContextMenu={(e) => e.preventDefault()}
                   className="w-full h-full object-cover"
-                  poster="https://dl.dropboxusercontent.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=napvvh5c&raw=1"
+                  poster="https://www.dropbox.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=napvvh5c&raw=1"
                   playsInline
                   preload="metadata"
                 >
-                  <source src="https://dl.dropboxusercontent.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=ml87zf9p&raw=1" type="video/mp4" />
+                  <source src="https://www.dropbox.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=ml87zf9p&raw=1" type="video/mp4" />
                   Your browser does not support the video element.
                 </video>
               </div>
