@@ -37,22 +37,22 @@ export function Lore() {
           
           <div className="order-2 md:order-1 space-y-6 text-lg text-foreground/80 leading-relaxed font-sans bg-card/60 p-8 rounded-sm border border-primary/30 deep-shadow">
             <p className="first-letter:text-5xl first-letter:font-heading first-letter:text-accent first-letter:float-left first-letter:mr-2">
-              They called him the Kraken. He sailed from port to port, not seeking to forget, but searching for a sanctuary worth remembering. Yet, every harbor failed him. Weak drinks. Dead music. Hollow laughter. And when a place failed him, he left it broken, burning, and buried in ash.
+              They called him... the Kraken. Sailing from port to port, not to forget, but to find a bar worth remembering. But every bar failed him. Weak drinks. Dead music. Empty laughter.
             </p>
             <p>
-              Then, one restless night, the currents drew him to a small town named Brownsville, resting on the deep southern edge of Texas by the Gulf. The air here felt different—warmer, and unmistakably real.
+              And when a bar failed him... he left it broken, burning, and buried in smoke.
             </p>
             <p>
-              Through the fog, he saw it. The Kraken Lounge. A sanctuary bold enough to wear his name.
+              Then one night, he came to a little town named Brownsville, near the far southern edge of Texas by the Gulf. The air felt different. Warmer. Real. Then he saw it. The Kraken Lounge. A place wearing his name.
             </p>
             <p>
-              He stepped inside, fully prepared to despise it. But the drinks were crafted with purpose. The music pulsed with raw, underground soul. The art upon the walls seemed to breathe and bleed with life. For the first time in an eternity, the raging storm inside him finally grew quiet.
+              He stepped inside, ready to hate it. But the drinks were perfect. The music had soul. The art on the walls seemed alive. And for the first time in years... the storm inside him grew quiet.
             </p>
-            <p className="italic text-accent font-medium">
-              He did not leave this place in ruins. Instead, it claimed a permanent place in his heart.
+            <p className="italic text-accent font-medium mt-4">
+              He did not leave the place in ash. Instead... it found a place in his heart.
             </p>
-            <p className="font-heading text-xl text-center pt-4">
-              And so, he stayed.
+            <p className="font-heading text-xl text-center mt-2">
+              So, he stayed.
             </p>
           </div>
 
