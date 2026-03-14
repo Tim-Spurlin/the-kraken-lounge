@@ -32,34 +32,8 @@ export default defineConfig({
       },
       workbox: {
         runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/.*dropbox(usercontent)?\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'dropbox-media-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 Days
-              },
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          },
-          {
-            urlPattern: /^https:\/\/res\.cloudinary\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'cloudinary-media-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30
-              },
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          },
+          // Media URLs excluded from PWA cache to preserve iOS/Safari video playback compatibility
+          // as Workbox CacheFirst does not natively support HTTP 206 Partial Content range requests
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'StaleWhileRevalidate',

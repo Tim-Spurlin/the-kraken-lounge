@@ -128,16 +128,7 @@ export function Music() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 relative z-10">
               <div
-                className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.55_0.24_310_/_0.3)] cursor-pointer relative group"
-                onClick={() => {
-                  if (introVideoRef.current) {
-                    if (introVideoRef.current.paused) {
-                      introVideoRef.current.play()
-                    } else {
-                      introVideoRef.current.pause()
-                    }
-                  }
-                }}
+                className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.55_0.24_310_/_0.3)] relative group"
               >
                 <video
                   ref={introVideoRef}
@@ -164,16 +155,7 @@ export function Music() {
             <div className="space-y-6">
               <div className="flex justify-center">
                 <div
-                  className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)] cursor-pointer"
-                  onClick={() => {
-                    if (videoRef.current) {
-                      if (videoRef.current.paused) {
-                        videoRef.current.play()
-                      } else {
-                        videoRef.current.pause()
-                      }
-                    }
-                  }}
+                  className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.65_0.24_310_/_0.3)]"
                 >
                   <video
                     ref={videoRef}
