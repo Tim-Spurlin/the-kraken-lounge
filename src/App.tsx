@@ -14,6 +14,7 @@ import { ScrollToHash } from '@/components/ScrollToHash'
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext'
 import { PersistentPlayer } from '@/components/PersistentPlayer'
 import { AudioPlaylistManager } from '@/components/AudioPlaylistManager'
+import { Lore } from '@/components/pages/Lore'
 import { useEffect } from 'react'
 
 function Home() {
@@ -64,6 +65,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/event/:id" element={<EventDetail />} />
+              <Route path="/lore" element={<Lore />} />
             </Routes>
           </main>
           <footer className="bg-card border-t border-border py-12">

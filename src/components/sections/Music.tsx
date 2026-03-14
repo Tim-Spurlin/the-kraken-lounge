@@ -1,9 +1,9 @@
 import { Guitar, Microphone, Disc, Lightning } from '@phosphor-icons/react'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 export function Music() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const introVideoRef = useRef<HTMLVideoElement>(null)
 
   const genres = [
     {
@@ -126,25 +126,16 @@ export function Music() {
             <p className="text-muted-foreground mb-6 relative z-10 max-w-2xl mx-auto">
               Before you watch the official video, immerse yourself in the story.
             </p>
-            <div className="flex flex-col items-center justify-center gap-4 relative z-10">
-              <div
-                className="w-full max-w-[540px] aspect-[9/16] rounded-sm overflow-hidden border-2 border-accent shadow-[0_0_40px_oklch(0.55_0.24_310_/_0.3)] relative group"
+            <div className="flex flex-col items-center justify-center gap-4 relative z-10 mt-8">
+              <Link
+                to="/lore"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-background to-card hover:from-card hover:to-accent/20 text-foreground font-heading px-10 py-5 rounded-sm border-2 border-accent transition-all hover:shadow-[0_0_40px_oklch(0.55_0.25_25_/_0.5)] group overflow-hidden relative"
               >
-                <video
-                  ref={introVideoRef}
-                  controls
-                  controlsList="nodownload"
-                  disablePictureInPicture
-                  onContextMenu={(e) => e.preventDefault()}
-                  className="w-full h-full object-cover"
-                  poster="https://www.dropbox.com/scl/fi/b2qbbpu4tmwyyhg0kdcwg/ChatGPT-Image-Mar-13-2026-02_24_35-PM.png?rlkey=66678zpw0yndr8bbnwgwl355y&st=napvvh5c&raw=1"
-                  playsInline
-                  preload="metadata"
-                >
-                  <source src="https://www.dropbox.com/scl/fi/ru4v3czetkfdnlle0dbv8/The-Kraken-Lounge_-A-Bar-Worth-Remembering_1773439982.mp4?rlkey=1e5gemn7rat8w8j052h6157qv&st=ml87zf9p&raw=1" type="video/mp4" />
-                  Your browser does not support the video element.
-                </video>
-              </div>
+                <div className="absolute inset-0 bg-accent/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                <span className="relative z-10 text-2xl tracking-wider uppercase drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] gothic-glow">
+                  Enter the Lore
+                </span>
+              </Link>
             </div>
           </div>
 
