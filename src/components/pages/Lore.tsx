@@ -51,7 +51,7 @@ export function Lore() {
             <p className="italic text-accent font-medium mt-4">
               He did not leave the place in ash. Instead... it found a place in his heart.
             </p>
-            <p className="font-heading text-xl text-center mt-2">
+            <p className="font-heading text-xl mt-2">
               So, he stayed.
             </p>
           </div>
